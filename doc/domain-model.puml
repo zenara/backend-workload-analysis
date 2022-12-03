@@ -1,0 +1,21 @@
+@startuml
+hide circle
+hide methods
+
+folder "VM Consolidation" as BillingRoundSpecificationFolder #FFF2CC {
+    class ExecutableData <<Aggregate Root>> #D5A6BD {
+        vmAllocationPolicy : String
+        vmSelectionPolicy : String
+        parameter: String
+        workload: String
+        active: Boolean
+    }
+
+    class ResultAnalysis <<Value Object>> #B6D7A8 {
+
+    }
+
+    ExecutableData -- ResultAnalysis
+}
+
+@enduml

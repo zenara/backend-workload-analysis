@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-public class Result {
+public class ResultAnalysis {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

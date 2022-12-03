@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import edu.iit.workload.domain.ExecutableData;
-import edu.iit.workload.domain.Result;
+import edu.iit.workload.domain.ResultAnalysis;
 import edu.iit.workload.repository.ResultDataRepository;
 import org.cloudbus.cloudsim.Cloudlet;
 import org.cloudbus.cloudsim.CloudletSchedulerDynamicWorkload;
@@ -40,7 +40,6 @@ import org.cloudbus.cloudsim.provisioners.BwProvisionerSimple;
 import org.cloudbus.cloudsim.provisioners.PeProvisionerSimple;
 import org.cloudbus.cloudsim.provisioners.RamProvisionerSimple;
 import org.cloudbus.cloudsim.util.MathUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -300,7 +299,7 @@ public class Helper {
             stDevTimeBeforeVmMigration = MathUtil.stDev(timeBeforeVmMigration);
         }
 
-        Result r = new Result();
+        ResultAnalysis r = new ResultAnalysis();
         r.setEnergy(energy);
         r.setExperimentName(experimentName);
         r.setNumberOfHosts(numberOfHosts);

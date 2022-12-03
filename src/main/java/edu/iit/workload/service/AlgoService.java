@@ -1,7 +1,7 @@
 package edu.iit.workload.service;
 
 import edu.iit.workload.domain.ExecutableData;
-import edu.iit.workload.domain.Result;
+import edu.iit.workload.domain.ResultAnalysis;
 import edu.iit.workload.repository.ExecutableDataRepository;
 import edu.iit.workload.repository.ResultDataRepository;
 import org.springframework.stereotype.Service;
@@ -31,7 +31,7 @@ public class AlgoService {
     }
 
     public boolean checkIsExecuted(ExecutableData executableData) {
-        List<Result> byParams = resultDataRepository.findAllByWorkloadAndParameterAndVmAllocationPolicyAndVmSelectionPolicy(executableData.getParameter(),
+        List<ResultAnalysis> byParams = resultDataRepository.findAllByWorkloadAndParameterAndVmAllocationPolicyAndVmSelectionPolicy(executableData.getParameter(),
                 executableData.getWorkload(),
                 executableData.getVmAllocationPolicy(), executableData.getVmSelectionPolicy());
         if(byParams != null && byParams.size()>0){
