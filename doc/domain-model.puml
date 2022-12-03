@@ -11,8 +11,23 @@ folder "VM Consolidation" as BillingRoundSpecificationFolder #FFF2CC {
         active: Boolean
     }
 
-    class ResultAnalysis <<Value Object>> #B6D7A8 {
-
+    class AnalysedData <<Value Object>> #B6D7A8 {
+         vmAllocationPolicy : String
+         vmSelectionPolicy : String
+         parameter : String
+         workload : String
+         experimentName : String
+         groupId : String
+         numberOfHosts : int
+         numberOfVms : int
+         numberOfMigrations : int
+         numberOfHostShutdowns : int
+         totalSimulationTime : double
+         energy : double
+         sla : double
+         slaTimePerActiveHost : double
+         slaDegradationDueToMigration : double
+         executedDate: LocalDateTime
     }
 
     ExecutableData -- ResultAnalysis
