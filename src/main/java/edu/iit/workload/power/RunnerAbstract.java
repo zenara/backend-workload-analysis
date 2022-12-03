@@ -1,35 +1,16 @@
 package edu.iit.workload.power;
 
+import edu.iit.workload.domain.ExecutableData;
+import org.cloudbus.cloudsim.*;
+import org.cloudbus.cloudsim.core.CloudSim;
+import org.cloudbus.cloudsim.power.*;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
-
-import edu.iit.workload.domain.ExecutableData;
-import org.cloudbus.cloudsim.Cloudlet;
-import org.cloudbus.cloudsim.DatacenterBroker;
-import org.cloudbus.cloudsim.Log;
-import org.cloudbus.cloudsim.Vm;
-import org.cloudbus.cloudsim.VmAllocationPolicy;
-import org.cloudbus.cloudsim.core.CloudSim;
-import org.cloudbus.cloudsim.power.PowerDatacenter;
-import org.cloudbus.cloudsim.power.PowerHost;
-import org.cloudbus.cloudsim.power.PowerVmAllocationPolicyMigrationAbstract;
-import org.cloudbus.cloudsim.power.PowerVmAllocationPolicyMigrationGA;
-import org.cloudbus.cloudsim.power.PowerVmAllocationPolicyMigrationInterQuartileRange;
-import org.cloudbus.cloudsim.power.PowerVmAllocationPolicyMigrationLocalRegression;
-import org.cloudbus.cloudsim.power.PowerVmAllocationPolicyMigrationLocalRegressionRobust;
-import org.cloudbus.cloudsim.power.PowerVmAllocationPolicyMigrationMedianAbsoluteDeviation;
-import org.cloudbus.cloudsim.power.PowerVmAllocationPolicyMigrationStaticThreshold;
-import org.cloudbus.cloudsim.power.PowerVmAllocationPolicySimple;
-import org.cloudbus.cloudsim.power.PowerVmSelectionPolicy;
-import org.cloudbus.cloudsim.power.PowerVmSelectionPolicyMaximumCorrelation;
-import org.cloudbus.cloudsim.power.PowerVmSelectionPolicyMinimumMigrationTime;
-import org.cloudbus.cloudsim.power.PowerVmSelectionPolicyMinimumUtilization;
-import org.cloudbus.cloudsim.power.PowerVmSelectionPolicyRandomSelection;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 
 /**
  * The Class RunnerAbstract.
@@ -74,8 +55,6 @@ public abstract class RunnerAbstract {
      */
     protected static List<PowerHost> hostList;
 
-
-    @Async
     public void run(boolean enableOutput, boolean outputToFile, String inputFolder, String outputFolder, ExecutableData executableData, String uuid) {
         try {
             initLogOutput(
@@ -150,6 +129,7 @@ public abstract class RunnerAbstract {
 
     /**
      * Starts the simulation.
+     *
      * @param experimentName     the experiment name
      * @param outputFolder       the output folder
      * @param vmAllocationPolicy the vm allocation policy
@@ -158,6 +138,7 @@ public abstract class RunnerAbstract {
      */
     @SuppressWarnings("Duplicates")
     protected void start(String experimentName, String outputFolder, VmAllocationPolicy vmAllocationPolicy, ExecutableData executableData, String uuid) {
+        System.out.println("");
         System.out.println("Starting " + experimentName);
 
         try {

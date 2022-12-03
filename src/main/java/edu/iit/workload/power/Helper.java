@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -315,6 +316,7 @@ public class Helper {
         r.setParameter(executableData.getParameter());
         r.setWorkload(executableData.getWorkload());
         r.setGroupId(uuid);
+        r.setExecutedDate(LocalDateTime.now());
         repository.save(r);
 
         if (outputInCsv) {
