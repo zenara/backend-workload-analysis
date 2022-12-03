@@ -3,6 +3,7 @@ package edu.iit.workload.api;
 import edu.iit.workload.domain.ExecutableData;
 import edu.iit.workload.power.planetlab.PlanetLabRunner;
 import edu.iit.workload.service.AlgoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Slf4j
 @RestController
 @RequestMapping(value = "/api/v1")
 public class AlgoController {
@@ -39,13 +41,13 @@ public class AlgoController {
     /**
      * @param VMallocation Inter Quartile Range (IQR) VM allocation policy
      * @param VMselection  Minimum Migration Time (MMT) VM selection policy
-     * @param parameter  the safety parameter of the IQR policy
+     * @param parameter    the safety parameter of the IQR policy
      */
     @GetMapping("/execute/{id}")
     public void execute(@PathVariable("id") Long id) {
         Optional<ExecutableData> byId = this.algoService.findById(id);
         UUID uuid = UUID.randomUUID();
-        if(byId.isPresent()){
+        if (byId.isPresent()) {
             String workload = "20110420"; // PlanetLab workload
             planetLabRunner.run(
                     enableOutput,
@@ -62,6 +64,13 @@ public class AlgoController {
         UUID uuid = UUID.randomUUID();
         if (allExecutableData != null) {
             allExecutableData.forEach(executableData -> {
+                if (this.algoService.checkIsExecuted(executableData)) {
+                    log.info(
+                            "already executed: vm_allocation_policy: {} vm_selection_policy: {} parameter: {} workload: {}",
+                            executableData.getVmAllocationPolicy(), executableData.getVmSelectionPolicy(),
+                            executableData.getParameter(), executableData.getWorkload());
+                    return;
+                }
                 planetLabRunner.run(
                         enableOutput,
                         outputToFile,
