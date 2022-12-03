@@ -25,7 +25,7 @@ public class ChartService {
 				.map(m -> {
 					Map<String, Object> map = entities.stream().filter(r -> r.getVmSelectionPolicy().equals(m)).collect(
 							Collectors.toMap(a -> a.getVmAllocationPolicy().toUpperCase(), a -> findValue(type, a)));
-					map.put("name", m);
+					map.put("name", m.toUpperCase());
 					return map;
 				}).toList();
 
