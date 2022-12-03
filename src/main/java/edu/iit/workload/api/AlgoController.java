@@ -3,7 +3,6 @@ package edu.iit.workload.api;
 import edu.iit.workload.domain.ExecutableData;
 import edu.iit.workload.power.planetlab.PlanetLabRunner;
 import edu.iit.workload.service.AlgoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,7 +55,7 @@ public class AlgoController {
     }
 
     @GetMapping("/execute")
-    public void execute() {
+    public String execute() {
         List<ExecutableData> allExecutableData = this.algoService.getAllExecutableData();
         if (allExecutableData != null) {
             allExecutableData.forEach(executableData -> {
@@ -71,6 +70,7 @@ public class AlgoController {
                         executableData.getParameter());
             });
         }
+        return "" + allExecutableData.size() + " item/s executed";
     }
 
 }

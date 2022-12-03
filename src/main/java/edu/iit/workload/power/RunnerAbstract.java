@@ -28,6 +28,7 @@ import org.cloudbus.cloudsim.power.PowerVmSelectionPolicyMinimumMigrationTime;
 import org.cloudbus.cloudsim.power.PowerVmSelectionPolicyMinimumUtilization;
 import org.cloudbus.cloudsim.power.PowerVmSelectionPolicyRandomSelection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 
 /**
  * The Class RunnerAbstract.
@@ -73,6 +74,7 @@ public abstract class RunnerAbstract {
     protected static List<PowerHost> hostList;
 
 
+    @Async
     public void run(boolean enableOutput, boolean outputToFile, String inputFolder, String outputFolder, String workload, String vmAllocationPolicy, String vmSelectionPolicy, String parameter) {
         try {
             initLogOutput(
