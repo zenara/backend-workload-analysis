@@ -4,3 +4,10 @@ spring:
     username: root
     password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+folder:
+  input: H:\Chathu\backend\backend-workload-analysis\src\main\resources\workload
+  output: H:\Chathu\backend\backend-workload-analysis\src\main\resources\output
