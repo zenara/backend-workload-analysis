@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/api/v1")
@@ -35,28 +37,29 @@ public class AlgoController {
     }
 
     /**
-     * @param allocation Inter Quartile Range (IQR) VM allocation policy
-     * @param selection  Minimum Migration Time (MMT) VM selection policy
+     * @param VMallocation Inter Quartile Range (IQR) VM allocation policy
+     * @param VMselection  Minimum Migration Time (MMT) VM selection policy
      * @param parameter  the safety parameter of the IQR policy
      */
-    @GetMapping("/execute/{allocation}/{selection}/{parameter}")
-    public void execute(@PathVariable("allocation") String allocation,
-                        @PathVariable("selection") String selection, @PathVariable("parameter") String parameter) {
-        String workload = "20110420"; // PlanetLab workload
-        planetLabRunner.run(
-                enableOutput,
-                outputToFile,
-                inputFolder,
-                outputFolder,
-                workload,
-                allocation,
-                selection,
-                parameter);
+    @GetMapping("/execute/{id}")
+    public void execute(@PathVariable("id") Long id) {
+        Optional<ExecutableData> byId = this.algoService.findById(id);
+        UUID uuid = UUID.randomUUID();
+        if(byId.isPresent()){
+            String workload = "20110420"; // PlanetLab workload
+            planetLabRunner.run(
+                    enableOutput,
+                    outputToFile,
+                    inputFolder,
+                    outputFolder,
+                    byId.get(), uuid.toString());
+        }
     }
 
     @GetMapping("/execute")
     public String execute() {
         List<ExecutableData> allExecutableData = this.algoService.getAllExecutableData();
+        UUID uuid = UUID.randomUUID();
         if (allExecutableData != null) {
             allExecutableData.forEach(executableData -> {
                 planetLabRunner.run(
@@ -64,10 +67,7 @@ public class AlgoController {
                         outputToFile,
                         inputFolder,
                         outputFolder,
-                        executableData.getWorkload(),
-                        executableData.getVmAllocationPolicy(),
-                        executableData.getVmSelectionPolicy(),
-                        executableData.getParameter());
+                        executableData, uuid.toString());
             });
         }
         return "" + allExecutableData.size() + " item/s executed";

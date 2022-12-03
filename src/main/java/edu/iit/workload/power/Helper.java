@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import edu.iit.workload.domain.ExecutableData;
 import edu.iit.workload.domain.Result;
 import edu.iit.workload.repository.ResultDataRepository;
 import org.cloudbus.cloudsim.Cloudlet;
@@ -142,7 +143,6 @@ public class Helper {
      * @param datacenterClass    the datacenter class
      * @param hostList           the host list
      * @param vmAllocationPolicy the vm allocation policy
-     * @param simulationLength
      * @return the power datacenter
      * @throws Exception the exception
      */
@@ -248,6 +248,8 @@ public class Helper {
      * @param experimentName the experiment name
      * @param outputInCsv    the output in csv
      * @param outputFolder   the output folder
+     * @param executableData
+     * @param uuid
      */
     public void printResults(
             PowerDatacenter datacenter,
@@ -255,7 +257,7 @@ public class Helper {
             double lastClock,
             String experimentName,
             boolean outputInCsv,
-            String outputFolder) {
+            String outputFolder, ExecutableData executableData, String uuid) {
         Log.enable();
         List<Host> hosts = datacenter.getHostList();
 
@@ -309,6 +311,11 @@ public class Helper {
         r.setSlaTimePerActiveHost(numberOfMigrations);
         r.setSlaDegradationDueToMigration(slaDegradationDueToMigration * 100);
         r.setSlaTimePerActiveHost(slaTimePerActiveHost * 100);
+        r.setVmSelectionPolicy(executableData.getVmSelectionPolicy());
+        r.setVmAllocationPolicy(executableData.getVmAllocationPolicy());
+        r.setParameter(executableData.getParameter());
+        r.setWorkload(executableData.getWorkload());
+        r.setGroupId(uuid);
         repository.save(r);
 
         if (outputInCsv) {

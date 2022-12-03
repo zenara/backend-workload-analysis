@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import edu.iit.workload.domain.ExecutableData;
 import org.cloudbus.cloudsim.Cloudlet;
 import org.cloudbus.cloudsim.DatacenterBroker;
 import org.cloudbus.cloudsim.Log;
@@ -75,26 +76,28 @@ public abstract class RunnerAbstract {
 
 
     @Async
-    public void run(boolean enableOutput, boolean outputToFile, String inputFolder, String outputFolder, String workload, String vmAllocationPolicy, String vmSelectionPolicy, String parameter) {
+    public void run(boolean enableOutput, boolean outputToFile, String inputFolder, String outputFolder, ExecutableData executableData, String uuid) {
         try {
             initLogOutput(
                     enableOutput,
                     outputToFile,
                     outputFolder,
-                    workload,
-                    vmAllocationPolicy,
-                    vmSelectionPolicy,
-                    parameter);
+                    executableData.getWorkload(),
+                    executableData.getVmAllocationPolicy(),
+                    executableData.getVmSelectionPolicy(),
+                    executableData.getParameter());
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(0);
         }
 
-        init(inputFolder + "/" + workload);
+        init(inputFolder + "/" + executableData.getWorkload());
         start(
-                getExperimentName(workload, vmAllocationPolicy, vmSelectionPolicy, parameter),
+                getExperimentName(executableData.getWorkload(), executableData.getVmAllocationPolicy(),
+                        executableData.getVmSelectionPolicy(), executableData.getParameter()),
                 outputFolder,
-                getVmAllocationPolicy(vmAllocationPolicy, vmSelectionPolicy, parameter));
+                getVmAllocationPolicy(executableData.getVmAllocationPolicy(), executableData.getVmSelectionPolicy(),
+                        executableData.getParameter()), executableData, uuid);
     }
 
     /**
@@ -147,13 +150,14 @@ public abstract class RunnerAbstract {
 
     /**
      * Starts the simulation.
-     *
      * @param experimentName     the experiment name
      * @param outputFolder       the output folder
      * @param vmAllocationPolicy the vm allocation policy
+     * @param executableData
+     * @param uuid
      */
     @SuppressWarnings("Duplicates")
-    protected void start(String experimentName, String outputFolder, VmAllocationPolicy vmAllocationPolicy) {
+    protected void start(String experimentName, String outputFolder, VmAllocationPolicy vmAllocationPolicy, ExecutableData executableData, String uuid) {
         System.out.println("Starting " + experimentName);
 
         try {
@@ -182,7 +186,7 @@ public abstract class RunnerAbstract {
                     lastClock,
                     experimentName,
                     Constants.OUTPUT_CSV,
-                    outputFolder);
+                    outputFolder, executableData, uuid);
 
         } catch (Exception e) {
             e.printStackTrace();
