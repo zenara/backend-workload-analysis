@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Slf4j
 @RestController
@@ -62,6 +63,7 @@ public class AlgoController {
     public String execute() {
         List<ExecutableData> allExecutableData = this.algoService.getAllExecutableData();
         UUID uuid = UUID.randomUUID();
+        AtomicInteger executions = new AtomicInteger(allExecutableData.size());
         if (allExecutableData != null) {
             allExecutableData.forEach(executableData -> {
                 if (this.algoService.checkIsExecuted(executableData)) {
@@ -69,6 +71,12 @@ public class AlgoController {
                             "already executed: vm_allocation_policy: {} vm_selection_policy: {} parameter: {} workload: {}",
                             executableData.getVmAllocationPolicy(), executableData.getVmSelectionPolicy(),
                             executableData.getParameter(), executableData.getWorkload());
+                    executions.addAndGet(-1);
+                }
+            });
+
+            allExecutableData.forEach(executableData -> {
+                if (this.algoService.checkIsExecuted(executableData)) {
                     return;
                 }
                 planetLabRunner.run(
@@ -79,7 +87,7 @@ public class AlgoController {
                         executableData, uuid.toString());
             });
         }
-        return "" + allExecutableData.size() + " item/s executed";
+        return "" + executions.get() + " item/s executed";
     }
 
 }
