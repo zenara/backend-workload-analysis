@@ -16,7 +16,7 @@ import org.cloudbus.cloudsim.Cloudlet;
 
 /**
  * CloudletList is a collection of operations on lists of Cloudlets.
- * 
+ *
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 2.0
  */
@@ -24,7 +24,6 @@ public class CloudletList {
 
 	/**
 	 * Gets the by id.
-	 * 
 	 * @param cloudletList the cloudlet list
 	 * @param id the id
 	 * @return the by id
@@ -40,7 +39,6 @@ public class CloudletList {
 
 	/**
 	 * Sorts the Cloudlets in a list based on their lengths.
-	 * 
 	 * @param cloudletList the cloudlet list
 	 * @pre $none
 	 * @post $none
@@ -50,14 +48,14 @@ public class CloudletList {
 
 			/**
 			 * Compares two objects.
-			 * 
 			 * @param a the first Object to be compared
 			 * @param b the second Object to be compared
-			 * @return the value 0 if both Objects are numerically equal; a value less than 0 if the
-			 *         first Object is numerically less than the second Object; and a value greater
-			 *         than 0 if the first Object is numerically greater than the second Object.
-			 * @throws ClassCastException <tt>a</tt> and <tt>b</tt> are expected to be of type
-			 *             <tt>Cloudlet</tt>
+			 * @return the value 0 if both Objects are numerically equal; a value less
+			 * than 0 if the first Object is numerically less than the second Object; and
+			 * a value greater than 0 if the first Object is numerically greater than the
+			 * second Object.
+			 * @throws ClassCastException <tt>a</tt> and <tt>b</tt> are expected to be of
+			 * type <tt>Cloudlet</tt>
 			 * @pre a != null
 			 * @pre b != null
 			 * @post $none

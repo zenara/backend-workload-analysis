@@ -19,7 +19,7 @@ import org.cloudbus.cloudsim.provisioners.RamProvisioner;
 
 /**
  * The class of a host supporting dynamic workloads and performance degradation.
- * 
+ *
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 2.0
  */
@@ -36,7 +36,6 @@ public class HostDynamicWorkload extends Host {
 
 	/**
 	 * Instantiates a new host.
-	 * 
 	 * @param id the id
 	 * @param ramProvisioner the ram provisioner
 	 * @param bwProvisioner the bw provisioner
@@ -44,13 +43,8 @@ public class HostDynamicWorkload extends Host {
 	 * @param peList the pe list
 	 * @param vmScheduler the VM scheduler
 	 */
-	public HostDynamicWorkload(
-			int id,
-			RamProvisioner ramProvisioner,
-			BwProvisioner bwProvisioner,
-			long storage,
-			List<? extends Pe> peList,
-			VmScheduler vmScheduler) {
+	public HostDynamicWorkload(int id, RamProvisioner ramProvisioner, BwProvisioner bwProvisioner, long storage,
+			List<? extends Pe> peList, VmScheduler vmScheduler) {
 		super(id, ramProvisioner, bwProvisioner, storage, peList, vmScheduler);
 		setUtilizationMips(0);
 		setPreviousUtilizationMips(0);
@@ -58,6 +52,7 @@ public class HostDynamicWorkload extends Host {
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see cloudsim.Host#updateVmsProcessing(double)
 	 */
 	@Override
@@ -81,48 +76,42 @@ public class HostDynamicWorkload extends Host {
 
 			if (!Log.isDisabled()) {
 				Log.formatLine(
-						"%.2f: [Host #" + getId() + "] Total allocated MIPS for VM #" + vm.getId()
-								+ " (Host #" + vm.getHost().getId()
-								+ ") is %.2f, was requested %.2f out of total %.2f (%.2f%%)",
-						CloudSim.clock(),
-						totalAllocatedMips,
-						totalRequestedMips,
-						vm.getMips(),
+						"%.2f: [Host #" + getId() + "] Total allocated MIPS for VM #" + vm.getId() + " (Host #"
+								+ vm.getHost().getId() + ") is %.2f, was requested %.2f out of total %.2f (%.2f%%)",
+						CloudSim.clock(), totalAllocatedMips, totalRequestedMips, vm.getMips(),
 						totalRequestedMips / vm.getMips() * 100);
 
 				List<Pe> pes = getVmScheduler().getPesAllocatedForVM(vm);
 				StringBuilder pesString = new StringBuilder();
 				for (Pe pe : pes) {
-					pesString.append(String.format(" PE #" + pe.getId() + ": %.2f.", pe.getPeProvisioner()
-							.getTotalAllocatedMipsForVm(vm)));
+					pesString.append(String.format(" PE #" + pe.getId() + ": %.2f.",
+							pe.getPeProvisioner().getTotalAllocatedMipsForVm(vm)));
 				}
-				Log.formatLine(
-						"%.2f: [Host #" + getId() + "] MIPS for VM #" + vm.getId() + " by PEs ("
-								+ getNumberOfPes() + " * " + getVmScheduler().getPeCapacity() + ")."
-								+ pesString,
+				Log.formatLine("%.2f: [Host #" + getId() + "] MIPS for VM #" + vm.getId() + " by PEs ("
+						+ getNumberOfPes() + " * " + getVmScheduler().getPeCapacity() + ")." + pesString,
 						CloudSim.clock());
 			}
 
 			if (getVmsMigratingIn().contains(vm)) {
-				Log.formatLine("%.2f: [Host #" + getId() + "] VM #" + vm.getId()
-						+ " is being migrated to Host #" + getId(), CloudSim.clock());
-			} else {
+				Log.formatLine(
+						"%.2f: [Host #" + getId() + "] VM #" + vm.getId() + " is being migrated to Host #" + getId(),
+						CloudSim.clock());
+			}
+			else {
 				if (totalAllocatedMips + 0.1 < totalRequestedMips) {
-					Log.formatLine("%.2f: [Host #" + getId() + "] Under allocated MIPS for VM #" + vm.getId()
-							+ ": %.2f", CloudSim.clock(), totalRequestedMips - totalAllocatedMips);
+					Log.formatLine(
+							"%.2f: [Host #" + getId() + "] Under allocated MIPS for VM #" + vm.getId() + ": %.2f",
+							CloudSim.clock(), totalRequestedMips - totalAllocatedMips);
 				}
 
-				vm.addStateHistoryEntry(
-						currentTime,
-						totalAllocatedMips,
-						totalRequestedMips,
+				vm.addStateHistoryEntry(currentTime, totalAllocatedMips, totalRequestedMips,
 						(vm.isInMigration() && !getVmsMigratingIn().contains(vm)));
 
 				if (vm.isInMigration()) {
-					Log.formatLine(
-							"%.2f: [Host #" + getId() + "] VM #" + vm.getId() + " is in migration",
+					Log.formatLine("%.2f: [Host #" + getId() + "] VM #" + vm.getId() + " is in migration",
 							CloudSim.clock());
-					totalAllocatedMips /= 0.9; // performance degradation due to migration - 10%
+					totalAllocatedMips /= 0.9; // performance degradation due to migration
+												// - 10%
 				}
 			}
 
@@ -130,18 +119,13 @@ public class HostDynamicWorkload extends Host {
 			hostTotalRequestedMips += totalRequestedMips;
 		}
 
-		addStateHistoryEntry(
-				currentTime,
-				getUtilizationMips(),
-				hostTotalRequestedMips,
-				(getUtilizationMips() > 0));
+		addStateHistoryEntry(currentTime, getUtilizationMips(), hostTotalRequestedMips, (getUtilizationMips() > 0));
 
 		return smallerTime;
 	}
 
 	/**
 	 * Gets the completed vms.
-	 * 
 	 * @return the completed vms
 	 */
 	public List<Vm> getCompletedVms() {
@@ -159,7 +143,6 @@ public class HostDynamicWorkload extends Host {
 
 	/**
 	 * Gets the max utilization among by all PEs.
-	 * 
 	 * @return the utilization
 	 */
 	public double getMaxUtilization() {
@@ -168,7 +151,6 @@ public class HostDynamicWorkload extends Host {
 
 	/**
 	 * Gets the max utilization among by all PEs allocated to the VM.
-	 * 
 	 * @param vm the vm
 	 * @return the utilization
 	 */
@@ -178,7 +160,6 @@ public class HostDynamicWorkload extends Host {
 
 	/**
 	 * Gets the utilization of memory.
-	 * 
 	 * @return the utilization of memory
 	 */
 	public double getUtilizationOfRam() {
@@ -187,7 +168,6 @@ public class HostDynamicWorkload extends Host {
 
 	/**
 	 * Gets the utilization of bw.
-	 * 
 	 * @return the utilization of bw
 	 */
 	public double getUtilizationOfBw() {
@@ -196,7 +176,6 @@ public class HostDynamicWorkload extends Host {
 
 	/**
 	 * Get current utilization of CPU in percentage.
-	 * 
 	 * @return current utilization of CPU in percents
 	 */
 	public double getUtilizationOfCpu() {
@@ -209,7 +188,6 @@ public class HostDynamicWorkload extends Host {
 
 	/**
 	 * Gets the previous utilization of CPU in percentage.
-	 * 
 	 * @return the previous utilization of cpu
 	 */
 	public double getPreviousUtilizationOfCpu() {
@@ -222,7 +200,6 @@ public class HostDynamicWorkload extends Host {
 
 	/**
 	 * Get current utilization of CPU in MIPS.
-	 * 
 	 * @return current utilization of CPU in MIPS
 	 */
 	public double getUtilizationOfCpuMips() {
@@ -231,7 +208,6 @@ public class HostDynamicWorkload extends Host {
 
 	/**
 	 * Gets the utilization mips.
-	 * 
 	 * @return the utilization mips
 	 */
 	public double getUtilizationMips() {
@@ -240,7 +216,6 @@ public class HostDynamicWorkload extends Host {
 
 	/**
 	 * Sets the utilization mips.
-	 * 
 	 * @param utilizationMips the new utilization mips
 	 */
 	protected void setUtilizationMips(double utilizationMips) {
@@ -249,7 +224,6 @@ public class HostDynamicWorkload extends Host {
 
 	/**
 	 * Gets the previous utilization mips.
-	 * 
 	 * @return the previous utilization mips
 	 */
 	public double getPreviousUtilizationMips() {
@@ -258,7 +232,6 @@ public class HostDynamicWorkload extends Host {
 
 	/**
 	 * Sets the previous utilization mips.
-	 * 
 	 * @param previousUtilizationMips the new previous utilization mips
 	 */
 	protected void setPreviousUtilizationMips(double previousUtilizationMips) {
@@ -267,7 +240,6 @@ public class HostDynamicWorkload extends Host {
 
 	/**
 	 * Gets the state history.
-	 * 
 	 * @return the state history
 	 */
 	public List<HostStateHistoryEntry> getStateHistory() {
@@ -276,21 +248,14 @@ public class HostDynamicWorkload extends Host {
 
 	/**
 	 * Adds the state history entry.
-	 * 
 	 * @param time the time
 	 * @param allocatedMips the allocated mips
 	 * @param requestedMips the requested mips
 	 * @param isActive the is active
 	 */
-	public
-			void
-			addStateHistoryEntry(double time, double allocatedMips, double requestedMips, boolean isActive) {
+	public void addStateHistoryEntry(double time, double allocatedMips, double requestedMips, boolean isActive) {
 
-		HostStateHistoryEntry newState = new HostStateHistoryEntry(
-				time,
-				allocatedMips,
-				requestedMips,
-				isActive);
+		HostStateHistoryEntry newState = new HostStateHistoryEntry(time, allocatedMips, requestedMips, isActive);
 		if (!getStateHistory().isEmpty()) {
 			HostStateHistoryEntry previousState = getStateHistory().get(getStateHistory().size() - 1);
 			if (previousState.getTime() == time) {

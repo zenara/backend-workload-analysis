@@ -12,7 +12,7 @@ import java.io.IOException;
 
 /**
  * This interface abstracts an reader for different graph-file-formats
- * 
+ *
  * @author Thomas Hohnstein
  * @since CloudSim Toolkit 1.0
  */
@@ -20,7 +20,6 @@ public interface GraphReaderIF {
 
 	/**
 	 * this method just reads the file and creates an TopologicalGraph object
-	 * 
 	 * @param filename name of the file to read
 	 * @return created TopologicalGraph
 	 * @throws IOException

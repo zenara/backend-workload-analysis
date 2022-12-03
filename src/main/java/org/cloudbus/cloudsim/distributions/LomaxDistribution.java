@@ -12,7 +12,7 @@ import java.util.Random;
 
 /**
  * The Class LomaxDistribution.
- * 
+ *
  * @author Marcos Dias de Assuncao
  * @since CloudSim Toolkit 1.0
  */
@@ -23,7 +23,6 @@ public class LomaxDistribution extends ParetoDistr implements ContinuousDistribu
 
 	/**
 	 * Instantiates a new lomax distribution.
-	 * 
 	 * @param shape the shape
 	 * @param location the location
 	 * @param shift the shift
@@ -40,7 +39,6 @@ public class LomaxDistribution extends ParetoDistr implements ContinuousDistribu
 
 	/**
 	 * Instantiates a new lomax distribution.
-	 * 
 	 * @param seed the seed
 	 * @param shape the shape
 	 * @param location the location
@@ -58,6 +56,7 @@ public class LomaxDistribution extends ParetoDistr implements ContinuousDistribu
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see cloudsim.distributions.ParetoDistr#sample()
 	 */
 	@Override

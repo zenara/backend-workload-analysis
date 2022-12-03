@@ -16,9 +16,9 @@ import org.cloudbus.cloudsim.lists.PeList;
 
 /**
  * DatacenterCharacteristics represents static properties of a resource such as resource
- * architecture, Operating System (OS), management policy (time- or space-shared), cost and time
- * zone at which the resource is located along resource configuration.
- * 
+ * architecture, Operating System (OS), management policy (time- or space-shared), cost
+ * and time zone at which the resource is located along resource configuration.
+ *
  * @author Manzur Murshed
  * @author Rajkumar Buyya
  * @author Rodrigo N. Calheiros
@@ -58,8 +58,8 @@ public class DatacenterCharacteristics {
 	public static final int OTHER_POLICY_SAME_RATING = 2;
 
 	/**
-	 * Assuming all PEs in a Machine have the same rating. However, each Machine has different
-	 * rating to each other.
+	 * Assuming all PEs in a Machine have the same rating. However, each Machine has
+	 * different rating to each other.
 	 */
 	public static final int OTHER_POLICY_DIFFERENT_RATING = 3;
 
@@ -79,15 +79,14 @@ public class DatacenterCharacteristics {
 	private double costPerBw;
 
 	/**
-	 * Allocates a new DatacenterCharacteristics object. If the time zone is invalid, then by
-	 * default, it will be GMT+0.
-	 * 
+	 * Allocates a new DatacenterCharacteristics object. If the time zone is invalid, then
+	 * by default, it will be GMT+0.
 	 * @param architecture the architecture of a resource
 	 * @param os the operating system used
 	 * @param vmm the virtual machine monitor used
 	 * @param hostList list of machines in a resource
-	 * @param timeZone local time zone of a user that owns this reservation. Time zone should be of
-	 *            range [GMT-12 ... GMT+13]
+	 * @param timeZone local time zone of a user that owns this reservation. Time zone
+	 * should be of range [GMT-12 ... GMT+13]
 	 * @param costPerSec the cost per sec to use this resource
 	 * @param costPerMem the cost to use memory in this resource
 	 * @param costPerStorage the cost to use storage in this resource
@@ -102,16 +101,8 @@ public class DatacenterCharacteristics {
 	 * @pre costPerStorage >= 0
 	 * @post $none
 	 */
-	public DatacenterCharacteristics(
-			String architecture,
-			String os,
-			String vmm,
-			List<? extends Host> hostList,
-			double timeZone,
-			double costPerSec,
-			double costPerMem,
-			double costPerStorage,
-			double costPerBw) {
+	public DatacenterCharacteristics(String architecture, String os, String vmm, List<? extends Host> hostList,
+			double timeZone, double costPerSec, double costPerMem, double costPerStorage, double costPerBw) {
 		setId(-1);
 		setArchitecture(architecture);
 		setOs(os);
@@ -129,7 +120,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Gets the name of a resource.
-	 * 
 	 * @return the resource name
 	 * @pre $none
 	 * @post $result != null
@@ -140,7 +130,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Gets a Machine with at least one empty Pe.
-	 * 
 	 * @return a Machine object or if not found
 	 * @pre $none
 	 * @post $none
@@ -151,7 +140,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Gets a Machine with at least a given number of free Pe.
-	 * 
 	 * @param peNumber the pe number
 	 * @return a Machine object or if not found
 	 * @pre $none
@@ -162,9 +150,8 @@ public class DatacenterCharacteristics {
 	}
 
 	/**
-	 * Gets Millions Instructions Per Second (MIPS) Rating of a Processing Element (Pe). It is
-	 * assumed all PEs' rating is same in a given machine.
-	 * 
+	 * Gets Millions Instructions Per Second (MIPS) Rating of a Processing Element (Pe).
+	 * It is assumed all PEs' rating is same in a given machine.
 	 * @return the MIPS Rating or if no PEs are exists.
 	 * @pre $none
 	 * @post $result >= -1
@@ -178,9 +165,9 @@ public class DatacenterCharacteristics {
 	}
 
 	/**
-	 * Gets Millions Instructions Per Second (MIPS) Rating of a Processing Element (Pe). It is
-	 * essential to use this method when a resource is made up of heterogenous PEs/machines.
-	 * 
+	 * Gets Millions Instructions Per Second (MIPS) Rating of a Processing Element (Pe).
+	 * It is essential to use this method when a resource is made up of heterogenous
+	 * PEs/machines.
 	 * @param id the machine ID
 	 * @param peId the Pe ID
 	 * @return the MIPS Rating or if no PEs are exists.
@@ -197,7 +184,8 @@ public class DatacenterCharacteristics {
 	}
 
 	/**
-	 * Gets the total MIPS rating, which is the sum of MIPS rating of all machines in a resource.
+	 * Gets the total MIPS rating, which is the sum of MIPS rating of all machines in a
+	 * resource.
 	 * <p>
 	 * Total MIPS rating for:
 	 * <ul>
@@ -207,7 +195,6 @@ public class DatacenterCharacteristics {
 	 * <li>Other policy different rating = same as SpaceShared
 	 * <li>Advance Reservation = 0 or unknown. You need to calculate this manually.
 	 * </ul>
-	 * 
 	 * @return the sum of MIPS ratings
 	 * @pre $none
 	 * @post $result >= 0
@@ -215,7 +202,7 @@ public class DatacenterCharacteristics {
 	public int getMips() {
 		int mips = 0;
 		switch (getAllocationPolicy()) {
-		// Assuming all PEs in all Machine have same rating.
+			// Assuming all PEs in all Machine have same rating.
 			case DatacenterCharacteristics.TIME_SHARED:
 			case DatacenterCharacteristics.OTHER_POLICY_SAME_RATING:
 				mips = getMipsOfOnePe() * HostList.getNumberOfPes(getHostList());
@@ -238,9 +225,9 @@ public class DatacenterCharacteristics {
 	}
 
 	/**
-	 * Gets the CPU time given the specified parameters (only for TIME_SHARED). <tt>NOTE:</tt> The
-	 * CPU time for SPACE_SHARED and ADVANCE_RESERVATION are not yet implemented.
-	 * 
+	 * Gets the CPU time given the specified parameters (only for TIME_SHARED).
+	 * <tt>NOTE:</tt> The CPU time for SPACE_SHARED and ADVANCE_RESERVATION are not yet
+	 * implemented.
 	 * @param cloudletLength the length of a Cloudlet
 	 * @param load the load of a Cloudlet
 	 * @return the CPU time
@@ -265,7 +252,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Gets the total number of PEs for all Machines.
-	 * 
 	 * @return number of PEs
 	 * @pre $none
 	 * @post $result >= 0
@@ -276,7 +262,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Gets the total number of <tt>FREE</tt> or non-busy PEs for all Machines.
-	 * 
 	 * @return number of PEs
 	 * @pre $none
 	 * @post $result >= 0
@@ -287,7 +272,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Gets the total number of <tt>BUSY</tt> PEs for all Machines.
-	 * 
 	 * @return number of PEs
 	 * @pre $none
 	 * @post $result >= 0
@@ -298,7 +282,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Sets the particular Pe status on a Machine.
-	 * 
 	 * @param status Pe status, either <tt>Pe.FREE</tt> or <tt>Pe.BUSY</tt>
 	 * @param hostId Machine ID
 	 * @param peId Pe id
@@ -313,7 +296,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Gets the cost per Millions Instruction (MI) associated with a resource.
-	 * 
 	 * @return the cost using a resource
 	 * @pre $none
 	 * @post $result >= 0.0
@@ -324,7 +306,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Gets the total number of machines.
-	 * 
 	 * @return total number of machines this resource has.
 	 */
 	public int getNumberOfHosts() {
@@ -333,7 +314,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Gets the current number of failed machines.
-	 * 
 	 * @return current number of failed machines this resource has.
 	 */
 	public int getNumberOfFailedHosts() {
@@ -348,7 +328,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Checks whether all machines of this resource are working properly or not.
-	 * 
 	 * @return if all machines are working, otherwise
 	 */
 	public boolean isWorking() {
@@ -362,7 +341,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Get the cost to use memory in this resource.
-	 * 
 	 * @return the cost to use memory
 	 */
 	public double getCostPerMem() {
@@ -371,7 +349,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Sets cost to use memory.
-	 * 
 	 * @param costPerMem cost to use memory
 	 * @pre costPerMem >= 0
 	 * @post $none
@@ -382,7 +359,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Get the cost to use storage in this resource.
-	 * 
 	 * @return the cost to use storage
 	 */
 	public double getCostPerStorage() {
@@ -391,7 +367,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Sets cost to use storage.
-	 * 
 	 * @param costPerStorage cost to use storage
 	 * @pre costPerStorage >= 0
 	 * @post $none
@@ -402,7 +377,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Get the cost to use bandwidth in this resource.
-	 * 
 	 * @return the cost to use bw
 	 */
 	public double getCostPerBw() {
@@ -411,7 +385,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Sets cost to use bw cost to use bw.
-	 * 
 	 * @param costPerBw the cost per bw
 	 * @pre costPerBw >= 0
 	 * @post $none
@@ -422,7 +395,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Gets the VMM in use in the datacenter.
-	 * 
 	 * @return the VMM name
 	 */
 	public String getVmm() {
@@ -431,7 +403,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Gets the id.
-	 * 
 	 * @return the id
 	 */
 	public int getId() {
@@ -440,7 +411,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Sets the id.
-	 * 
 	 * @param id the new id
 	 */
 	protected void setId(int id) {
@@ -449,7 +419,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Gets the architecture.
-	 * 
 	 * @return the architecture
 	 */
 	protected String getArchitecture() {
@@ -458,7 +427,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Sets the architecture.
-	 * 
 	 * @param architecture the new architecture
 	 */
 	protected void setArchitecture(String architecture) {
@@ -467,7 +435,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Gets the os.
-	 * 
 	 * @return the os
 	 */
 	protected String getOs() {
@@ -476,7 +443,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Sets the os.
-	 * 
 	 * @param os the new os
 	 */
 	protected void setOs(String os) {
@@ -485,7 +451,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Gets the host list.
-	 * 
 	 * @param <T> the generic type
 	 * @return the host list
 	 */
@@ -496,7 +461,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Sets the host list.
-	 * 
 	 * @param <T> the generic type
 	 * @param hostList the new host list
 	 */
@@ -506,7 +470,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Gets the time zone.
-	 * 
 	 * @return the time zone
 	 */
 	protected double getTimeZone() {
@@ -515,7 +478,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Sets the time zone.
-	 * 
 	 * @param timeZone the new time zone
 	 */
 	protected void setTimeZone(double timeZone) {
@@ -524,7 +486,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Gets the cost per second.
-	 * 
 	 * @return the cost per second
 	 */
 	public double getCostPerSecond() {
@@ -533,7 +494,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Sets the cost per second.
-	 * 
 	 * @param costPerSecond the new cost per second
 	 */
 	protected void setCostPerSecond(double costPerSecond) {
@@ -542,7 +502,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Gets the allocation policy.
-	 * 
 	 * @return the allocation policy
 	 */
 	protected int getAllocationPolicy() {
@@ -551,7 +510,6 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Sets the allocation policy.
-	 * 
 	 * @param allocationPolicy the new allocation policy
 	 */
 	protected void setAllocationPolicy(int allocationPolicy) {
@@ -560,10 +518,10 @@ public class DatacenterCharacteristics {
 
 	/**
 	 * Sets the vmm.
-	 * 
 	 * @param vmm the new vmm
 	 */
 	protected void setVmm(String vmm) {
 		this.vmm = vmm;
 	}
+
 }

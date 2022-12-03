@@ -16,21 +16,22 @@ import org.cloudbus.cloudsim.power.PowerHost;
 import org.cloudbus.cloudsim.power.PowerVmAllocationPolicySimple;
 
 /**
- * A simulation of a heterogeneous non-power aware data center: all hosts consume maximum power all
- * the time.
- * 
+ * A simulation of a heterogeneous non-power aware data center: all hosts consume maximum
+ * power all the time.
+ *
  * This example uses a real PlanetLab workload: 20110303.
- * 
- * The remaining configuration parameters are in the Constants and PlanetLabConstants classes.
- * 
- * If you are using any algorithms, policies or workload included in the power package please cite
- * the following paper:
- * 
- * Anton Beloglazov, and Rajkumar Buyya, "Optimal Online Deterministic Algorithms and Adaptive
- * Heuristics for Energy and Performance Efficient Dynamic Consolidation of Virtual Machines in
- * Cloud Data Centers", Concurrency and Computation: Practice and Experience, ISSN: 1532-0626, Wiley
- * Press, New York, USA, 2011, DOI: 10.1002/cpe.1867
- * 
+ *
+ * The remaining configuration parameters are in the Constants and PlanetLabConstants
+ * classes.
+ *
+ * If you are using any algorithms, policies or workload included in the power package
+ * please cite the following paper:
+ *
+ * Anton Beloglazov, and Rajkumar Buyya, "Optimal Online Deterministic Algorithms and
+ * Adaptive Heuristics for Energy and Performance Efficient Dynamic Consolidation of
+ * Virtual Machines in Cloud Data Centers", Concurrency and Computation: Practice and
+ * Experience, ISSN: 1532-0626, Wiley Press, New York, USA, 2011, DOI: 10.1002/cpe.1867
+ *
  * @author Anton Beloglazov
  * @since Jan 5, 2012
  */
@@ -38,17 +39,17 @@ public class NonPowerAware {
 
 	/**
 	 * The main method.
-	 * 
 	 * @param args the arguments
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	public static void main(String[] args) throws IOException {
 		String experimentName = "planetlab_npa";
 		String outputFolder = "output";
-		//String inputFolder = NonPowerAware.class.getClassLoader().getResource("workload/planetlab/20110303").getPath();
-                String inputFolder = "/Users/zenara/Documents/Research/project/cloudsim/src/examples/workload/planetlab/20110303";
+		// String inputFolder =
+		// NonPowerAware.class.getClassLoader().getResource("workload/planetlab/20110303").getPath();
+		String inputFolder = "/Users/zenara/Documents/Research/project/cloudsim/src/examples/workload/planetlab/20110303";
 
-                Log.setDisabled(!Constants.ENABLE_OUTPUT);
+		Log.setDisabled(!Constants.ENABLE_OUTPUT);
 		Log.printLine("Starting " + experimentName);
 
 		try {
@@ -62,9 +63,7 @@ public class NonPowerAware {
 			List<PowerHost> hostList = Helper.createHostList(PlanetLabConstants.NUMBER_OF_HOSTS);
 
 			PowerDatacenterNonPowerAware datacenter = (PowerDatacenterNonPowerAware) Helper.createDatacenter(
-					"Datacenter",
-					PowerDatacenterNonPowerAware.class,
-					hostList,
+					"Datacenter", PowerDatacenterNonPowerAware.class, hostList,
 					new PowerVmAllocationPolicySimple(hostList));
 
 			datacenter.setDisableMigrations(true);
@@ -80,15 +79,16 @@ public class NonPowerAware {
 
 			CloudSim.stopSimulation();
 
-//			Helper.printResults(
-//					datacenter,
-//					vmList,
-//					lastClock,
-//					experimentName,
-//					Constants.OUTPUT_CSV,
-//					outputFolder);
+			// Helper.printResults(
+			// datacenter,
+			// vmList,
+			// lastClock,
+			// experimentName,
+			// Constants.OUTPUT_CSV,
+			// outputFolder);
 
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 			Log.printLine("The simulation has been terminated due to an unexpected error");
 			System.exit(0);

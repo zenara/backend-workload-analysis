@@ -11,13 +11,18 @@ import javax.persistence.Id;
 @Entity
 public class ExecutableData {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String vmAllocationPolicy;
-    private String vmSelectionPolicy;
-    private String parameter;
-    private String workload;
-    private boolean active;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
+	private String vmAllocationPolicy;
+
+	private String vmSelectionPolicy;
+
+	private String parameter;
+
+	private String workload;
+
+	private boolean active;
 
 }

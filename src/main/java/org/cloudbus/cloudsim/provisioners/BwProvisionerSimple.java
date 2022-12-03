@@ -14,9 +14,9 @@ import java.util.Map;
 import org.cloudbus.cloudsim.Vm;
 
 /**
- * BwProvisionerSimple is a class that implements a simple best effort allocation policy: if there
- * is bw available to request, it allocates; otherwise, it fails.
- * 
+ * BwProvisionerSimple is a class that implements a simple best effort allocation policy:
+ * if there is bw available to request, it allocates; otherwise, it fails.
+ *
  * @author Rodrigo N. Calheiros
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 1.0
@@ -28,7 +28,6 @@ public class BwProvisionerSimple extends BwProvisioner {
 
 	/**
 	 * Instantiates a new bw provisioner simple.
-	 * 
 	 * @param bw the bw
 	 */
 	public BwProvisionerSimple(long bw) {
@@ -38,6 +37,7 @@ public class BwProvisionerSimple extends BwProvisioner {
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see cloudsim.provisioners.BwProvisioner#allocateBwForVm(cloudsim.Vm, long)
 	 */
 	@Override
@@ -57,6 +57,7 @@ public class BwProvisionerSimple extends BwProvisioner {
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see cloudsim.provisioners.BwProvisioner#getAllocatedBwForVm(cloudsim.Vm)
 	 */
 	@Override
@@ -69,6 +70,7 @@ public class BwProvisionerSimple extends BwProvisioner {
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see cloudsim.provisioners.BwProvisioner#deallocateBwForVm(cloudsim.Vm)
 	 */
 	@Override
@@ -82,6 +84,7 @@ public class BwProvisionerSimple extends BwProvisioner {
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see cloudsim.provisioners.BwProvisioner#deallocateBwForVm(cloudsim.Vm)
 	 */
 	@Override
@@ -92,9 +95,10 @@ public class BwProvisionerSimple extends BwProvisioner {
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see
-	 * gridsim.virtualization.power.provisioners.BWProvisioner#isSuitableForVm(gridsim.virtualization
-	 * .power.VM, long)
+	 * gridsim.virtualization.power.provisioners.BWProvisioner#isSuitableForVm(gridsim.
+	 * virtualization .power.VM, long)
 	 */
 	@Override
 	public boolean isSuitableForVm(Vm vm, long bw) {
@@ -109,7 +113,6 @@ public class BwProvisionerSimple extends BwProvisioner {
 
 	/**
 	 * Gets the bw table.
-	 * 
 	 * @return the bw table
 	 */
 	protected Map<String, Long> getBwTable() {
@@ -118,7 +121,6 @@ public class BwProvisionerSimple extends BwProvisioner {
 
 	/**
 	 * Sets the bw table.
-	 * 
 	 * @param bwTable the bw table
 	 */
 	protected void setBwTable(Map<String, Long> bwTable) {

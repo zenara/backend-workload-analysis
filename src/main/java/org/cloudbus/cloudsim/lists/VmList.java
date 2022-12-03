@@ -14,7 +14,7 @@ import org.cloudbus.cloudsim.Vm;
 
 /**
  * VmList is a collection of operations on lists of VMs.
- * 
+ *
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 2.0
  */
@@ -22,7 +22,6 @@ public class VmList {
 
 	/**
 	 * Return a reference to a Vm object from its ID.
-	 * 
 	 * @param id ID of required VM
 	 * @param vmList the vm list
 	 * @return Vm with the given ID, $null if not found
@@ -40,7 +39,6 @@ public class VmList {
 
 	/**
 	 * Return a reference to a Vm object from its ID and user ID.
-	 * 
 	 * @param id ID of required VM
 	 * @param userId the user ID
 	 * @param vmList the vm list

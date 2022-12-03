@@ -14,11 +14,11 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 
 /**
- * This class is just an file-reader for the special brite-format! the brite-file is structured as
- * followed: Node-section: NodeID, xpos, ypos, indegree, outdegree, ASid, type(router/AS)
- * Edge-section: EdgeID, fromNode, toNode, euclideanLength, linkDelay, linkBandwith, AS_from, AS_to,
- * type
- * 
+ * This class is just an file-reader for the special brite-format! the brite-file is
+ * structured as followed: Node-section: NodeID, xpos, ypos, indegree, outdegree, ASid,
+ * type(router/AS) Edge-section: EdgeID, fromNode, toNode, euclideanLength, linkDelay,
+ * linkBandwith, AS_from, AS_to, type
+ *
  * @author Thomas Hohnstein
  * @since CloudSim Toolkit 1.0
  */
@@ -36,7 +36,6 @@ public class GraphReaderBrite implements GraphReaderIF {
 
 	/**
 	 * this method just reads the file and creates an TopologicalGraph object
-	 * 
 	 * @param filename name of the file to read
 	 * @return created TopologicalGraph
 	 * @throws IOException
@@ -124,17 +123,17 @@ public class GraphReaderBrite implements GraphReaderIF {
 		for (int actualParam = 0; tokenizer.hasMoreElements() && actualParam < parameters; actualParam++) {
 			String token = tokenizer.nextToken();
 			switch (actualParam) {
-				case 0:	// Log.printLine("nodeID: "+token);
+				case 0: // Log.printLine("nodeID: "+token);
 						// Log.printLine("nodeLabel: "+token);
 					nodeID = Integer.valueOf(token);
 					nodeLabel = Integer.toString(nodeID);
 					break;
 
-				case 1:	// Log.printLine("x-Pos: "+token);
+				case 1: // Log.printLine("x-Pos: "+token);
 					xPos = Integer.valueOf(token);
 					break;
 
-				case 2:	// Log.printLine("y-Pos: "+token);
+				case 2: // Log.printLine("y-Pos: "+token);
 					yPos = Integer.valueOf(token);
 					break;
 			}
@@ -159,7 +158,8 @@ public class GraphReaderBrite implements GraphReaderIF {
 		}
 
 		// parse this string-line to read all node-parameters
-		// EdgeID, fromNode, toNode, euclideanLength, linkDelay, linkBandwith, AS_from, AS_to, type
+		// EdgeID, fromNode, toNode, euclideanLength, linkDelay, linkBandwith, AS_from,
+		// AS_to, type
 
 		// int edgeID = 0;
 		int fromNode = 0;
@@ -171,31 +171,31 @@ public class GraphReaderBrite implements GraphReaderIF {
 		for (int actualParam = 0; tokenizer.hasMoreElements() && actualParam < parameters; actualParam++) {
 			String token = tokenizer.nextToken();
 			switch (actualParam) {
-				case 0:	// Log.printLine("edgeID: "+token);
+				case 0: // Log.printLine("edgeID: "+token);
 						// edgeID = Integer.valueOf(token);
 					break;
 
-				case 1:	// Log.printLine("fromNode: "+token);
+				case 1: // Log.printLine("fromNode: "+token);
 					fromNode = Integer.valueOf(token);
 					break;
 
-				case 2:	// Log.printLine("toNode: "+token);
+				case 2: // Log.printLine("toNode: "+token);
 					toNode = Integer.valueOf(token);
 					break;
 
-				case 3:	// Log.printLine("euclideanLength: "+token);
+				case 3: // Log.printLine("euclideanLength: "+token);
 						// euclideanLength = Float.valueOf(token);
 					break;
 
-				case 4:	// Log.printLine("linkDelay: "+token);
+				case 4: // Log.printLine("linkDelay: "+token);
 					linkDelay = Float.valueOf(token);
 					break;
 
-				case 5:	// Log.printLine("linkBandwith: "+token);
+				case 5: // Log.printLine("linkBandwith: "+token);
 					linkBandwith = Float.valueOf(token).intValue();
 					break;
 			}// switch-END
-		}// for-END
+		} // for-END
 
 		graph.addLink(new TopologicalLink(fromNode, toNode, linkDelay, linkBandwith));
 

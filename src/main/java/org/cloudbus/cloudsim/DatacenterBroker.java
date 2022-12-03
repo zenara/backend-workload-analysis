@@ -22,9 +22,9 @@ import org.cloudbus.cloudsim.lists.CloudletList;
 import org.cloudbus.cloudsim.lists.VmList;
 
 /**
- * DatacentreBroker represents a broker acting on behalf of a user. It hides VM management, as vm
- * creation, sumbission of cloudlets to this VMs and destruction of VMs.
- * 
+ * DatacentreBroker represents a broker acting on behalf of a user. It hides VM
+ * management, as vm creation, sumbission of cloudlets to this VMs and destruction of VMs.
+ *
  * @author Rodrigo N. Calheiros
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 1.0
@@ -72,9 +72,8 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Created a new DatacenterBroker object.
-	 * 
-	 * @param name name to be associated with this entity (as required by Sim_entity class from
-	 *            simjava package)
+	 * @param name name to be associated with this entity (as required by Sim_entity class
+	 * from simjava package)
 	 * @throws Exception the exception
 	 * @pre name != null
 	 * @post $none
@@ -100,9 +99,8 @@ public class DatacenterBroker extends SimEntity {
 	}
 
 	/**
-	 * This method is used to send to the broker the list with virtual machines that must be
-	 * created.
-	 * 
+	 * This method is used to send to the broker the list with virtual machines that must
+	 * be created.
 	 * @param list the list
 	 * @pre list !=null
 	 * @post $none
@@ -113,7 +111,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * This method is used to send to the broker the list of cloudlets.
-	 * 
 	 * @param list the list
 	 * @pre list !=null
 	 * @post $none
@@ -124,7 +121,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Specifies that a given cloudlet must run in a specific virtual machine.
-	 * 
 	 * @param cloudletId ID of the cloudlet being bount to a vm
 	 * @param vmId the vm id
 	 * @pre cloudletId > 0
@@ -137,7 +133,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Processes events available for this Broker.
-	 * 
 	 * @param ev a SimEvent object
 	 * @pre ev != null
 	 * @post $none
@@ -145,7 +140,7 @@ public class DatacenterBroker extends SimEntity {
 	@Override
 	public void processEvent(SimEvent ev) {
 		switch (ev.getTag()) {
-		// Resource characteristics request
+			// Resource characteristics request
 			case CloudSimTags.RESOURCE_CHARACTERISTICS_REQUEST:
 				processResourceCharacteristicsRequest(ev);
 				break;
@@ -174,7 +169,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Process the return of a request for the characteristics of a PowerDatacenter.
-	 * 
 	 * @param ev a SimEvent object
 	 * @pre ev != $null
 	 * @post $none
@@ -191,7 +185,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Process a request for the characteristics of a PowerDatacenter.
-	 * 
 	 * @param ev a SimEvent object
 	 * @pre ev != $null
 	 * @post $none
@@ -210,7 +203,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Process the ack received due to a request for VM creation.
-	 * 
 	 * @param ev a SimEvent object
 	 * @pre ev != null
 	 * @post $none
@@ -224,12 +216,12 @@ public class DatacenterBroker extends SimEntity {
 		if (result == CloudSimTags.TRUE) {
 			getVmsToDatacentersMap().put(vmId, datacenterId);
 			getVmsCreatedList().add(VmList.getById(getVmList(), vmId));
-			Log.printLine(CloudSim.clock() + ": " + getName() + ": VM #" + vmId
-					+ " has been created in Datacenter #" + datacenterId + ", Host #"
-					+ VmList.getById(getVmsCreatedList(), vmId).getHost().getId());
-		} else {
-			Log.printLine(CloudSim.clock() + ": " + getName() + ": Creation of VM #" + vmId
-					+ " failed in Datacenter #" + datacenterId);
+			Log.printLine(CloudSim.clock() + ": " + getName() + ": VM #" + vmId + " has been created in Datacenter #"
+					+ datacenterId + ", Host #" + VmList.getById(getVmsCreatedList(), vmId).getHost().getId());
+		}
+		else {
+			Log.printLine(CloudSim.clock() + ": " + getName() + ": Creation of VM #" + vmId + " failed in Datacenter #"
+					+ datacenterId);
 		}
 
 		incrementVmsAcks();
@@ -237,7 +229,8 @@ public class DatacenterBroker extends SimEntity {
 		// all the requested VMs have been created
 		if (getVmsCreatedList().size() == getVmList().size() - getVmsDestroyed()) {
 			submitCloudlets();
-		} else {
+		}
+		else {
 			// all the acks received, but some VMs were not created
 			if (getVmsRequested() == getVmsAcks()) {
 				// find id of the next datacenter that has not been tried
@@ -251,7 +244,8 @@ public class DatacenterBroker extends SimEntity {
 				// all datacenters already queried
 				if (getVmsCreatedList().size() > 0) { // if some vm were created
 					submitCloudlets();
-				} else { // no vms created. abort
+				}
+				else { // no vms created. abort
 					Log.printLine(CloudSim.clock() + ": " + getName()
 							+ ": none of the required VMs could be created. Aborting");
 					finishExecution();
@@ -262,7 +256,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Process a cloudlet return event.
-	 * 
 	 * @param ev a SimEvent object
 	 * @pre ev != $null
 	 * @post $none
@@ -270,14 +263,15 @@ public class DatacenterBroker extends SimEntity {
 	protected void processCloudletReturn(SimEvent ev) {
 		Cloudlet cloudlet = (Cloudlet) ev.getData();
 		getCloudletReceivedList().add(cloudlet);
-		Log.printLine(CloudSim.clock() + ": " + getName() + ": Cloudlet " + cloudlet.getCloudletId()
-				+ " received");
+		Log.printLine(CloudSim.clock() + ": " + getName() + ": Cloudlet " + cloudlet.getCloudletId() + " received");
 		cloudletsSubmitted--;
-		if (getCloudletList().size() == 0 && cloudletsSubmitted == 0) { // all cloudlets executed
+		if (getCloudletList().size() == 0 && cloudletsSubmitted == 0) { // all cloudlets
+																		// executed
 			Log.printLine(CloudSim.clock() + ": " + getName() + ": All Cloudlets executed. Finishing...");
 			clearDatacenters();
 			finishExecution();
-		} else { // some cloudlets haven't finished yet
+		}
+		else { // some cloudlets haven't finished yet
 			if (getCloudletList().size() > 0 && cloudletsSubmitted == 0) {
 				// all the cloudlets sent finished. It means that some bount
 				// cloudlet is waiting its VM be created
@@ -289,9 +283,8 @@ public class DatacenterBroker extends SimEntity {
 	}
 
 	/**
-	 * Overrides this method when making a new and different type of Broker. This method is called
-	 * by {@link #body()} for incoming unknown tags.
-	 * 
+	 * Overrides this method when making a new and different type of Broker. This method
+	 * is called by {@link #body()} for incoming unknown tags.
 	 * @param ev a SimEvent object
 	 * @pre ev != null
 	 * @post $none
@@ -302,13 +295,11 @@ public class DatacenterBroker extends SimEntity {
 			return;
 		}
 
-		Log.printLine(getName() + ".processOtherEvent(): "
-				+ "Error - event unknown by this DatacenterBroker.");
+		Log.printLine(getName() + ".processOtherEvent(): " + "Error - event unknown by this DatacenterBroker.");
 	}
 
 	/**
 	 * Create the virtual machines in a datacenter.
-	 * 
 	 * @param datacenterId Id of the chosen PowerDatacenter
 	 * @pre $none
 	 * @post $none
@@ -319,8 +310,8 @@ public class DatacenterBroker extends SimEntity {
 		String datacenterName = CloudSim.getEntityName(datacenterId);
 		for (Vm vm : getVmList()) {
 			if (!getVmsToDatacentersMap().containsKey(vm.getId())) {
-				Log.printLine(CloudSim.clock() + ": " + getName() + ": Trying to Create VM #" + vm.getId()
-						+ " in " + datacenterName);
+				Log.printLine(CloudSim.clock() + ": " + getName() + ": Trying to Create VM #" + vm.getId() + " in "
+						+ datacenterName);
 				sendNow(datacenterId, CloudSimTags.VM_CREATE_ACK, vm);
 				requestedVms++;
 			}
@@ -334,7 +325,7 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Submit cloudlets to the created VMs.
-	 * 
+	 *
 	 * @pre $none
 	 * @post $none
 	 */
@@ -345,7 +336,8 @@ public class DatacenterBroker extends SimEntity {
 			// if user didn't bind this cloudlet and it has not been executed yet
 			if (cloudlet.getVmId() == -1) {
 				vm = getVmsCreatedList().get(vmIndex);
-			} else { // submit to the specific vm
+			}
+			else { // submit to the specific vm
 				vm = VmList.getById(getVmsCreatedList(), cloudlet.getVmId());
 				if (vm == null) { // vm was not created
 					Log.printLine(CloudSim.clock() + ": " + getName() + ": Postponing execution of cloudlet "
@@ -354,8 +346,8 @@ public class DatacenterBroker extends SimEntity {
 				}
 			}
 
-			Log.printLine(CloudSim.clock() + ": " + getName() + ": Sending cloudlet "
-					+ cloudlet.getCloudletId() + " to VM #" + vm.getId());
+			Log.printLine(CloudSim.clock() + ": " + getName() + ": Sending cloudlet " + cloudlet.getCloudletId()
+					+ " to VM #" + vm.getId());
 			cloudlet.setVmId(vm.getId());
 			sendNow(getVmsToDatacentersMap().get(vm.getId()), CloudSimTags.CLOUDLET_SUBMIT, cloudlet);
 			cloudletsSubmitted++;
@@ -371,7 +363,7 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Destroy the virtual machines running in datacenters.
-	 * 
+	 *
 	 * @pre $none
 	 * @post $none
 	 */
@@ -386,7 +378,7 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Send an internal event communicating the end of the simulation.
-	 * 
+	 *
 	 * @pre $none
 	 * @post $none
 	 */
@@ -396,6 +388,7 @@ public class DatacenterBroker extends SimEntity {
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see cloudsim.core.SimEntity#shutdownEntity()
 	 */
 	@Override
@@ -405,6 +398,7 @@ public class DatacenterBroker extends SimEntity {
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see cloudsim.core.SimEntity#startEntity()
 	 */
 	@Override
@@ -415,7 +409,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Gets the vm list.
-	 * 
 	 * @param <T> the generic type
 	 * @return the vm list
 	 */
@@ -426,7 +419,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Sets the vm list.
-	 * 
 	 * @param <T> the generic type
 	 * @param vmList the new vm list
 	 */
@@ -436,7 +428,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Gets the cloudlet list.
-	 * 
 	 * @param <T> the generic type
 	 * @return the cloudlet list
 	 */
@@ -447,7 +438,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Sets the cloudlet list.
-	 * 
 	 * @param <T> the generic type
 	 * @param cloudletList the new cloudlet list
 	 */
@@ -457,7 +447,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Gets the cloudlet submitted list.
-	 * 
 	 * @param <T> the generic type
 	 * @return the cloudlet submitted list
 	 */
@@ -468,7 +457,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Sets the cloudlet submitted list.
-	 * 
 	 * @param <T> the generic type
 	 * @param cloudletSubmittedList the new cloudlet submitted list
 	 */
@@ -478,7 +466,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Gets the cloudlet received list.
-	 * 
 	 * @param <T> the generic type
 	 * @return the cloudlet received list
 	 */
@@ -489,7 +476,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Sets the cloudlet received list.
-	 * 
 	 * @param <T> the generic type
 	 * @param cloudletReceivedList the new cloudlet received list
 	 */
@@ -499,7 +485,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Gets the vm list.
-	 * 
 	 * @param <T> the generic type
 	 * @return the vm list
 	 */
@@ -510,7 +495,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Sets the vm list.
-	 * 
 	 * @param <T> the generic type
 	 * @param vmsCreatedList the vms created list
 	 */
@@ -520,7 +504,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Gets the vms requested.
-	 * 
 	 * @return the vms requested
 	 */
 	protected int getVmsRequested() {
@@ -529,7 +512,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Sets the vms requested.
-	 * 
 	 * @param vmsRequested the new vms requested
 	 */
 	protected void setVmsRequested(int vmsRequested) {
@@ -538,7 +520,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Gets the vms acks.
-	 * 
 	 * @return the vms acks
 	 */
 	protected int getVmsAcks() {
@@ -547,7 +528,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Sets the vms acks.
-	 * 
 	 * @param vmsAcks the new vms acks
 	 */
 	protected void setVmsAcks(int vmsAcks) {
@@ -563,7 +543,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Gets the vms destroyed.
-	 * 
 	 * @return the vms destroyed
 	 */
 	protected int getVmsDestroyed() {
@@ -572,7 +551,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Sets the vms destroyed.
-	 * 
 	 * @param vmsDestroyed the new vms destroyed
 	 */
 	protected void setVmsDestroyed(int vmsDestroyed) {
@@ -581,7 +559,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Gets the datacenter ids list.
-	 * 
 	 * @return the datacenter ids list
 	 */
 	protected List<Integer> getDatacenterIdsList() {
@@ -590,7 +567,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Sets the datacenter ids list.
-	 * 
 	 * @param datacenterIdsList the new datacenter ids list
 	 */
 	protected void setDatacenterIdsList(List<Integer> datacenterIdsList) {
@@ -599,7 +575,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Gets the vms to datacenters map.
-	 * 
 	 * @return the vms to datacenters map
 	 */
 	protected Map<Integer, Integer> getVmsToDatacentersMap() {
@@ -608,7 +583,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Sets the vms to datacenters map.
-	 * 
 	 * @param vmsToDatacentersMap the vms to datacenters map
 	 */
 	protected void setVmsToDatacentersMap(Map<Integer, Integer> vmsToDatacentersMap) {
@@ -617,7 +591,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Gets the datacenter characteristics list.
-	 * 
 	 * @return the datacenter characteristics list
 	 */
 	protected Map<Integer, DatacenterCharacteristics> getDatacenterCharacteristicsList() {
@@ -626,7 +599,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Sets the datacenter characteristics list.
-	 * 
 	 * @param datacenterCharacteristicsList the datacenter characteristics list
 	 */
 	protected void setDatacenterCharacteristicsList(
@@ -636,7 +608,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Gets the datacenter requested ids list.
-	 * 
 	 * @return the datacenter requested ids list
 	 */
 	protected List<Integer> getDatacenterRequestedIdsList() {
@@ -645,7 +616,6 @@ public class DatacenterBroker extends SimEntity {
 
 	/**
 	 * Sets the datacenter requested ids list.
-	 * 
 	 * @param datacenterRequestedIdsList the new datacenter requested ids list
 	 */
 	protected void setDatacenterRequestedIdsList(List<Integer> datacenterRequestedIdsList) {

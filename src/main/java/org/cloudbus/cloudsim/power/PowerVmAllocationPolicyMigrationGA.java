@@ -22,23 +22,20 @@ import org.cloudbus.cloudsim.Log;
 import org.cloudbus.cloudsim.Vm;
 import org.cloudbus.cloudsim.util.ExecutionTimeMeasurer;
 
-public class PowerVmAllocationPolicyMigrationGA extends
-		PowerVmAllocationPolicyMigrationAbstract {
+public class PowerVmAllocationPolicyMigrationGA extends PowerVmAllocationPolicyMigrationAbstract {
 
 	public static Random rnd;
 
 	List<GAInd> pop, pareto;
 
-	public PowerVmAllocationPolicyMigrationGA(List<? extends Host> hostList,
-			PowerVmSelectionPolicy vmSelectionPolicy) {
+	public PowerVmAllocationPolicyMigrationGA(List<? extends Host> hostList, PowerVmSelectionPolicy vmSelectionPolicy) {
 		super(hostList, vmSelectionPolicy);
 		// TODO Auto-generated constructor stub
 		Log.setDisabled(true);
 	}
 
 	@Override
-	public List<Map<String, Object>> optimizeAllocation(
-			List<? extends Vm> vmList) {
+	public List<Map<String, Object>> optimizeAllocation(List<? extends Vm> vmList) {
 		ExecutionTimeMeasurer.start("optimizeAllocationTotal");
 
 		List<Map<String, Object>> migrationMap = new LinkedList<Map<String, Object>>();
@@ -46,18 +43,17 @@ public class PowerVmAllocationPolicyMigrationGA extends
 
 		ExecutionTimeMeasurer.start("optimizeAllocationHostSelection");
 		initGA();
-		getExecutionTimeHistoryHostSelection().add(
-				ExecutionTimeMeasurer.end("optimizeAllocationHostSelection"));
-		while(true) {
+		getExecutionTimeHistoryHostSelection().add(ExecutionTimeMeasurer.end("optimizeAllocationHostSelection"));
+		while (true) {
 			try {
 				migrationMap = pareto.get(rnd.nextInt(pareto.size())).getMap();
 				break;
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 			}
 		}
-		
-		getExecutionTimeHistoryTotal().add(
-				ExecutionTimeMeasurer.end("optimizeAllocationTotal"));
+
+		getExecutionTimeHistoryTotal().add(ExecutionTimeMeasurer.end("optimizeAllocationTotal"));
 		return migrationMap;
 	}
 
@@ -66,7 +62,7 @@ public class PowerVmAllocationPolicyMigrationGA extends
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	private void initGA() {
 		rnd = new Random();
 		pop = new ArrayList<GAInd>();
@@ -75,12 +71,13 @@ public class PowerVmAllocationPolicyMigrationGA extends
 		for (int i = 0; i < 50; i++) {
 			try {
 				addToPopulation(new GAInd(this));
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				// TODO Auto-generated catch block
 				System.out.println(e.getMessage());
 			}
 		}
-		
+
 		for (int i = 0; i < 500; i++) {
 			mutation();
 			crossover();
@@ -92,27 +89,22 @@ public class PowerVmAllocationPolicyMigrationGA extends
 		p1 = pop.get(rnd.nextInt(pop.size()));
 		do {
 			p2 = pop.get(rnd.nextInt(pop.size()));
-		} while (p1.equals(p2));
-		
+		}
+		while (p1.equals(p2));
+
 		try {
 			addToPopulation(new GAInd(p1, p2));
-		} catch (Exception e) {
 		}
-		//crossover takes too much time
-		/*for (int i = 0; i < pop.size(); i++) {
-			if (rnd.nextInt(100) < 90) {
-				GAInd p1, p2;
-				p1 = pop.get(rnd.nextInt(pop.size()));
-				do {
-					p2 = pop.get(rnd.nextInt(pop.size()));
-				} while (p1.equals(p2));
-				
-				try {
-					addToPopulation(new GAInd(p1, p2));
-				} catch (Exception e) {
-				}
-			}
-		}*/
+		catch (Exception e) {
+		}
+		// crossover takes too much time
+		/*
+		 * for (int i = 0; i < pop.size(); i++) { if (rnd.nextInt(100) < 90) { GAInd p1,
+		 * p2; p1 = pop.get(rnd.nextInt(pop.size())); do { p2 =
+		 * pop.get(rnd.nextInt(pop.size())); } while (p1.equals(p2));
+		 *
+		 * try { addToPopulation(new GAInd(p1, p2)); } catch (Exception e) { } } }
+		 */
 	}
 
 	private void mutation() {
@@ -120,7 +112,8 @@ public class PowerVmAllocationPolicyMigrationGA extends
 			if (!ind.isPareto && rnd.nextInt(1000) < 10) {
 				try {
 					ind.Mutation();
-				} catch (Exception e) {
+				}
+				catch (Exception e) {
 				}
 			}
 		}
@@ -136,7 +129,8 @@ public class PowerVmAllocationPolicyMigrationGA extends
 		for (GAInd target : pareto) {
 			if (ind.dominates(target) == Domination.True) {
 				dominatedInds.add(target);
-			} else if (ind.dominates(target) == Domination.False) {
+			}
+			else if (ind.dominates(target) == Domination.False) {
 				return false;
 			}
 		}

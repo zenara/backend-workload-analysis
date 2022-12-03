@@ -16,7 +16,7 @@ import org.cloudbus.cloudsim.Vm;
 
 /**
  * PeList is a collection of operations on lists of PEs.
- * 
+ *
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 2.0
  */
@@ -24,7 +24,6 @@ public class PeList {
 
 	/**
 	 * Gets MIPS Rating for a specified Pe ID.
-	 * 
 	 * @param id the Pe ID
 	 * @param peList the pe list
 	 * @return the MIPS rating if exists, otherwise returns -1
@@ -42,7 +41,6 @@ public class PeList {
 
 	/**
 	 * Gets MIPS Rating for a specified Pe ID.
-	 * 
 	 * @param id the Pe ID
 	 * @param peList the pe list
 	 * @return the MIPS rating if exists, otherwise returns -1
@@ -59,7 +57,6 @@ public class PeList {
 
 	/**
 	 * Gets total MIPS Rating for all PEs.
-	 * 
 	 * @param peList the pe list
 	 * @return the total MIPS Rating
 	 * @pre $none
@@ -75,7 +72,6 @@ public class PeList {
 
 	/**
 	 * Gets the max utilization among by all PEs.
-	 * 
 	 * @param peList the pe list
 	 * @return the utilization
 	 */
@@ -92,7 +88,6 @@ public class PeList {
 
 	/**
 	 * Gets the max utilization among by all PEs allocated to the VM.
-	 * 
 	 * @param vm the vm
 	 * @param peList the pe list
 	 * @return the utilization
@@ -113,7 +108,6 @@ public class PeList {
 
 	/**
 	 * Gets a Pe ID which is FREE.
-	 * 
 	 * @param peList the pe list
 	 * @return a Pe ID if it is FREE, otherwise returns -1
 	 * @pre $none
@@ -130,7 +124,6 @@ public class PeList {
 
 	/**
 	 * Gets the number of <tt>FREE</tt> or non-busy Pe.
-	 * 
 	 * @param peList the pe list
 	 * @return number of Pe
 	 * @pre $none
@@ -148,12 +141,11 @@ public class PeList {
 
 	/**
 	 * Sets the Pe status.
-	 * 
 	 * @param status Pe status, either <tt>Pe.FREE</tt> or <tt>Pe.BUSY</tt>
 	 * @param id the id
 	 * @param peList the pe list
-	 * @return <tt>true</tt> if the Pe status has been changed, <tt>false</tt> otherwise (Pe id might
-	 *         not be exist)
+	 * @return <tt>true</tt> if the Pe status has been changed, <tt>false</tt> otherwise
+	 * (Pe id might not be exist)
 	 * @pre peID >= 0
 	 * @post $none
 	 */
@@ -168,7 +160,6 @@ public class PeList {
 
 	/**
 	 * Gets the number of <tt>BUSY</tt> Pe.
-	 * 
 	 * @param peList the pe list
 	 * @return number of Pe
 	 * @pre $none
@@ -186,22 +177,18 @@ public class PeList {
 
 	/**
 	 * Sets the status of PEs of this machine to FAILED. NOTE: <tt>resName</tt> and
-	 * <tt>machineID</tt> are used for debugging purposes, which is <b>ON</b> by default. Use
-	 * {@link #setStatusFailed(boolean)} if you do not want this information.
-	 * 
+	 * <tt>machineID</tt> are used for debugging purposes, which is <b>ON</b> by default.
+	 * Use {@link #setStatusFailed(boolean)} if you do not want this information.
 	 * @param resName the name of the resource
 	 * @param hostId the id of this machine
 	 * @param failed the new value for the "failed" parameter
 	 */
-	public static <T extends Pe> void setStatusFailed(
-			List<Pe> peList,
-			String resName,
-			int hostId,
-			boolean failed) {
+	public static <T extends Pe> void setStatusFailed(List<Pe> peList, String resName, int hostId, boolean failed) {
 		String status = null;
 		if (failed) {
 			status = "FAILED";
-		} else {
+		}
+		else {
 			status = "WORKING";
 		}
 
@@ -212,7 +199,6 @@ public class PeList {
 
 	/**
 	 * Sets the status of PEs of this machine to FAILED.
-	 * 
 	 * @param failed the new value for the "failed" parameter
 	 * @param peList the pe list
 	 */
@@ -221,7 +207,8 @@ public class PeList {
 		for (Pe pe : peList) {
 			if (failed) {
 				pe.setStatus(Pe.FAILED);
-			} else {
+			}
+			else {
 				pe.setStatus(Pe.FREE);
 			}
 		}

@@ -14,7 +14,7 @@ import org.cloudbus.cloudsim.Vm;
 
 /**
  * The Class PeProvisioner.
- * 
+ *
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 2.0
  */
@@ -28,9 +28,8 @@ public abstract class PeProvisioner {
 
 	/**
 	 * Creates the new PeProvisioner.
-	 * 
 	 * @param mips overall amount of MIPS available in the Pe
-	 * 
+	 *
 	 * @pre mips>=0
 	 * @post $none
 	 */
@@ -41,12 +40,10 @@ public abstract class PeProvisioner {
 
 	/**
 	 * Allocates MIPS for a given VM.
-	 * 
 	 * @param vm virtual machine for which the MIPS are being allocated
 	 * @param mips the mips
-	 * 
 	 * @return $true if the MIPS could be allocated; $false otherwise
-	 * 
+	 *
 	 * @pre $none
 	 * @post $none
 	 */
@@ -54,12 +51,10 @@ public abstract class PeProvisioner {
 
 	/**
 	 * Allocates MIPS for a given VM.
-	 * 
 	 * @param vmUid the vm uid
 	 * @param mips the mips
-	 * 
 	 * @return $true if the MIPS could be allocated; $false otherwise
-	 * 
+	 *
 	 * @pre $none
 	 * @post $none
 	 */
@@ -67,12 +62,10 @@ public abstract class PeProvisioner {
 
 	/**
 	 * Allocates MIPS for a given VM.
-	 * 
 	 * @param vm virtual machine for which the MIPS are being allocated
 	 * @param mips the mips for each virtual Pe
-	 * 
 	 * @return $true if the MIPS could be allocated; $false otherwise
-	 * 
+	 *
 	 * @pre $none
 	 * @post $none
 	 */
@@ -80,11 +73,9 @@ public abstract class PeProvisioner {
 
 	/**
 	 * Gets allocated MIPS for a given VM.
-	 * 
 	 * @param vm virtual machine for which the MIPS are being allocated
-	 * 
 	 * @return array of allocated MIPS
-	 * 
+	 *
 	 * @pre $none
 	 * @post $none
 	 */
@@ -92,11 +83,9 @@ public abstract class PeProvisioner {
 
 	/**
 	 * Gets total allocated MIPS for a given VM for all PEs.
-	 * 
 	 * @param vm virtual machine for which the MIPS are being allocated
-	 * 
 	 * @return total allocated MIPS
-	 * 
+	 *
 	 * @pre $none
 	 * @post $none
 	 */
@@ -104,12 +93,10 @@ public abstract class PeProvisioner {
 
 	/**
 	 * Gets allocated MIPS for a given VM for a given virtual Pe.
-	 * 
 	 * @param vm virtual machine for which the MIPS are being allocated
 	 * @param peId the pe id
-	 * 
 	 * @return allocated MIPS
-	 * 
+	 *
 	 * @pre $none
 	 * @post $none
 	 */
@@ -117,9 +104,8 @@ public abstract class PeProvisioner {
 
 	/**
 	 * Releases MIPS used by a VM.
-	 * 
 	 * @param vm the vm
-	 * 
+	 *
 	 * @pre $none
 	 * @post none
 	 */
@@ -127,7 +113,7 @@ public abstract class PeProvisioner {
 
 	/**
 	 * Releases MIPS used by all VMs.
-	 * 
+	 *
 	 * @pre $none
 	 * @post none
 	 */
@@ -137,7 +123,6 @@ public abstract class PeProvisioner {
 
 	/**
 	 * Gets the MIPS.
-	 * 
 	 * @return the MIPS
 	 */
 	public double getMips() {
@@ -146,7 +131,6 @@ public abstract class PeProvisioner {
 
 	/**
 	 * Sets the MIPS.
-	 * 
 	 * @param mips the MIPS to set
 	 */
 	public void setMips(double mips) {
@@ -155,9 +139,8 @@ public abstract class PeProvisioner {
 
 	/**
 	 * Gets the available MIPS in the PE.
-	 * 
 	 * @return available MIPS
-	 * 
+	 *
 	 * @pre $none
 	 * @post $none
 	 */
@@ -167,7 +150,6 @@ public abstract class PeProvisioner {
 
 	/**
 	 * Sets the available MIPS.
-	 * 
 	 * @param availableMips the availableMips to set
 	 */
 	protected void setAvailableMips(double availableMips) {
@@ -176,7 +158,6 @@ public abstract class PeProvisioner {
 
 	/**
 	 * Gets the total allocated MIPS.
-	 * 
 	 * @return the total allocated MIPS
 	 */
 	public double getTotalAllocatedMips() {
@@ -189,7 +170,6 @@ public abstract class PeProvisioner {
 
 	/**
 	 * Gets the utilization of the Pe in percents.
-	 * 
 	 * @return the utilization
 	 */
 	public double getUtilization() {

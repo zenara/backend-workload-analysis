@@ -9,16 +9,17 @@
 package org.cloudbus.cloudsim.network.datacenter;
 
 /**
- * Taskstage represents various stages a networkCloudlet can have during execution. Four stage types
- * which are possible-> EXECUTION=0; WAIT_SEND=1; WAIT_RECV=2; FINISH=-2; Check NeworkConstants.java
- * file for that.
- * 
+ * Taskstage represents various stages a networkCloudlet can have during execution. Four
+ * stage types which are possible-> EXECUTION=0; WAIT_SEND=1; WAIT_RECV=2; FINISH=-2;
+ * Check NeworkConstants.java file for that.
+ *
  * Please refer to following publication for more details:
- * 
- * Saurabh Kumar Garg and Rajkumar Buyya, NetworkCloudSim: Modelling Parallel Applications in Cloud
- * Simulations, Proceedings of the 4th IEEE/ACM International Conference on Utility and Cloud
- * Computing (UCC 2011, IEEE CS Press, USA), Melbourne, Australia, December 5-7, 2011.
- * 
+ *
+ * Saurabh Kumar Garg and Rajkumar Buyya, NetworkCloudSim: Modelling Parallel Applications
+ * in Cloud Simulations, Proceedings of the 4th IEEE/ACM International Conference on
+ * Utility and Cloud Computing (UCC 2011, IEEE CS Press, USA), Melbourne, Australia,
+ * December 5-7, 2011.
+ *
  * @author Saurabh Kumar Garg
  * @since CloudSim Toolkit 1.0
  */

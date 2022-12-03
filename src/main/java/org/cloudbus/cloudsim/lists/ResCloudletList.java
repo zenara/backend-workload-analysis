@@ -14,30 +14,26 @@ import org.cloudbus.cloudsim.ResCloudlet;
 
 /**
  * ResCloudletList is a collection of operations on lists of ResCloudlets.
- * 
+ *
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 2.0
  */
 public class ResCloudletList {
 
 	/**
-	 * Returns a given Cloudlet. This method needs a combination of Cloudlet Id and User Id because
-	 * each Cloud Users might have exactly same Cloudlet Ids.
-	 * 
+	 * Returns a given Cloudlet. This method needs a combination of Cloudlet Id and User
+	 * Id because each Cloud Users might have exactly same Cloudlet Ids.
 	 * @param cloudletId a Cloudlet Id
 	 * @param userId an User Id
 	 * @param list the list
 	 * @return the Cloudlet.
-	 * @throws IndexOutOfBoundsException - if a Cloudlet with specified Id and user id is not in the
-	 *             list.
+	 * @throws IndexOutOfBoundsException - if a Cloudlet with specified Id and user id is
+	 * not in the list.
 	 * @pre cloudletId >= 0
 	 * @pre userId >= 0
 	 * @post $none
 	 */
-	public static <T extends ResCloudlet> ResCloudlet getByIdAndUserId(
-			List<T> list,
-			int cloudletId,
-			int userId) {
+	public static <T extends ResCloudlet> ResCloudlet getByIdAndUserId(List<T> list, int cloudletId, int userId) {
 		for (T rcl : list) {
 			if (rcl.getCloudletId() == cloudletId && rcl.getUserId() == userId) {
 				return rcl;
@@ -47,14 +43,14 @@ public class ResCloudletList {
 	}
 
 	/**
-	 * Finds the index of a Cloudlet inside the list. This method needs a combination of Cloudlet Id
-	 * and User Id because each Cloud User might have exactly the same Cloudlet Id.
-	 * 
+	 * Finds the index of a Cloudlet inside the list. This method needs a combination of
+	 * Cloudlet Id and User Id because each Cloud User might have exactly the same
+	 * Cloudlet Id.
 	 * @param cloudletId a Cloudlet Id
 	 * @param userId an User Id
 	 * @param list the list
-	 * @return the index in this list of the first occurrence of the specified Cloudlet, or
-	 *         <code>-1</code> if the list does not contain this Cloudlet.
+	 * @return the index in this list of the first occurrence of the specified Cloudlet,
+	 * or <code>-1</code> if the list does not contain this Cloudlet.
 	 * @pre cloudletId >= 0
 	 * @pre userId >= 0
 	 * @post $none
@@ -72,11 +68,11 @@ public class ResCloudletList {
 
 	/**
 	 * Move a ResCloudlet object from this linked-list into a specified one.
-	 * 
 	 * @param listFrom the list from
 	 * @param listTo the list to
 	 * @param cloudlet the cloudlet
-	 * @return <b>true</b> if the moving operation successful, otherwise return <b>false</b>
+	 * @return <b>true</b> if the moving operation successful, otherwise return
+	 * <b>false</b>
 	 * @pre obj != null
 	 * @pre list != null
 	 * @post $result == true || $result == false

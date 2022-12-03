@@ -1,7 +1,7 @@
 /*
  * Title: CloudSim Toolkit Description: CloudSim (Cloud Simulation) Toolkit for Modeling and
  * Simulation of Clouds Licence: GPL - http://www.gnu.org/copyleft/gpl.html
- * 
+ *
  * Copyright (c) 2009-2012, The University of Melbourne, Australia
  */
 
@@ -18,10 +18,10 @@ import org.cloudbus.cloudsim.lists.PeList;
 import org.cloudbus.cloudsim.provisioners.PeProvisioner;
 
 /**
- * VmSchedulerTimeShared is a VMM allocation policy that allocates one or more Pe to a VM, and
- * allows sharing of PEs by multiple VMs. This class also implements 10% performance degration due
- * to VM migration. This scheduler does not support over-subscription.
- * 
+ * VmSchedulerTimeShared is a VMM allocation policy that allocates one or more Pe to a VM,
+ * and allows sharing of PEs by multiple VMs. This class also implements 10% performance
+ * degration due to VM migration. This scheduler does not support over-subscription.
+ *
  * @author Rodrigo N. Calheiros
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 1.0
@@ -36,7 +36,6 @@ public class VmSchedulerTimeShared extends VmScheduler {
 
 	/**
 	 * Instantiates a new vm scheduler time shared.
-	 * 
 	 * @param pelist the pelist
 	 */
 	public VmSchedulerTimeShared(List<? extends Pe> pelist) {
@@ -46,6 +45,7 @@ public class VmSchedulerTimeShared extends VmScheduler {
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see cloudsim.VmScheduler#allocatePesForVm(cloudsim.Vm, java.util.List)
 	 */
 	@Override
@@ -57,7 +57,8 @@ public class VmSchedulerTimeShared extends VmScheduler {
 			if (!getVmsMigratingIn().contains(vm.getUid()) && !getVmsMigratingOut().contains(vm.getUid())) {
 				getVmsMigratingOut().add(vm.getUid());
 			}
-		} else {
+		}
+		else {
 			if (getVmsMigratingOut().contains(vm.getUid())) {
 				getVmsMigratingOut().remove(vm.getUid());
 			}
@@ -69,7 +70,6 @@ public class VmSchedulerTimeShared extends VmScheduler {
 
 	/**
 	 * Allocate pes for vm.
-	 * 
 	 * @param vmUid the vm uid
 	 * @param mipsShareRequested the mips share requested
 	 * @return true, if successful
@@ -78,7 +78,8 @@ public class VmSchedulerTimeShared extends VmScheduler {
 		double totalRequestedMips = 0;
 		double peMips = getPeCapacity();
 		for (Double mips : mipsShareRequested) {
-			// each virtual PE of a VM must require not more than the capacity of a physical PE
+			// each virtual PE of a VM must require not more than the capacity of a
+			// physical PE
 			if (mips > peMips) {
 				return false;
 			}
@@ -103,7 +104,8 @@ public class VmSchedulerTimeShared extends VmScheduler {
 			if (getVmsMigratingOut().contains(vmUid)) {
 				// performance degradation due to migration = 10% MIPS
 				mipsRequested *= 0.9;
-			} else if (getVmsMigratingIn().contains(vmUid)) {
+			}
+			else if (getVmsMigratingIn().contains(vmUid)) {
 				// the destination host only experience 10% of the migrating VM's MIPS
 				mipsRequested *= 0.1;
 			}
@@ -141,7 +143,8 @@ public class VmSchedulerTimeShared extends VmScheduler {
 						getPeMap().get(vmUid).add(pe);
 						availableMips -= mips;
 						break;
-					} else {
+					}
+					else {
 						peProvisioner.allocateMipsForVm(vmUid, availableMips);
 						getPeMap().get(vmUid).add(pe);
 						mips -= availableMips;
@@ -163,6 +166,7 @@ public class VmSchedulerTimeShared extends VmScheduler {
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see cloudsim.VmScheduler#deallocatePesForVm(cloudsim.Vm)
 	 */
 	@Override
@@ -185,7 +189,7 @@ public class VmSchedulerTimeShared extends VmScheduler {
 
 	/**
 	 * Releases PEs allocated to all the VMs.
-	 * 
+	 *
 	 * @pre $none
 	 * @post $none
 	 */
@@ -197,9 +201,8 @@ public class VmSchedulerTimeShared extends VmScheduler {
 	}
 
 	/**
-	 * Returns maximum available MIPS among all the PEs. For the time shared policy it is just all
-	 * the avaiable MIPS.
-	 * 
+	 * Returns maximum available MIPS among all the PEs. For the time shared policy it is
+	 * just all the avaiable MIPS.
 	 * @return max mips
 	 */
 	@Override
@@ -209,7 +212,6 @@ public class VmSchedulerTimeShared extends VmScheduler {
 
 	/**
 	 * Sets the pes in use.
-	 * 
 	 * @param pesInUse the new pes in use
 	 */
 	protected void setPesInUse(int pesInUse) {
@@ -218,7 +220,6 @@ public class VmSchedulerTimeShared extends VmScheduler {
 
 	/**
 	 * Gets the pes in use.
-	 * 
 	 * @return the pes in use
 	 */
 	protected int getPesInUse() {
@@ -227,7 +228,6 @@ public class VmSchedulerTimeShared extends VmScheduler {
 
 	/**
 	 * Gets the mips map requested.
-	 * 
 	 * @return the mips map requested
 	 */
 	protected Map<String, List<Double>> getMipsMapRequested() {
@@ -236,7 +236,6 @@ public class VmSchedulerTimeShared extends VmScheduler {
 
 	/**
 	 * Sets the mips map requested.
-	 * 
 	 * @param mipsMapRequested the mips map requested
 	 */
 	protected void setMipsMapRequested(Map<String, List<Double>> mipsMapRequested) {

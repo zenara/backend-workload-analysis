@@ -17,15 +17,15 @@ import flanagan.analysis.Regression;
 
 /**
  * The Maximum Correlation (MC) VM selection policy.
- * 
- * If you are using any algorithms, policies or workload included in the power package, please cite
- * the following paper:
- * 
- * Anton Beloglazov, and Rajkumar Buyya, "Optimal Online Deterministic Algorithms and Adaptive
- * Heuristics for Energy and Performance Efficient Dynamic Consolidation of Virtual Machines in
- * Cloud Data Centers", Concurrency and Computation: Practice and Experience, ISSN: 1532-0626, Wiley
- * Press, New York, USA, 2011, DOI: 10.1002/cpe.1867
- * 
+ *
+ * If you are using any algorithms, policies or workload included in the power package,
+ * please cite the following paper:
+ *
+ * Anton Beloglazov, and Rajkumar Buyya, "Optimal Online Deterministic Algorithms and
+ * Adaptive Heuristics for Energy and Performance Efficient Dynamic Consolidation of
+ * Virtual Machines in Cloud Data Centers", Concurrency and Computation: Practice and
+ * Experience, ISSN: 1532-0626, Wiley Press, New York, USA, 2011, DOI: 10.1002/cpe.1867
+ *
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 3.0
  */
@@ -36,7 +36,6 @@ public class PowerVmSelectionPolicyMaximumCorrelation extends PowerVmSelectionPo
 
 	/**
 	 * Instantiates a new power vm selection policy maximum correlation.
-	 * 
 	 * @param fallbackPolicy the fallback policy
 	 */
 	public PowerVmSelectionPolicyMaximumCorrelation(PowerVmSelectionPolicy fallbackPolicy) {
@@ -46,9 +45,10 @@ public class PowerVmSelectionPolicyMaximumCorrelation extends PowerVmSelectionPo
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see
-	 * org.cloudbus.cloudsim.experiments.power.PowerVmSelectionPolicy#getVmsToMigrate(org.cloudbus
-	 * .cloudsim.power.PowerHost)
+	 * org.cloudbus.cloudsim.experiments.power.PowerVmSelectionPolicy#getVmsToMigrate(org.
+	 * cloudbus .cloudsim.power.PowerHost)
 	 */
 	@Override
 	public Vm getVmToMigrate(PowerHost host) {
@@ -59,7 +59,9 @@ public class PowerVmSelectionPolicyMaximumCorrelation extends PowerVmSelectionPo
 		List<Double> metrics = null;
 		try {
 			metrics = getCorrelationCoefficients(getUtilizationMatrix(migratableVms));
-		} catch (IllegalArgumentException e) { // the degrees of freedom must be greater than zero
+		}
+		catch (IllegalArgumentException e) { // the degrees of freedom must be greater
+												// than zero
 			return getFallbackPolicy().getVmToMigrate(host);
 		}
 		double maxMetric = Double.MIN_VALUE;
@@ -76,7 +78,6 @@ public class PowerVmSelectionPolicyMaximumCorrelation extends PowerVmSelectionPo
 
 	/**
 	 * Gets the utilization matrix.
-	 * 
 	 * @param vmList the host
 	 * @return the utilization matrix
 	 */
@@ -95,7 +96,6 @@ public class PowerVmSelectionPolicyMaximumCorrelation extends PowerVmSelectionPo
 
 	/**
 	 * Gets the min utilization history size.
-	 * 
 	 * @param vmList the vm list
 	 * @return the min utilization history size
 	 */
@@ -112,7 +112,6 @@ public class PowerVmSelectionPolicyMaximumCorrelation extends PowerVmSelectionPo
 
 	/**
 	 * Gets the correlation coefficients.
-	 * 
 	 * @param data the data
 	 * @return the correlation coefficients
 	 */
@@ -138,7 +137,6 @@ public class PowerVmSelectionPolicyMaximumCorrelation extends PowerVmSelectionPo
 
 	/**
 	 * Gets the fallback policy.
-	 * 
 	 * @return the fallback policy
 	 */
 	public PowerVmSelectionPolicy getFallbackPolicy() {
@@ -147,7 +145,6 @@ public class PowerVmSelectionPolicyMaximumCorrelation extends PowerVmSelectionPo
 
 	/**
 	 * Sets the fallback policy.
-	 * 
 	 * @param fallbackPolicy the new fallback policy
 	 */
 	public void setFallbackPolicy(PowerVmSelectionPolicy fallbackPolicy) {

@@ -12,7 +12,7 @@ import java.util.Iterator;
 
 /**
  * This class represents an delay-topology storing every distance between connected nodes
- * 
+ *
  * @author Thomas Hohnstein
  * @since CloudSim Toolkit 1.0
  */
@@ -29,7 +29,8 @@ public class DelayMatrix_Float {
 	protected int mTotalNodeNum = 0;
 
 	/**
-	 * private constructor to ensure that only an correct initialized delay-matrix could be created
+	 * private constructor to ensure that only an correct initialized delay-matrix could
+	 * be created
 	 */
 	@SuppressWarnings("unused")
 	private DelayMatrix_Float() {
@@ -37,7 +38,6 @@ public class DelayMatrix_Float {
 
 	/**
 	 * this constructor creates an correct initialized Float-Delay-Matrix
-	 * 
 	 * @param graph the topological graph as source-information
 	 * @param directed true if an directed matrix should be computed, false otherwise
 	 */
@@ -66,9 +66,8 @@ public class DelayMatrix_Float {
 
 	/**
 	 * creates all internal necessary network-distance structures from the given graph for
-	 * similarity we assume all kommunikation-distances are symmetrical thus leads to an undirected
-	 * network
-	 * 
+	 * similarity we assume all kommunikation-distances are symmetrical thus leads to an
+	 * undirected network
 	 * @param graph this graph contains all node and link information
 	 * @param directed defines to preinitialize an directed or undirected Delay-Matrix!
 	 */
@@ -113,8 +112,8 @@ public class DelayMatrix_Float {
 	}
 
 	/**
-	 * this method just creates an string-output from the internal structures... eg. printsout the
-	 * delay-matrix...
+	 * this method just creates an string-output from the internal structures... eg.
+	 * printsout the delay-matrix...
 	 */
 	@Override
 	public String toString() {
@@ -133,7 +132,8 @@ public class DelayMatrix_Float {
 			for (int col = 0; col < mTotalNodeNum; ++col) {
 				if (mDelayMatrix[row][col] == Float.MAX_VALUE) {
 					buffer.append("\t" + "-");
-				} else {
+				}
+				else {
 					buffer.append("\t" + mDelayMatrix[row][col]);
 				}
 			}
@@ -141,4 +141,5 @@ public class DelayMatrix_Float {
 
 		return buffer.toString();
 	}
+
 }

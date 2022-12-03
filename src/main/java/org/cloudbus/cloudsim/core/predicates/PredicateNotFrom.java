@@ -12,7 +12,7 @@ import org.cloudbus.cloudsim.core.SimEvent;
 
 /**
  * A predicate which selects events that have not been sent by specific entities.
- * 
+ *
  * @author Marcos Dias de Assuncao
  * @since CloudSim Toolkit 1.0
  * @see PredicateFrom
@@ -25,7 +25,6 @@ public class PredicateNotFrom extends Predicate {
 
 	/**
 	 * Constructor used to select events that were not sent by a specific entity.
-	 * 
 	 * @param sourceId the id number of the source entity
 	 */
 	public PredicateNotFrom(int sourceId) {
@@ -33,8 +32,8 @@ public class PredicateNotFrom extends Predicate {
 	}
 
 	/**
-	 * Constructor used to select events that were not sent by any entity from a given set.
-	 * 
+	 * Constructor used to select events that were not sent by any entity from a given
+	 * set.
 	 * @param sourceIds the set of id numbers of the source entities
 	 */
 	public PredicateNotFrom(int[] sourceIds) {
@@ -43,9 +42,9 @@ public class PredicateNotFrom extends Predicate {
 
 	/**
 	 * The match function called by {@link Simulation}, not used directly by the user.
-	 * 
 	 * @param ev the event to check
-	 * @return <code>true</code> if the event matches the predicate, <code>false</code> otherwise
+	 * @return <code>true</code> if the event matches the predicate, <code>false</code>
+	 * otherwise
 	 */
 	@Override
 	public boolean match(SimEvent ev) {

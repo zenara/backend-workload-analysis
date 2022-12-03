@@ -10,7 +10,7 @@ package org.cloudbus.cloudsim.network;
 
 /**
  * This class represents an link (edge) from an graph
- * 
+ *
  * @author Thomas Hohnstein
  * @since CloudSim Toolkit 1.0
  */
@@ -46,7 +46,6 @@ public class TopologicalLink {
 
 	/**
 	 * returns the node-ID from the SrcNode
-	 * 
 	 * @return nodeID
 	 */
 	public int getSrcNodeID() {
@@ -55,7 +54,6 @@ public class TopologicalLink {
 
 	/**
 	 * return the node-ID from the DestNode
-	 * 
 	 * @return nodeID
 	 */
 	public int getDestNodeID() {
@@ -64,7 +62,6 @@ public class TopologicalLink {
 
 	/**
 	 * return the link-delay of the defined linke
-	 * 
 	 * @return the delay-amount
 	 */
 	public float getLinkDelay() {
@@ -73,7 +70,6 @@ public class TopologicalLink {
 
 	/**
 	 * return the link-bw of the defined linke
-	 * 
 	 * @return the bw
 	 */
 	public float getLinkBw() {

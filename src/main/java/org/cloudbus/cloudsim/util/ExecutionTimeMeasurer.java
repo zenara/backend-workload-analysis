@@ -13,7 +13,7 @@ import java.util.Map;
 
 /**
  * The class for measuring the execution time.
- * 
+ *
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 3.0
  */
@@ -24,7 +24,6 @@ public class ExecutionTimeMeasurer {
 
 	/**
 	 * Start.
-	 * 
 	 * @param name the name
 	 */
 	public static void start(String name) {
@@ -33,7 +32,6 @@ public class ExecutionTimeMeasurer {
 
 	/**
 	 * End.
-	 * 
 	 * @param name the name
 	 * @return the double
 	 */
@@ -45,7 +43,6 @@ public class ExecutionTimeMeasurer {
 
 	/**
 	 * Gets the execution times.
-	 * 
 	 * @return the execution times
 	 */
 	public static Map<String, Long> getExecutionTimes() {

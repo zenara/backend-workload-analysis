@@ -16,15 +16,15 @@ import org.cloudbus.cloudsim.util.MathUtil;
 
 /**
  * The Local Regression (LR) VM allocation policy.
- * 
- * If you are using any algorithms, policies or workload included in the power package, please cite
- * the following paper:
- * 
- * Anton Beloglazov, and Rajkumar Buyya, "Optimal Online Deterministic Algorithms and Adaptive
- * Heuristics for Energy and Performance Efficient Dynamic Consolidation of Virtual Machines in
- * Cloud Data Centers", Concurrency and Computation: Practice and Experience, ISSN: 1532-0626, Wiley
- * Press, New York, USA, 2011, DOI: 10.1002/cpe.1867
- * 
+ *
+ * If you are using any algorithms, policies or workload included in the power package,
+ * please cite the following paper:
+ *
+ * Anton Beloglazov, and Rajkumar Buyya, "Optimal Online Deterministic Algorithms and
+ * Adaptive Heuristics for Energy and Performance Efficient Dynamic Consolidation of
+ * Virtual Machines in Cloud Data Centers", Concurrency and Computation: Practice and
+ * Experience, ISSN: 1532-0626, Wiley Press, New York, USA, 2011, DOI: 10.1002/cpe.1867
+ *
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 3.0
  */
@@ -41,20 +41,15 @@ public class PowerVmAllocationPolicyMigrationLocalRegression extends PowerVmAllo
 
 	/**
 	 * Instantiates a new power vm allocation policy migration local regression.
-	 * 
 	 * @param hostList the host list
 	 * @param vmSelectionPolicy the vm selection policy
 	 * @param schedulingInterval the scheduling interval
 	 * @param fallbackVmAllocationPolicy the fallback vm allocation policy
 	 * @param utilizationThreshold the utilization threshold
 	 */
-	public PowerVmAllocationPolicyMigrationLocalRegression(
-			List<? extends Host> hostList,
-			PowerVmSelectionPolicy vmSelectionPolicy,
-			double safetyParameter,
-			double schedulingInterval,
-			PowerVmAllocationPolicyMigrationAbstract fallbackVmAllocationPolicy,
-			double utilizationThreshold) {
+	public PowerVmAllocationPolicyMigrationLocalRegression(List<? extends Host> hostList,
+			PowerVmSelectionPolicy vmSelectionPolicy, double safetyParameter, double schedulingInterval,
+			PowerVmAllocationPolicyMigrationAbstract fallbackVmAllocationPolicy, double utilizationThreshold) {
 		super(hostList, vmSelectionPolicy);
 		setSafetyParameter(safetyParameter);
 		setSchedulingInterval(schedulingInterval);
@@ -63,17 +58,13 @@ public class PowerVmAllocationPolicyMigrationLocalRegression extends PowerVmAllo
 
 	/**
 	 * Instantiates a new power vm allocation policy migration local regression.
-	 * 
 	 * @param hostList the host list
 	 * @param vmSelectionPolicy the vm selection policy
 	 * @param schedulingInterval the scheduling interval
 	 * @param fallbackVmAllocationPolicy the fallback vm allocation policy
 	 */
-	public PowerVmAllocationPolicyMigrationLocalRegression(
-			List<? extends Host> hostList,
-			PowerVmSelectionPolicy vmSelectionPolicy,
-			double safetyParameter,
-			double schedulingInterval,
+	public PowerVmAllocationPolicyMigrationLocalRegression(List<? extends Host> hostList,
+			PowerVmSelectionPolicy vmSelectionPolicy, double safetyParameter, double schedulingInterval,
 			PowerVmAllocationPolicyMigrationAbstract fallbackVmAllocationPolicy) {
 		super(hostList, vmSelectionPolicy);
 		setSafetyParameter(safetyParameter);
@@ -83,7 +74,6 @@ public class PowerVmAllocationPolicyMigrationLocalRegression extends PowerVmAllo
 
 	/**
 	 * Checks if is host over utilized.
-	 * 
 	 * @param host the host
 	 * @return true, if is host over utilized
 	 */
@@ -91,7 +81,8 @@ public class PowerVmAllocationPolicyMigrationLocalRegression extends PowerVmAllo
 	protected boolean isHostOverUtilized(PowerHost host) {
 		PowerHostUtilizationHistory _host = (PowerHostUtilizationHistory) host;
 		double[] utilizationHistory = _host.getUtilizationHistory();
-		int length = 10; // we use 10 to make the regression responsive enough to latest values
+		int length = 10; // we use 10 to make the regression responsive enough to latest
+							// values
 		if (utilizationHistory.length < length) {
 			return getFallbackVmAllocationPolicy().isHostOverUtilized(host);
 		}
@@ -102,7 +93,8 @@ public class PowerVmAllocationPolicyMigrationLocalRegression extends PowerVmAllo
 		double[] estimates = null;
 		try {
 			estimates = getParameterEstimates(utilizationHistoryReversed);
-		} catch (IllegalArgumentException e) {
+		}
+		catch (IllegalArgumentException e) {
 			return getFallbackVmAllocationPolicy().isHostOverUtilized(host);
 		}
 		double migrationIntervals = Math.ceil(getMaximumVmMigrationTime(_host) / getSchedulingInterval());
@@ -116,7 +108,6 @@ public class PowerVmAllocationPolicyMigrationLocalRegression extends PowerVmAllo
 
 	/**
 	 * Gets the parameter estimates.
-	 * 
 	 * @param utilizationHistoryReversed the utilization history reversed
 	 * @return the parameter estimates
 	 */
@@ -126,7 +117,6 @@ public class PowerVmAllocationPolicyMigrationLocalRegression extends PowerVmAllo
 
 	/**
 	 * Gets the maximum vm migration time.
-	 * 
 	 * @param host the host
 	 * @return the maximum vm migration time
 	 */
@@ -143,7 +133,6 @@ public class PowerVmAllocationPolicyMigrationLocalRegression extends PowerVmAllo
 
 	/**
 	 * Sets the scheduling interval.
-	 * 
 	 * @param schedulingInterval the new scheduling interval
 	 */
 	protected void setSchedulingInterval(double schedulingInterval) {
@@ -152,7 +141,6 @@ public class PowerVmAllocationPolicyMigrationLocalRegression extends PowerVmAllo
 
 	/**
 	 * Gets the scheduling interval.
-	 * 
 	 * @return the scheduling interval
 	 */
 	protected double getSchedulingInterval() {
@@ -161,17 +149,14 @@ public class PowerVmAllocationPolicyMigrationLocalRegression extends PowerVmAllo
 
 	/**
 	 * Sets the fallback vm allocation policy.
-	 * 
 	 * @param fallbackVmAllocationPolicy the new fallback vm allocation policy
 	 */
-	public void setFallbackVmAllocationPolicy(
-			PowerVmAllocationPolicyMigrationAbstract fallbackVmAllocationPolicy) {
+	public void setFallbackVmAllocationPolicy(PowerVmAllocationPolicyMigrationAbstract fallbackVmAllocationPolicy) {
 		this.fallbackVmAllocationPolicy = fallbackVmAllocationPolicy;
 	}
 
 	/**
 	 * Gets the fallback vm allocation policy.
-	 * 
 	 * @return the fallback vm allocation policy
 	 */
 	public PowerVmAllocationPolicyMigrationAbstract getFallbackVmAllocationPolicy() {

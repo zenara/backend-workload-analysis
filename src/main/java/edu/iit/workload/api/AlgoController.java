@@ -21,70 +21,67 @@ import java.util.concurrent.atomic.AtomicInteger;
 @RequestMapping(value = "/api/v1")
 public class AlgoController {
 
-    private final PlanetLabRunner planetLabRunner;
+	private final PlanetLabRunner planetLabRunner;
 
-    private final AlgoService algoService;
+	private final AlgoService algoService;
 
-    @Value("${folder.input}")
-    private String inputFolder;
+	@Value("${folder.input}")
+	private String inputFolder;
 
-    @Value("${folder.output}")
-    private String outputFolder;
+	@Value("${folder.output}")
+	private String outputFolder;
 
-    boolean enableOutput = true;
+	boolean enableOutput = true;
 
-    boolean outputToFile = true;
+	boolean outputToFile = true;
 
-    public AlgoController(PlanetLabRunner planetLabRunner, AlgoService algoService) {
-        this.planetLabRunner = planetLabRunner;
-        this.algoService = algoService;
-    }
+	public AlgoController(PlanetLabRunner planetLabRunner, AlgoService algoService) {
+		this.planetLabRunner = planetLabRunner;
+		this.algoService = algoService;
+	}
 
-    /**
-     * @param VMallocation Inter Quartile Range (IQR) VM allocation policy
-     * @param VMselection  Minimum Migration Time (MMT) VM selection policy
-     * @param parameter    the safety parameter of the IQR policy
-     */
-    @GetMapping("/execute/{id}")
-    public void execute(@PathVariable("id") Long id) {
-        Optional<ExecutableData> byId = this.algoService.findById(id);
-        UUID uuid = UUID.randomUUID();
-        if (byId.isPresent()) {
-            run(List.of(byId.get()));
-        }
-    }
+	/**
+	 * @param VMallocation Inter Quartile Range (IQR) VM allocation policy
+	 * @param VMselection Minimum Migration Time (MMT) VM selection policy
+	 * @param parameter the safety parameter of the IQR policy
+	 */
+	@GetMapping("/execute/{id}")
+	public void execute(@PathVariable("id") Long id) {
+		Optional<ExecutableData> byId = this.algoService.findById(id);
+		UUID uuid = UUID.randomUUID();
+		if (byId.isPresent()) {
+			run(List.of(byId.get()));
+		}
+	}
 
-    @GetMapping("/execute")
-    public String execute() {
-        List<ExecutableData> allExecutableData = this.algoService.getAllExecutableData();
-        AtomicInteger executions = new AtomicInteger(allExecutableData.size());
-        if (allExecutableData != null) {
-            allExecutableData.forEach(executableData -> {
-                if (this.algoService.checkIsExecuted(executableData)) {
-                    log.info(
-                            "already executed: vm_allocation_policy: {} vm_selection_policy: {} parameter: {} workload: {}",
-                            executableData.getVmAllocationPolicy(), executableData.getVmSelectionPolicy(),
-                            executableData.getParameter(), executableData.getWorkload());
-                    executions.addAndGet(-1);
-                }
-            });
-            run(allExecutableData);
-        }
-        return "" + executions.get() + " item/s executed";
-    }
+	@GetMapping("/execute")
+	public String execute() {
+		List<ExecutableData> allExecutableData = this.algoService.getAllExecutableData();
+		AtomicInteger executions = new AtomicInteger(allExecutableData.size());
+		if (allExecutableData != null) {
+			allExecutableData.forEach(executableData -> {
+				if (this.algoService.checkIsExecuted(executableData)) {
+					log.info(
+							"already executed: vm_allocation_policy: {} vm_selection_policy: {} parameter: {} workload: {}",
+							executableData.getVmAllocationPolicy(), executableData.getVmSelectionPolicy(),
+							executableData.getParameter(), executableData.getWorkload());
+					executions.addAndGet(-1);
+				}
+			});
+			run(allExecutableData);
+		}
+		return "" + executions.get() + " item/s executed";
+	}
 
-    @Async
-    public void run(List<ExecutableData> allExecutableData) {
-        UUID uuid = UUID.randomUUID();
-        allExecutableData.forEach(executableData -> {
-            if (this.algoService.checkIsExecuted(executableData)) {
-                return;
-            }
-            planetLabRunner.run(enableOutput,
-                    outputToFile,
-                    inputFolder,
-                    outputFolder,
-                    executableData, uuid.toString());
-        });
-    }
+	@Async
+	public void run(List<ExecutableData> allExecutableData) {
+		UUID uuid = UUID.randomUUID();
+		allExecutableData.forEach(executableData -> {
+			if (this.algoService.checkIsExecuted(executableData)) {
+				return;
+			}
+			planetLabRunner.run(enableOutput, outputToFile, inputFolder, outputFolder, executableData, uuid.toString());
+		});
+	}
+
 }

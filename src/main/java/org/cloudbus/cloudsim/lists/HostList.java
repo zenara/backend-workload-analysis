@@ -14,7 +14,7 @@ import org.cloudbus.cloudsim.Host;
 
 /**
  * HostList is a collection of operations on lists of hosts.
- * 
+ *
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 2.0
  */
@@ -22,7 +22,6 @@ public class HostList {
 
 	/**
 	 * Gets the Machine object for a particular ID.
-	 * 
 	 * @param <T> the generic type
 	 * @param hostList the host list
 	 * @param id the host ID
@@ -42,7 +41,6 @@ public class HostList {
 
 	/**
 	 * Gets the total number of PEs for all Machines.
-	 * 
 	 * @param <T> the generic type
 	 * @param hostList the host list
 	 * @return number of PEs
@@ -59,7 +57,6 @@ public class HostList {
 
 	/**
 	 * Gets the total number of <tt>FREE</tt> or non-busy PEs for all Machines.
-	 * 
 	 * @param <T> the generic type
 	 * @param hostList the host list
 	 * @return number of PEs
@@ -76,7 +73,6 @@ public class HostList {
 
 	/**
 	 * Gets the total number of <tt>BUSY</tt> PEs for all Machines.
-	 * 
 	 * @param <T> the generic type
 	 * @param hostList the host list
 	 * @return number of PEs
@@ -93,7 +89,6 @@ public class HostList {
 
 	/**
 	 * Gets a Machine with free Pe.
-	 * 
 	 * @param <T> the generic type
 	 * @param hostList the host list
 	 * @return a machine object or <tt>null</tt> if not found
@@ -106,7 +101,6 @@ public class HostList {
 
 	/**
 	 * Gets a Machine with a specified number of free Pe.
-	 * 
 	 * @param <T> the generic type
 	 * @param hostList the host list
 	 * @param pesNumber the pes number
@@ -125,14 +119,13 @@ public class HostList {
 
 	/**
 	 * Sets the particular Pe status on a Machine.
-	 * 
 	 * @param <T> the generic type
 	 * @param hostList the host list
 	 * @param status Pe status, either <tt>Pe.FREE</tt> or <tt>Pe.BUSY</tt>
 	 * @param hostId the host id
 	 * @param peId the pe id
-	 * @return <tt>true</tt> if the Pe status has changed, <tt>false</tt> otherwise (Machine id or
-	 *         Pe id might not be exist)
+	 * @return <tt>true</tt> if the Pe status has changed, <tt>false</tt> otherwise
+	 * (Machine id or Pe id might not be exist)
 	 * @pre machineID >= 0
 	 * @pre peID >= 0
 	 * @post $none

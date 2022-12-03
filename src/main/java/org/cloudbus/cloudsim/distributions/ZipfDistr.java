@@ -13,7 +13,7 @@ import java.util.Random;
 
 /**
  * The Class ZipfDistr.
- * 
+ *
  * @author Marcos Dias de Assuncao
  * @since CloudSim Toolkit 1.0
  */
@@ -30,7 +30,6 @@ public class ZipfDistr implements ContinuousDistribution {
 
 	/**
 	 * Instantiates a new zipf distr.
-	 * 
 	 * @param seed the seed
 	 * @param shape the shape
 	 * @param population the population
@@ -47,7 +46,6 @@ public class ZipfDistr implements ContinuousDistribution {
 
 	/**
 	 * Instantiates a new zipf distr.
-	 * 
 	 * @param shape the shape
 	 * @param population the population
 	 */
@@ -62,7 +60,6 @@ public class ZipfDistr implements ContinuousDistribution {
 
 	/**
 	 * Generate a new random number.
-	 * 
 	 * @return the next random number in the sequence
 	 */
 	@Override
@@ -83,7 +80,6 @@ public class ZipfDistr implements ContinuousDistribution {
 
 	/**
 	 * Compute den.
-	 * 
 	 * @param shape the shape
 	 * @param population the population
 	 */

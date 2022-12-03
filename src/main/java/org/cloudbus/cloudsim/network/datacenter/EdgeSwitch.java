@@ -20,25 +20,25 @@ import org.cloudbus.cloudsim.core.SimEvent;
 import org.cloudbus.cloudsim.core.predicates.PredicateType;
 
 /**
- * This class allows to simulate Edge switch for Datacenter network. It interacts with other
- * switches in order to exchange packets.
- * 
+ * This class allows to simulate Edge switch for Datacenter network. It interacts with
+ * other switches in order to exchange packets.
+ *
  * Please refer to following publication for more details:
- * 
- * Saurabh Kumar Garg and Rajkumar Buyya, NetworkCloudSim: Modelling Parallel Applications in Cloud
- * Simulations, Proceedings of the 4th IEEE/ACM International Conference on Utility and Cloud
- * Computing (UCC 2011, IEEE CS Press, USA), Melbourne, Australia, December 5-7, 2011.
- * 
+ *
+ * Saurabh Kumar Garg and Rajkumar Buyya, NetworkCloudSim: Modelling Parallel Applications
+ * in Cloud Simulations, Proceedings of the 4th IEEE/ACM International Conference on
+ * Utility and Cloud Computing (UCC 2011, IEEE CS Press, USA), Melbourne, Australia,
+ * December 5-7, 2011.
+ *
  * @author Saurabh Kumar Garg
  * @since CloudSim Toolkit 3.0
  */
 public class EdgeSwitch extends Switch {
 
 	/**
-	 * Constructor for Edge Switch We have to specify switches that are connected to its downlink
-	 * and uplink ports, and corresponding bandwidths. In this switch downlink ports are connected
-	 * to hosts not to a switch.
-	 * 
+	 * Constructor for Edge Switch We have to specify switches that are connected to its
+	 * downlink and uplink ports, and corresponding bandwidths. In this switch downlink
+	 * ports are connected to hosts not to a switch.
 	 * @param name Name of the switch
 	 * @param level At which level switch is with respect to hosts.
 	 * @param dc Pointer to Datacenter
@@ -57,7 +57,6 @@ public class EdgeSwitch extends Switch {
 
 	/**
 	 * Send Packet to switch connected through a uplink port
-	 * 
 	 * @param ev Event/packet to process
 	 */
 	@Override
@@ -95,7 +94,8 @@ public class EdgeSwitch extends Switch {
 		// otherwise
 		// packet is to be sent to upper switch
 		// ASSUMPTION EACH EDGE is Connected to one aggregate level switch
-		// if there are more than one Aggregate level switch one need to modify following code
+		// if there are more than one Aggregate level switch one need to modify following
+		// code
 
 		Switch sw = uplinkswitches.get(0);
 		List<NetworkPacket> pktlist = uplinkswitchpktlist.get(sw.getId());
@@ -110,7 +110,6 @@ public class EdgeSwitch extends Switch {
 
 	/**
 	 * Send Packet to hosts connected to the switch
-	 * 
 	 * @param ev Event/packet to process
 	 */
 	@Override

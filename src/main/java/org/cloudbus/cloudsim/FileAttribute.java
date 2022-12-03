@@ -13,48 +13,48 @@ import java.util.Date;
 import org.cloudbus.cloudsim.core.CloudSim;
 
 /**
- * A class for storing related information regarding to a {@link gridsim.datagrid.File} entity.
- * 
+ * A class for storing related information regarding to a {@link gridsim.datagrid.File}
+ * entity.
+ *
  * @author Uros Cibej
  * @author Anthony Sulistio
  * @since CloudSim Toolkit 1.0
  */
 public class FileAttribute {
 
-	private String name;           // logical file name
+	private String name; // logical file name
 
-	private String ownerName;      // owner name of this file
+	private String ownerName; // owner name of this file
 
-	private int id;                // file ID given by a Replica Catalogue
+	private int id; // file ID given by a Replica Catalogue
 
-	private int type;              // file type, e.g. raw, reconstructed, etc
+	private int type; // file type, e.g. raw, reconstructed, etc
 
-	private int size;              // file size in byte
+	private int size; // file size in byte
 
-	private int checksum;          // check sum
+	private int checksum; // check sum
 
 	private double lastUpdateTime; // last updated time (sec) - relative
 
-	private long creationTime;     // creation time (ms) - abosulte/relative
+	private long creationTime; // creation time (ms) - abosulte/relative
 
-	private double cost;           // price of this file
+	private double cost; // price of this file
 
-	private boolean masterCopy;    // false if it is a replica
+	private boolean masterCopy; // false if it is a replica
 
-	private boolean readOnly;      // false if it can be rewritten
+	private boolean readOnly; // false if it can be rewritten
 
-	private int resourceId;        // resource ID storing this file
+	private int resourceId; // resource ID storing this file
 
 	/**
 	 * Allocates a new FileAttribute class.
-	 * 
 	 * @param fileName file name
 	 * @param fileSize size of this file (in bytes)
 	 * @throws ParameterException This happens when one of the following scenarios occur:
-	 *             <ul>
-	 *             <li>the file name is empty or <tt>null</tt>
-	 *             <li>the file size is zero or negative numbers
-	 *             </ul>
+	 * <ul>
+	 * <li>the file name is empty or <tt>null</tt>
+	 * <li>the file size is zero or negative numbers
+	 * </ul>
 	 */
 	public FileAttribute(String fileName, int fileSize) throws ParameterException {
 		// check for errors in the input
@@ -73,7 +73,8 @@ public class FileAttribute {
 		Date date = CloudSim.getSimulationCalendar().getTime();
 		if (date == null) {
 			creationTime = 0;
-		} else {
+		}
+		else {
 			creationTime = date.getTime();
 		}
 
@@ -90,7 +91,6 @@ public class FileAttribute {
 
 	/**
 	 * Copy the values of this object into another FileAttribute class
-	 * 
 	 * @param attr a FileAttribute object (the destination)
 	 * @return <tt>true</tt> if the copy operation is successful, <tt>false</tt> otherwise
 	 */
@@ -117,7 +117,6 @@ public class FileAttribute {
 
 	/**
 	 * Sets the file creation time (in millisecond)
-	 * 
 	 * @param creationTime the file creation time (in millisecond)
 	 * @return <tt>true</tt> if successful, <tt>false</tt> otherwise
 	 */
@@ -132,7 +131,6 @@ public class FileAttribute {
 
 	/**
 	 * Gets the file creation time (in millisecond)
-	 * 
 	 * @return the file creation time (in millisecond)
 	 */
 	public long getCreationTime() {
@@ -141,7 +139,6 @@ public class FileAttribute {
 
 	/**
 	 * Sets the resource ID that stores this file
-	 * 
 	 * @param resourceID a resource ID
 	 * @return <tt>true</tt> if successful, <tt>false</tt> otherwise
 	 */
@@ -156,7 +153,6 @@ public class FileAttribute {
 
 	/**
 	 * Gets the resource ID that stores this file
-	 * 
 	 * @return the resource ID
 	 */
 	public int getResourceID() {
@@ -165,7 +161,6 @@ public class FileAttribute {
 
 	/**
 	 * Sets the owner name of this file
-	 * 
 	 * @param name the owner name
 	 * @return <tt>true</tt> if successful, <tt>false</tt> otherwise
 	 */
@@ -180,7 +175,6 @@ public class FileAttribute {
 
 	/**
 	 * Gets the owner name of this file
-	 * 
 	 * @return the owner name or <tt>null</tt> if empty
 	 */
 	public String getOwnerName() {
@@ -191,7 +185,6 @@ public class FileAttribute {
 	 * Gets the size of this object (in byte).<br>
 	 * NOTE: This object size is NOT the actual file size. Moreover, this size is used for
 	 * transferring this object over a network.
-	 * 
 	 * @return the object size (in byte)
 	 */
 	public int getAttributeSize() {
@@ -209,7 +202,6 @@ public class FileAttribute {
 
 	/**
 	 * Sets the file size (in MBytes)
-	 * 
 	 * @param fileSize the file size (in MBytes)
 	 * @return <tt>true</tt> if successful, <tt>false</tt> otherwise
 	 */
@@ -224,7 +216,6 @@ public class FileAttribute {
 
 	/**
 	 * Gets the file size (in MBytes)
-	 * 
 	 * @return the file size (in MBytes)
 	 */
 	public int getFileSize() {
@@ -233,11 +224,10 @@ public class FileAttribute {
 
 	/**
 	 * Gets the file size (in bytes)
-	 * 
 	 * @return the file size (in bytes)
 	 */
 	public int getFileSizeInByte() {
-		return size * 1000000;   // 1e6
+		return size * 1000000; // 1e6
 		// return size * 1048576; // 1e6 - more accurate
 	}
 
@@ -245,7 +235,6 @@ public class FileAttribute {
 	 * Sets the last update time of this file (in seconds)<br>
 	 * NOTE: This time is relative to the start time. Preferably use
 	 * {@link gridsim.CloudSim#clock()} method.
-	 * 
 	 * @param time the last update time (in seconds)
 	 * @return <tt>true</tt> if successful, <tt>false</tt> otherwise
 	 */
@@ -260,7 +249,6 @@ public class FileAttribute {
 
 	/**
 	 * Gets the last update time (in seconds)
-	 * 
 	 * @return the last update time (in seconds)
 	 */
 	public double getLastUpdateTime() {
@@ -269,7 +257,6 @@ public class FileAttribute {
 
 	/**
 	 * Sets the file registration ID (published by a Replica Catalogue entity)
-	 * 
 	 * @param id registration ID
 	 * @return <tt>true</tt> if successful, <tt>false</tt> otherwise
 	 */
@@ -284,7 +271,6 @@ public class FileAttribute {
 
 	/**
 	 * Gets the file registration ID
-	 * 
 	 * @return registration ID
 	 */
 	public int getRegistrationID() {
@@ -293,7 +279,6 @@ public class FileAttribute {
 
 	/**
 	 * Sets the file type (e.g. raw, tag, etc)
-	 * 
 	 * @param type a file type
 	 * @return <tt>true</tt> if successful, <tt>false</tt> otherwise
 	 */
@@ -308,7 +293,6 @@ public class FileAttribute {
 
 	/**
 	 * Gets this file type
-	 * 
 	 * @return file type
 	 */
 	public int getType() {
@@ -317,7 +301,6 @@ public class FileAttribute {
 
 	/**
 	 * Sets the checksum of this file
-	 * 
 	 * @param checksum the checksum of this file
 	 * @return <tt>true</tt> if successful, <tt>false</tt> otherwise
 	 */
@@ -332,7 +315,6 @@ public class FileAttribute {
 
 	/**
 	 * Gets the file checksum
-	 * 
 	 * @return file checksum
 	 */
 	public int getChecksum() {
@@ -341,7 +323,6 @@ public class FileAttribute {
 
 	/**
 	 * Sets the cost associated with this file
-	 * 
 	 * @param cost cost of this file
 	 * @return <tt>true</tt> if successful, <tt>false</tt> otherwise
 	 */
@@ -356,7 +337,6 @@ public class FileAttribute {
 
 	/**
 	 * Gets the cost associated with this file
-	 * 
 	 * @return the cost of this file
 	 */
 	public double getCost() {
@@ -365,7 +345,6 @@ public class FileAttribute {
 
 	/**
 	 * Checks if this file already registered to a Replica Catalogue
-	 * 
 	 * @return <tt>true</tt> if it is registered, <tt>false</tt> otherwise
 	 */
 	public boolean isRegistered() {
@@ -379,9 +358,8 @@ public class FileAttribute {
 
 	/**
 	 * Marks this file as a master copy or replica
-	 * 
-	 * @param masterCopy a flag denotes <tt>true</tt> for master copy or <tt>false</tt> for a
-	 *            replica
+	 * @param masterCopy a flag denotes <tt>true</tt> for master copy or <tt>false</tt>
+	 * for a replica
 	 */
 	public void setMasterCopy(boolean masterCopy) {
 		this.masterCopy = masterCopy;
@@ -389,7 +367,6 @@ public class FileAttribute {
 
 	/**
 	 * Checks whether this file is a master copy or replica
-	 * 
 	 * @return <tt>true</tt> if it is a master copy or <tt>false</tt> otherwise
 	 */
 	public boolean isMasterCopy() {
@@ -398,8 +375,8 @@ public class FileAttribute {
 
 	/**
 	 * Marks this file as a read only or not
-	 * 
-	 * @param readOnly a flag denotes <tt>true</tt> for read only or <tt>false</tt> for re-writeable
+	 * @param readOnly a flag denotes <tt>true</tt> for read only or <tt>false</tt> for
+	 * re-writeable
 	 */
 	public void setReadOnly(boolean readOnly) {
 		this.readOnly = readOnly;
@@ -407,7 +384,6 @@ public class FileAttribute {
 
 	/**
 	 * Checks whether this file is a read only or not
-	 * 
 	 * @return <tt>true</tt> if it is a read only or <tt>false</tt> otherwise
 	 */
 	public boolean isReadOnly() {
@@ -416,7 +392,6 @@ public class FileAttribute {
 
 	/**
 	 * Sets the file name
-	 * 
 	 * @param name the file name
 	 */
 	public void setName(String name) {
@@ -425,7 +400,6 @@ public class FileAttribute {
 
 	/**
 	 * Returns the file name
-	 * 
 	 * @return the file name
 	 */
 	public String getName() {

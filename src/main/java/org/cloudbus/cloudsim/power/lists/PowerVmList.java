@@ -18,17 +18,16 @@ import org.cloudbus.cloudsim.lists.VmList;
 
 /**
  * PowerVmList is a collection of operations on lists of power-enabled VMs.
- * 
- * If you are using any algorithms, policies or workload included in the power package, please cite
- * the following paper:
- * 
- * Anton Beloglazov, and Rajkumar Buyya, "Optimal Online Deterministic Algorithms and Adaptive
- * Heuristics for Energy and Performance Efficient Dynamic Consolidation of Virtual Machines in
- * Cloud Data Centers", Concurrency and Computation: Practice and Experience, ISSN: 1532-0626, Wiley
- * Press, New York, USA, 2011, DOI: 10.1002/cpe.1867
- * 
+ *
+ * If you are using any algorithms, policies or workload included in the power package,
+ * please cite the following paper:
+ *
+ * Anton Beloglazov, and Rajkumar Buyya, "Optimal Online Deterministic Algorithms and
+ * Adaptive Heuristics for Energy and Performance Efficient Dynamic Consolidation of
+ * Virtual Machines in Cloud Data Centers", Concurrency and Computation: Practice and
+ * Experience, ISSN: 1532-0626, Wiley Press, New York, USA, 2011, DOI: 10.1002/cpe.1867
+ *
  * @author Anton Beloglazov
- * 
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 2.0
  */
@@ -36,7 +35,6 @@ public class PowerVmList extends VmList {
 
 	/**
 	 * Sort by cpu utilization.
-	 * 
 	 * @param vmList the vm list
 	 */
 	public static <T extends Vm> void sortByCpuUtilization(List<T> vmList) {

@@ -13,7 +13,7 @@ import java.util.Random;
 
 /**
  * The Class ParetoDistr.
- * 
+ *
  * @author Marcos Dias de Assuncao
  * @since CloudSim Toolkit 1.0
  */
@@ -30,7 +30,6 @@ public class ParetoDistr implements ContinuousDistribution {
 
 	/**
 	 * Instantiates a new pareto distr.
-	 * 
 	 * @param seed the seed
 	 * @param shape the shape
 	 * @param location the location
@@ -47,7 +46,6 @@ public class ParetoDistr implements ContinuousDistribution {
 
 	/**
 	 * Instantiates a new pareto distr.
-	 * 
 	 * @param shape the shape
 	 * @param location the location
 	 */
@@ -63,6 +61,7 @@ public class ParetoDistr implements ContinuousDistribution {
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see cloudsim.distributions.ContinuousDistribution#sample()
 	 */
 	@Override

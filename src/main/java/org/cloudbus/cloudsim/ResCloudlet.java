@@ -11,15 +11,16 @@ package org.cloudbus.cloudsim;
 import org.cloudbus.cloudsim.core.CloudSim;
 
 /**
- * CloudSim ResCloudlet represents a Cloudlet submitted to CloudResource for processing. This class
- * keeps track the time for all activities in the CloudResource for a specific Cloudlet. Before a
- * Cloudlet exits the CloudResource, it is RECOMMENDED to call this method
- * {@link #finalizeCloudlet()}.
+ * CloudSim ResCloudlet represents a Cloudlet submitted to CloudResource for processing.
+ * This class keeps track the time for all activities in the CloudResource for a specific
+ * Cloudlet. Before a Cloudlet exits the CloudResource, it is RECOMMENDED to call this
+ * method {@link #finalizeCloudlet()}.
  * <p>
- * It contains a Cloudlet object along with its arrival time and the ID of the machine and the Pe
- * (Processing Element) allocated to it. It acts as a placeholder for maintaining the amount of
- * resource share allocated at various times for simulating any scheduling using internal events.
- * 
+ * It contains a Cloudlet object along with its arrival time and the ID of the machine and
+ * the Pe (Processing Element) allocated to it. It acts as a placeholder for maintaining
+ * the amount of resource share allocated at various times for simulating any scheduling
+ * using internal events.
+ *
  * @author Manzur Murshed
  * @author Rajkumar Buyya
  * @since CloudSim Toolkit 1.0
@@ -39,8 +40,8 @@ public class ResCloudlet {
 	private long cloudletFinishedSoFar;
 
 	/**
-	 * Cloudlet execution start time. This attribute will only hold the latest time since a Cloudlet
-	 * can be cancel, paused or resumed.
+	 * Cloudlet execution start time. This attribute will only hold the latest time since
+	 * a Cloudlet can be cancel, paused or resumed.
 	 */
 	private double startExecTime;
 
@@ -82,9 +83,8 @@ public class ResCloudlet {
 	private int pesNumber;
 
 	/**
-	 * Allocates a new ResCloudlet object upon the arrival of a Cloudlet object. The arriving time
-	 * is determined by {@link gridsim.CloudSim#clock()}.
-	 * 
+	 * Allocates a new ResCloudlet object upon the arrival of a Cloudlet object. The
+	 * arriving time is determined by {@link gridsim.CloudSim#clock()}.
 	 * @param cloudlet a cloudlet object
 	 * @see gridsim.CloudSim#clock()
 	 * @pre cloudlet != null
@@ -103,14 +103,13 @@ public class ResCloudlet {
 
 	/**
 	 * Allocates a new ResCloudlet object upon the arrival of a Cloudlet object. Use this
-	 * constructor to store reserved Cloudlets, i.e. Cloudlets that done reservation before. The
-	 * arriving time is determined by {@link gridsim.CloudSim#clock()}.
-	 * 
+	 * constructor to store reserved Cloudlets, i.e. Cloudlets that done reservation
+	 * before. The arriving time is determined by {@link gridsim.CloudSim#clock()}.
 	 * @param cloudlet a cloudlet object
-	 * @param startTime a reservation start time. Can also be interpreted as starting time to
-	 *            execute this Cloudlet.
-	 * @param duration a reservation duration time. Can also be interpreted as how long to execute
-	 *            this Cloudlet.
+	 * @param startTime a reservation start time. Can also be interpreted as starting time
+	 * to execute this Cloudlet.
+	 * @param duration a reservation duration time. Can also be interpreted as how long to
+	 * execute this Cloudlet.
 	 * @param reservID a reservation ID that owns this Cloudlet
 	 * @see gridsim.CloudSim#clock()
 	 * @pre cloudlet != null
@@ -130,7 +129,6 @@ public class ResCloudlet {
 
 	/**
 	 * Gets the Cloudlet or reservation start time.
-	 * 
 	 * @return Cloudlet's starting time
 	 * @pre $none
 	 * @post $none
@@ -141,7 +139,6 @@ public class ResCloudlet {
 
 	/**
 	 * Gets the reservation duration time.
-	 * 
 	 * @return reservation duration time
 	 * @pre $none
 	 * @post $none
@@ -152,7 +149,6 @@ public class ResCloudlet {
 
 	/**
 	 * Gets the number of PEs required to execute this Cloudlet.
-	 * 
 	 * @return number of Pe
 	 * @pre $none
 	 * @post $none
@@ -163,7 +159,6 @@ public class ResCloudlet {
 
 	/**
 	 * Gets the reservation ID that owns this Cloudlet.
-	 * 
 	 * @return a reservation ID
 	 * @pre $none
 	 * @post $none
@@ -174,8 +169,8 @@ public class ResCloudlet {
 
 	/**
 	 * Checks whether this Cloudlet is submitted by reserving or not.
-	 * 
-	 * @return <tt>true</tt> if this Cloudlet has reserved before, <tt>false</tt> otherwise
+	 * @return <tt>true</tt> if this Cloudlet has reserved before, <tt>false</tt>
+	 * otherwise
 	 * @pre $none
 	 * @post $none
 	 */
@@ -189,7 +184,7 @@ public class ResCloudlet {
 
 	/**
 	 * Initialises all local attributes.
-	 * 
+	 *
 	 * @pre $none
 	 * @post $none
 	 */
@@ -207,7 +202,7 @@ public class ResCloudlet {
 		cloudlet.setSubmissionTime(arrivalTime);
 
 		// default values
-		finishedTime = NOT_FOUND;  // Cannot finish in this hourly slot.
+		finishedTime = NOT_FOUND; // Cannot finish in this hourly slot.
 		machineId = NOT_FOUND;
 		peId = NOT_FOUND;
 		index = 0;
@@ -221,7 +216,6 @@ public class ResCloudlet {
 
 	/**
 	 * Gets this Cloudlet entity Id.
-	 * 
 	 * @return the Cloudlet entity Id
 	 * @pre $none
 	 * @post $none
@@ -232,7 +226,6 @@ public class ResCloudlet {
 
 	/**
 	 * Gets the user or owner of this Cloudlet.
-	 * 
 	 * @return the Cloudlet's user Id
 	 * @pre $none
 	 * @post $none
@@ -243,7 +236,6 @@ public class ResCloudlet {
 
 	/**
 	 * Gets the Cloudlet's length.
-	 * 
 	 * @return Cloudlet's length
 	 * @pre $none
 	 * @post $none
@@ -254,7 +246,6 @@ public class ResCloudlet {
 
 	/**
 	 * Gets the total Cloudlet's length (across all PEs).
-	 * 
 	 * @return total Cloudlet's length
 	 * @pre $none
 	 * @post $none
@@ -265,7 +256,6 @@ public class ResCloudlet {
 
 	/**
 	 * Gets the Cloudlet's class type.
-	 * 
 	 * @return class type of the Cloudlet
 	 * @pre $none
 	 * @post $none
@@ -276,7 +266,6 @@ public class ResCloudlet {
 
 	/**
 	 * Sets the Cloudlet status.
-	 * 
 	 * @param status the Cloudlet status
 	 * @return <tt>true</tt> if the new status has been set, <tt>false</tt> otherwise
 	 * @pre status >= 0
@@ -293,7 +282,7 @@ public class ResCloudlet {
 
 		boolean success = true;
 		try {
-			double clock = CloudSim.clock();   // gets the current clock
+			double clock = CloudSim.clock(); // gets the current clock
 
 			// sets Cloudlet's current status
 			cloudlet.setCloudletStatus(status);
@@ -321,7 +310,8 @@ public class ResCloudlet {
 				cloudlet.setExecStartTime(startExecTime);
 			}
 
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			success = false;
 		}
 
@@ -330,7 +320,6 @@ public class ResCloudlet {
 
 	/**
 	 * Gets the Cloudlet's execution start time.
-	 * 
 	 * @return Cloudlet's execution start time
 	 * @pre $none
 	 * @post $none
@@ -340,11 +329,10 @@ public class ResCloudlet {
 	}
 
 	/**
-	 * Sets this Cloudlet's execution parameters. These parameters are set by the CloudResource
-	 * before departure or sending back to the original Cloudlet's owner.
-	 * 
-	 * @param wallClockTime the time of this Cloudlet resides in a CloudResource (from arrival time
-	 *            until departure time).
+	 * Sets this Cloudlet's execution parameters. These parameters are set by the
+	 * CloudResource before departure or sending back to the original Cloudlet's owner.
+	 * @param wallClockTime the time of this Cloudlet resides in a CloudResource (from
+	 * arrival time until departure time).
 	 * @param actualCPUTime the total execution time of this Cloudlet in a CloudResource.
 	 * @pre wallClockTime >= 0.0
 	 * @pre actualCPUTime >= 0.0
@@ -356,7 +344,6 @@ public class ResCloudlet {
 
 	/**
 	 * Sets the machine and Pe (Processing Element) ID.
-	 * 
 	 * @param machineId machine ID
 	 * @param peId Pe ID
 	 * @pre machineID >= 0
@@ -378,7 +365,6 @@ public class ResCloudlet {
 
 	/**
 	 * Gets machine ID.
-	 * 
 	 * @return machine ID or <tt>-1</tt> if it is not specified before
 	 * @pre $none
 	 * @post $result >= -1
@@ -389,7 +375,6 @@ public class ResCloudlet {
 
 	/**
 	 * Gets Pe ID.
-	 * 
 	 * @return Pe ID or <tt>-1</tt> if it is not specified before
 	 * @pre $none
 	 * @post $result >= -1
@@ -400,8 +385,8 @@ public class ResCloudlet {
 
 	/**
 	 * Gets a list of Pe IDs. <br>
-	 * NOTE: To get the machine IDs corresponding to these Pe IDs, use {@link #getMachineIdList()}.
-	 * 
+	 * NOTE: To get the machine IDs corresponding to these Pe IDs, use
+	 * {@link #getMachineIdList()}.
 	 * @return an array containing Pe IDs.
 	 * @pre $none
 	 * @post $none
@@ -412,8 +397,8 @@ public class ResCloudlet {
 
 	/**
 	 * Gets a list of Machine IDs. <br>
-	 * NOTE: To get the Pe IDs corresponding to these machine IDs, use {@link #getPeIdList()}.
-	 * 
+	 * NOTE: To get the Pe IDs corresponding to these machine IDs, use
+	 * {@link #getPeIdList()}.
 	 * @return an array containing Machine IDs.
 	 * @pre $none
 	 * @post $none
@@ -424,7 +409,6 @@ public class ResCloudlet {
 
 	/**
 	 * Gets the remaining cloudlet length.
-	 * 
 	 * @return cloudlet length
 	 * @pre $none
 	 * @post $result >= 0
@@ -441,15 +425,16 @@ public class ResCloudlet {
 	}
 
 	/**
-	 * Finalizes all relevant information before <tt>exiting</tt> the CloudResource entity. This
-	 * method sets the final data of:
+	 * Finalizes all relevant information before <tt>exiting</tt> the CloudResource
+	 * entity. This method sets the final data of:
 	 * <ul>
-	 * <li>wall clock time, i.e. the time of this Cloudlet resides in a CloudResource (from arrival
-	 * time until departure time).
-	 * <li>actual CPU time, i.e. the total execution time of this Cloudlet in a CloudResource.
+	 * <li>wall clock time, i.e. the time of this Cloudlet resides in a CloudResource
+	 * (from arrival time until departure time).
+	 * <li>actual CPU time, i.e. the total execution time of this Cloudlet in a
+	 * CloudResource.
 	 * <li>Cloudlet's finished so far
 	 * </ul>
-	 * 
+	 *
 	 * @pre $none
 	 * @post $none
 	 */
@@ -461,7 +446,8 @@ public class ResCloudlet {
 		long finished = 0;
 		if (cloudlet.getCloudletTotalLength() * 1000000 < cloudletFinishedSoFar) {
 			finished = cloudlet.getCloudletLength();
-		} else {
+		}
+		else {
 			finished = cloudletFinishedSoFar / 1000000;
 		}
 
@@ -470,7 +456,6 @@ public class ResCloudlet {
 
 	/**
 	 * A method that updates the length of cloudlet that has been completed.
-	 * 
 	 * @param miLength cloudlet length in Instructions (I)
 	 * @pre miLength >= 0.0
 	 * @post $none
@@ -481,7 +466,6 @@ public class ResCloudlet {
 
 	/**
 	 * Gets arrival time of a cloudlet.
-	 * 
 	 * @return arrival time
 	 * @pre $none
 	 * @post $result >= 0.0
@@ -491,8 +475,8 @@ public class ResCloudlet {
 	}
 
 	/**
-	 * Sets the finish time for this Cloudlet. If time is negative, then it is being ignored.
-	 * 
+	 * Sets the finish time for this Cloudlet. If time is negative, then it is being
+	 * ignored.
 	 * @param time finish time
 	 * @pre time >= 0.0
 	 * @post $none
@@ -507,8 +491,8 @@ public class ResCloudlet {
 
 	/**
 	 * Gets the Cloudlet's finish time.
-	 * 
-	 * @return finish time of a cloudlet or <tt>-1.0</tt> if it cannot finish in this hourly slot
+	 * @return finish time of a cloudlet or <tt>-1.0</tt> if it cannot finish in this
+	 * hourly slot
 	 * @pre $none
 	 * @post $result >= -1.0
 	 */
@@ -518,7 +502,6 @@ public class ResCloudlet {
 
 	/**
 	 * Gets this Cloudlet object.
-	 * 
 	 * @return cloudlet object
 	 * @pre $none
 	 * @post $result != null
@@ -529,7 +512,6 @@ public class ResCloudlet {
 
 	/**
 	 * Gets the Cloudlet status.
-	 * 
 	 * @return Cloudlet status
 	 * @pre $none
 	 * @post $none
@@ -540,7 +522,6 @@ public class ResCloudlet {
 
 	/**
 	 * Get unique string identificator of the VM.
-	 * 
 	 * @return string uid
 	 */
 	public String getUid() {

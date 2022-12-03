@@ -19,15 +19,15 @@ import org.cloudbus.cloudsim.provisioners.RamProvisioner;
 
 /**
  * PowerHost class enables simulation of power-aware hosts.
- * 
- * If you are using any algorithms, policies or workload included in the power package please cite
- * the following paper:
- * 
- * Anton Beloglazov, and Rajkumar Buyya, "Optimal Online Deterministic Algorithms and Adaptive
- * Heuristics for Energy and Performance Efficient Dynamic Consolidation of Virtual Machines in
- * Cloud Data Centers", Concurrency and Computation: Practice and Experience, ISSN: 1532-0626, Wiley
- * Press, New York, USA, 2011, DOI: 10.1002/cpe.1867
- * 
+ *
+ * If you are using any algorithms, policies or workload included in the power package
+ * please cite the following paper:
+ *
+ * Anton Beloglazov, and Rajkumar Buyya, "Optimal Online Deterministic Algorithms and
+ * Adaptive Heuristics for Energy and Performance Efficient Dynamic Consolidation of
+ * Virtual Machines in Cloud Data Centers", Concurrency and Computation: Practice and
+ * Experience, ISSN: 1532-0626, Wiley Press, New York, USA, 2011, DOI: 10.1002/cpe.1867
+ *
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 2.0
  */
@@ -38,7 +38,6 @@ public class PowerHost extends HostDynamicWorkload {
 
 	/**
 	 * Instantiates a new host.
-	 * 
 	 * @param id the id
 	 * @param ramProvisioner the ram provisioner
 	 * @param bwProvisioner the bw provisioner
@@ -46,21 +45,14 @@ public class PowerHost extends HostDynamicWorkload {
 	 * @param peList the pe list
 	 * @param vmScheduler the VM scheduler
 	 */
-	public PowerHost(
-			int id,
-			RamProvisioner ramProvisioner,
-			BwProvisioner bwProvisioner,
-			long storage,
-			List<? extends Pe> peList,
-			VmScheduler vmScheduler,
-			PowerModel powerModel) {
+	public PowerHost(int id, RamProvisioner ramProvisioner, BwProvisioner bwProvisioner, long storage,
+			List<? extends Pe> peList, VmScheduler vmScheduler, PowerModel powerModel) {
 		super(id, ramProvisioner, bwProvisioner, storage, peList, vmScheduler);
 		setPowerModel(powerModel);
 	}
 
 	/**
 	 * Gets the power. For this moment only consumed by all PEs.
-	 * 
 	 * @return the power
 	 */
 	public double getPower() {
@@ -69,7 +61,6 @@ public class PowerHost extends HostDynamicWorkload {
 
 	/**
 	 * Gets the power. For this moment only consumed by all PEs.
-	 * 
 	 * @param utilization the utilization
 	 * @return the power
 	 */
@@ -77,7 +68,8 @@ public class PowerHost extends HostDynamicWorkload {
 		double power = 0;
 		try {
 			power = getPowerModel().getPower(utilization);
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 			System.exit(0);
 		}
@@ -86,14 +78,14 @@ public class PowerHost extends HostDynamicWorkload {
 
 	/**
 	 * Gets the max power that can be consumed by the host.
-	 * 
 	 * @return the max power
 	 */
 	public double getMaxPower() {
 		double power = 0;
 		try {
 			power = getPowerModel().getPower(1);
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 			System.exit(0);
 		}
@@ -102,7 +94,6 @@ public class PowerHost extends HostDynamicWorkload {
 
 	/**
 	 * Gets the energy consumption using linear interpolation of the utilization change.
-	 * 
 	 * @param fromUtilization the from utilization
 	 * @param toUtilization the to utilization
 	 * @param time the time
@@ -119,7 +110,6 @@ public class PowerHost extends HostDynamicWorkload {
 
 	/**
 	 * Sets the power model.
-	 * 
 	 * @param powerModel the new power model
 	 */
 	protected void setPowerModel(PowerModel powerModel) {
@@ -128,7 +118,6 @@ public class PowerHost extends HostDynamicWorkload {
 
 	/**
 	 * Gets the power model.
-	 * 
 	 * @return the power model
 	 */
 	public PowerModel getPowerModel() {

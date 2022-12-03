@@ -24,17 +24,19 @@ import org.cloudbus.cloudsim.provisioners.BwProvisioner;
 import org.cloudbus.cloudsim.provisioners.RamProvisioner;
 
 /**
- * NetworkHost class extends Host to support simulation of networked datacenters. It executes
- * actions related to management of packets (send and receive)other than that of virtual machines
- * (e.g., creation and destruction). A host has a defined policy for provisioning memory and bw, as
- * well as an allocation policy for Pe's to virtual machines.
- * 
+ * NetworkHost class extends Host to support simulation of networked datacenters. It
+ * executes actions related to management of packets (send and receive)other than that of
+ * virtual machines (e.g., creation and destruction). A host has a defined policy for
+ * provisioning memory and bw, as well as an allocation policy for Pe's to virtual
+ * machines.
+ *
  * Please refer to following publication for more details:
- * 
- * Saurabh Kumar Garg and Rajkumar Buyya, NetworkCloudSim: Modelling Parallel Applications in Cloud
- * Simulations, Proceedings of the 4th IEEE/ACM International Conference on Utility and Cloud
- * Computing (UCC 2011, IEEE CS Press, USA), Melbourne, Australia, December 5-7, 2011.
- * 
+ *
+ * Saurabh Kumar Garg and Rajkumar Buyya, NetworkCloudSim: Modelling Parallel Applications
+ * in Cloud Simulations, Proceedings of the 4th IEEE/ACM International Conference on
+ * Utility and Cloud Computing (UCC 2011, IEEE CS Press, USA), Melbourne, Australia,
+ * December 5-7, 2011.
+ *
  * @author Saurabh Kumar Garg
  * @since CloudSim Toolkit 3.0
  */
@@ -57,13 +59,8 @@ public class NetworkHost extends Host {
 
 	public double fintime = 0;
 
-	public NetworkHost(
-			int id,
-			RamProvisioner ramProvisioner,
-			BwProvisioner bwProvisioner,
-			long storage,
-			List<? extends Pe> peList,
-			VmScheduler vmScheduler) {
+	public NetworkHost(int id, RamProvisioner ramProvisioner, BwProvisioner bwProvisioner, long storage,
+			List<? extends Pe> peList, VmScheduler vmScheduler) {
 		super(id, ramProvisioner, bwProvisioner, storage, peList, vmScheduler);
 
 		packetrecieved = new ArrayList<NetworkPacket>();
@@ -74,12 +71,10 @@ public class NetworkHost extends Host {
 
 	/**
 	 * Requests updating of processing of cloudlets in the VMs running in this host.
-	 * 
 	 * @param currentTime the current time
-	 * 
 	 * @return expected time of completion of the next cloudlet in all VMs in this host.
-	 *         Double.MAX_VALUE if there is no future events expected in th is host
-	 * 
+	 * Double.MAX_VALUE if there is no future events expected in th is host
+	 *
 	 * @pre currentTime >= 0.0
 	 * @post $none
 	 */
@@ -89,8 +84,7 @@ public class NetworkHost extends Host {
 		// insert in each vm packet recieved
 		recvpackets();
 		for (Vm vm : super.getVmList()) {
-			double time = ((NetworkVm) vm).updateVmProcessing(currentTime, getVmScheduler()
-					.getAllocatedMipsForVm(vm));
+			double time = ((NetworkVm) vm).updateVmProcessing(currentTime, getVmScheduler().getAllocatedMipsForVm(vm));
 			if (time > 0.0 && time < smallerTime) {
 				smallerTime = time;
 			}
@@ -104,8 +98,8 @@ public class NetworkHost extends Host {
 
 	/**
 	 * Receives packet and forward it to the corresponding VM for processing host.
-	 * 
-	 * 
+	 *
+	 *
 	 */
 	private void recvpackets() {
 
@@ -119,9 +113,7 @@ public class NetworkHost extends Host {
 
 			if (pktlist == null) {
 				pktlist = new ArrayList<HostPacket>();
-				((NetworkCloudletSpaceSharedScheduler) vm.getCloudletScheduler()).pktrecv.put(
-						hs.pkt.sender,
-						pktlist);
+				((NetworkCloudletSpaceSharedScheduler) vm.getCloudletScheduler()).pktrecv.put(hs.pkt.sender, pktlist);
 
 			}
 			pktlist.add(hs.pkt);
@@ -131,9 +123,10 @@ public class NetworkHost extends Host {
 	}
 
 	/**
-	 * Send packet check whether a packet belongs to a local VM or to a VM hosted on other machine.
-	 * 
-	 * 
+	 * Send packet check whether a packet belongs to a local VM or to a VM hosted on other
+	 * machine.
+	 *
+	 *
 	 */
 	private void sendpackets() {
 
@@ -146,7 +139,8 @@ public class NetworkHost extends Host {
 					Vm vm2 = VmList.getById(this.getVmList(), hpkt.recievervmid);
 					if (vm2 != null) {
 						packetTosendLocal.add(hpkt);
-					} else {
+					}
+					else {
 						packetTosendGlobal.add(hpkt);
 					}
 				}
@@ -169,9 +163,7 @@ public class NetworkHost extends Host {
 					.get(hs.pkt.sender);
 			if (pktlist == null) {
 				pktlist = new ArrayList<HostPacket>();
-				((NetworkCloudletSpaceSharedScheduler) vm.getCloudletScheduler()).pktrecv.put(
-						hs.pkt.sender,
-						pktlist);
+				((NetworkCloudletSpaceSharedScheduler) vm.getCloudletScheduler()).pktrecv.put(hs.pkt.sender, pktlist);
 			}
 			pktlist.add(hs.pkt);
 

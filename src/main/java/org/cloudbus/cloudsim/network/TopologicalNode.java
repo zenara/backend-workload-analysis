@@ -11,7 +11,7 @@ package org.cloudbus.cloudsim.network;
 /**
  * Just represents an topological network node retrieves its information from an
  * topological-generated file (eg. topology-generator)
- * 
+ *
  * @author Thomas Hohnstein
  * @since CloudSim Toolkit 1.0
  */
@@ -67,7 +67,6 @@ public class TopologicalNode {
 
 	/**
 	 * delivers the nodes id
-	 * 
 	 * @return just the nodeID
 	 */
 	public int getNodeID() {
@@ -76,7 +75,6 @@ public class TopologicalNode {
 
 	/**
 	 * delivers the name of the node
-	 * 
 	 * @return name of the node
 	 */
 	public String getNodeLabel() {
@@ -85,7 +83,6 @@ public class TopologicalNode {
 
 	/**
 	 * returns the x coordinate of this network-node
-	 * 
 	 * @return the x coordinate
 	 */
 	public int getCoordinateX() {
@@ -94,7 +91,6 @@ public class TopologicalNode {
 
 	/**
 	 * returns the y coordinate of this network-node
-	 * 
 	 * @return the y coordinate
 	 */
 	public int getCoordinateY() {

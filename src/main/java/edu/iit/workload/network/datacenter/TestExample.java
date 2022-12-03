@@ -33,9 +33,7 @@ public class TestExample {
 
 	/**
 	 * Creates main() to run this example.
-	 * 
-	 * @param args
-	 *            the args
+	 * @param args the args
 	 */
 	public static void main(String[] args) {
 
@@ -74,14 +72,14 @@ public class TestExample {
 			// Final step: Print results when simulation is over
 			List<Cloudlet> newList = broker.getCloudletReceivedList();
 			printCloudletList(newList);
-			System.out.println("numberofcloudlet " + newList.size() + " Cached "
-					+ NetDatacenterBroker.cachedcloudlet + " Data transfered "
-					+ NetworkConstants.totaldatatransfer);
+			System.out.println("numberofcloudlet " + newList.size() + " Cached " + NetDatacenterBroker.cachedcloudlet
+					+ " Data transfered " + NetworkConstants.totaldatatransfer);
 			// Print the debt of each user to each datacenter
 			datacenter0.printDebts();
 
 			Log.printLine("CloudSimExample1 finished!");
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 			Log.printLine("Unwanted errors happen");
 		}
@@ -89,10 +87,7 @@ public class TestExample {
 
 	/**
 	 * Creates the datacenter.
-	 * 
-	 * @param name
-	 *            the name
-	 * 
+	 * @param name the name
 	 * @return the datacenter
 	 */
 	private static NetworkDatacenter createDatacenter(String name) {
@@ -175,12 +170,7 @@ public class TestExample {
 
 			// 4. Create PowerHost with its id and list of PEs and add them to
 			// the list of machines
-			hostList.add(new NetworkHost(
-					i,
-					new RamProvisionerSimple(ram),
-					new BwProvisionerSimple(bw),
-					storage,
-					peList,
+			hostList.add(new NetworkHost(i, new RamProvisionerSimple(ram), new BwProvisionerSimple(bw), storage, peList,
 					new VmSchedulerTimeShared(peList))); // This is our machine
 		}
 
@@ -203,28 +193,17 @@ public class TestExample {
 		// SAN
 		// devices by now
 
-		DatacenterCharacteristics characteristics = new DatacenterCharacteristics(
-				arch,
-				os,
-				vmm,
-				hostList,
-				time_zone,
-				cost,
-				costPerMem,
-				costPerStorage,
-				costPerBw);
+		DatacenterCharacteristics characteristics = new DatacenterCharacteristics(arch, os, vmm, hostList, time_zone,
+				cost, costPerMem, costPerStorage, costPerBw);
 
 		// 6. Finally, we need to create a NetworkDatacenter object.
 		NetworkDatacenter datacenter = null;
 		try {
-			datacenter = new NetworkDatacenter(
-					name,
-					characteristics,
-					new NetworkVmAllocationPolicy(hostList),
-					storageList,
-					0);
+			datacenter = new NetworkDatacenter(name, characteristics, new NetworkVmAllocationPolicy(hostList),
+					storageList, 0);
 
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		// Create Internal Datacenter network
@@ -237,14 +216,14 @@ public class TestExample {
 	// to the specific rules of the simulated scenario
 	/**
 	 * Creates the broker.
-	 * 
 	 * @return the datacenter broker
 	 */
 	private static NetDatacenterBroker createBroker() {
 		NetDatacenterBroker broker = null;
 		try {
 			broker = new NetDatacenterBroker("Broker");
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -253,9 +232,7 @@ public class TestExample {
 
 	/**
 	 * Prints the Cloudlet objects.
-	 * 
-	 * @param list
-	 *            list of Cloudlets
+	 * @param list list of Cloudlets
 	 * @throws IOException
 	 */
 	private static void printCloudletList(List<Cloudlet> list) throws IOException {
@@ -264,8 +241,8 @@ public class TestExample {
 		String indent = "    ";
 		Log.printLine();
 		Log.printLine("========== OUTPUT ==========");
-		Log.printLine("Cloudlet ID" + indent + "STATUS" + indent + "Data center ID" + indent + "VM ID"
-				+ indent + "Time" + indent + "Start Time" + indent + "Finish Time");
+		Log.printLine("Cloudlet ID" + indent + "STATUS" + indent + "Data center ID" + indent + "VM ID" + indent + "Time"
+				+ indent + "Start Time" + indent + "Finish Time");
 
 		DecimalFormat dft = new DecimalFormat("###.##");
 		for (int i = 0; i < size; i++) {
@@ -274,9 +251,9 @@ public class TestExample {
 
 			if (cloudlet.getCloudletStatus() == Cloudlet.SUCCESS) {
 				Log.print("SUCCESS");
-				Log.printLine(indent + indent + cloudlet.getResourceId() + indent + indent + indent
-						+ cloudlet.getVmId() + indent + indent + dft.format(cloudlet.getActualCPUTime())
-						+ indent + indent + dft.format(cloudlet.getExecStartTime()) + indent + indent
+				Log.printLine(indent + indent + cloudlet.getResourceId() + indent + indent + indent + cloudlet.getVmId()
+						+ indent + indent + dft.format(cloudlet.getActualCPUTime()) + indent + indent
+						+ dft.format(cloudlet.getExecStartTime()) + indent + indent
 						+ dft.format(cloudlet.getFinishTime()));
 			}
 		}
@@ -313,4 +290,5 @@ public class TestExample {
 		}
 
 	}
+
 }

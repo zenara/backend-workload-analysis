@@ -13,7 +13,7 @@ import java.util.Random;
 
 /**
  * The Class WeibullDistr.
- * 
+ *
  * @author Marcos Dias de Assuncao
  * @since CloudSim Toolkit 1.0
  */
@@ -30,7 +30,6 @@ public class WeibullDistr implements ContinuousDistribution {
 
 	/**
 	 * Instantiates a new weibull distr.
-	 * 
 	 * @param seed the seed
 	 * @param alpha the alpha
 	 * @param beta the beta
@@ -47,7 +46,6 @@ public class WeibullDistr implements ContinuousDistribution {
 
 	/**
 	 * Instantiates a new weibull distr.
-	 * 
 	 * @param alpha the alpha
 	 * @param beta the beta
 	 */
@@ -63,6 +61,7 @@ public class WeibullDistr implements ContinuousDistribution {
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see cloudsim.distributions.ContinuousDistribution#sample()
 	 */
 	@Override

@@ -15,11 +15,11 @@ import flanagan.analysis.Regression;
 import flanagan.analysis.Stat;
 
 /**
- * A class containing multiple convenient math functions. To use some of the function you must
- * download Michael Thomas Flanagan's Java Scientific Library:
- * 
+ * A class containing multiple convenient math functions. To use some of the function you
+ * must download Michael Thomas Flanagan's Java Scientific Library:
+ *
  * http://www.ee.ucl.ac.uk/~mflanaga/java/
- * 
+ *
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 3.0
  */
@@ -27,7 +27,6 @@ public class MathUtil {
 
 	/**
 	 * Sums a list of numbers.
-	 * 
 	 * @param list the list
 	 * @return the double
 	 */
@@ -41,7 +40,6 @@ public class MathUtil {
 
 	/**
 	 * List to array.
-	 * 
 	 * @param list the list
 	 * @return the double[]
 	 */
@@ -55,7 +53,6 @@ public class MathUtil {
 
 	/**
 	 * Gets the median.
-	 * 
 	 * @param list the list
 	 * @return the median
 	 */
@@ -65,9 +62,7 @@ public class MathUtil {
 
 	/**
 	 * Gets the average.
-	 * 
 	 * @param list the list
-	 * 
 	 * @return the average
 	 */
 	public static double mean(List<Double> list) {
@@ -80,7 +75,6 @@ public class MathUtil {
 
 	/**
 	 * Variance.
-	 * 
 	 * @param list the list
 	 * @return the double
 	 */
@@ -102,7 +96,6 @@ public class MathUtil {
 
 	/**
 	 * Gets the standard deviation.
-	 * 
 	 * @param list the list
 	 * @return the double
 	 */
@@ -112,7 +105,6 @@ public class MathUtil {
 
 	/**
 	 * Gets the mad.
-	 * 
 	 * @param data the data
 	 * @return the mad
 	 */
@@ -131,7 +123,6 @@ public class MathUtil {
 
 	/**
 	 * Gets the IQR.
-	 * 
 	 * @param data the data
 	 * @return the IQR
 	 */
@@ -144,7 +135,6 @@ public class MathUtil {
 
 	/**
 	 * Count non zero beginning of the data.
-	 * 
 	 * @param data the data
 	 * @return the int
 	 */
@@ -160,7 +150,6 @@ public class MathUtil {
 
 	/**
 	 * Count shortest row.
-	 * 
 	 * @param data the data
 	 * @return the int
 	 */
@@ -176,7 +165,6 @@ public class MathUtil {
 
 	/**
 	 * Trim zero tail.
-	 * 
 	 * @param data the data
 	 * @return the double[]
 	 */
@@ -186,7 +174,6 @@ public class MathUtil {
 
 	/**
 	 * Gets the loess parameter estimates.
-	 * 
 	 * @param y the y
 	 * @return the loess parameter estimates
 	 */
@@ -207,7 +194,6 @@ public class MathUtil {
 
 	/**
 	 * Gets the robust loess parameter estimates.
-	 * 
 	 * @param y the y
 	 * @return the robust loess parameter estimates
 	 */
@@ -230,7 +216,6 @@ public class MathUtil {
 
 	/**
 	 * Gets the tricube weigts.
-	 * 
 	 * @param n the n
 	 * @return the tricube weigts
 	 */
@@ -242,7 +227,8 @@ public class MathUtil {
 			double k = Math.pow(1 - Math.pow((top - i) / spread, 3), 3);
 			if (k > 0) {
 				weights[i] = 1 / k;
-			} else {
+			}
+			else {
 				weights[i] = Double.MAX_VALUE;
 			}
 		}
@@ -252,7 +238,6 @@ public class MathUtil {
 
 	/**
 	 * Gets the tricube bisquare weigts.
-	 * 
 	 * @param residuals the residuals
 	 * @return the tricube bisquare weigts
 	 */
@@ -265,7 +250,8 @@ public class MathUtil {
 			double k = Math.pow(1 - Math.pow(residuals[i] / s6, 2), 2);
 			if (k > 0) {
 				weights2[i] = (1 / k) * weights[i];
-			} else {
+			}
+			else {
 				weights2[i] = Double.MAX_VALUE;
 			}
 		}
@@ -275,7 +261,6 @@ public class MathUtil {
 
 	/**
 	 * Abs.
-	 * 
 	 * @param data the data
 	 * @return the double[]
 	 */

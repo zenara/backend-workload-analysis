@@ -10,15 +10,15 @@ package org.cloudbus.cloudsim.power.models;
 
 /**
  * The Class PowerModelSquare.
- * 
- * If you are using any algorithms, policies or workload included in the power package, please cite
- * the following paper:
- * 
- * Anton Beloglazov, and Rajkumar Buyya, "Optimal Online Deterministic Algorithms and Adaptive
- * Heuristics for Energy and Performance Efficient Dynamic Consolidation of Virtual Machines in
- * Cloud Data Centers", Concurrency and Computation: Practice and Experience, ISSN: 1532-0626, Wiley
- * Press, New York, USA, 2011, DOI: 10.1002/cpe.1867
- * 
+ *
+ * If you are using any algorithms, policies or workload included in the power package,
+ * please cite the following paper:
+ *
+ * Anton Beloglazov, and Rajkumar Buyya, "Optimal Online Deterministic Algorithms and
+ * Adaptive Heuristics for Energy and Performance Efficient Dynamic Consolidation of
+ * Virtual Machines in Cloud Data Centers", Concurrency and Computation: Practice and
+ * Experience, ISSN: 1532-0626, Wiley Press, New York, USA, 2011, DOI: 10.1002/cpe.1867
+ *
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 2.0
  */
@@ -35,7 +35,6 @@ public class PowerModelSquare implements PowerModel {
 
 	/**
 	 * Instantiates a new power model square.
-	 * 
 	 * @param maxPower the max power
 	 * @param staticPowerPercent the static power percent
 	 */
@@ -47,6 +46,7 @@ public class PowerModelSquare implements PowerModel {
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see gridsim.virtualization.power.PowerModel#getPower(double)
 	 */
 	@Override
@@ -62,7 +62,6 @@ public class PowerModelSquare implements PowerModel {
 
 	/**
 	 * Gets the max power.
-	 * 
 	 * @return the max power
 	 */
 	protected double getMaxPower() {
@@ -71,7 +70,6 @@ public class PowerModelSquare implements PowerModel {
 
 	/**
 	 * Sets the max power.
-	 * 
 	 * @param maxPower the new max power
 	 */
 	protected void setMaxPower(double maxPower) {
@@ -80,7 +78,6 @@ public class PowerModelSquare implements PowerModel {
 
 	/**
 	 * Gets the constant.
-	 * 
 	 * @return the constant
 	 */
 	protected double getConstant() {
@@ -89,7 +86,6 @@ public class PowerModelSquare implements PowerModel {
 
 	/**
 	 * Sets the constant.
-	 * 
 	 * @param constant the new constant
 	 */
 	protected void setConstant(double constant) {
@@ -98,7 +94,6 @@ public class PowerModelSquare implements PowerModel {
 
 	/**
 	 * Gets the static power.
-	 * 
 	 * @return the static power
 	 */
 	protected double getStaticPower() {
@@ -107,7 +102,6 @@ public class PowerModelSquare implements PowerModel {
 
 	/**
 	 * Sets the static power.
-	 * 
 	 * @param staticPower the new static power
 	 */
 	protected void setStaticPower(double staticPower) {

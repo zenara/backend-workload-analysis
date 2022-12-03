@@ -13,7 +13,7 @@ import org.cloudbus.cloudsim.core.SimEvent;
 /**
  * A predicate which selects events from specific entities.<br>
  * The idea of simulation predicates was copied from SimJava 2.
- * 
+ *
  * @author Marcos Dias de Assuncao
  * @since CloudSim Toolkit 1.0
  * @see PredicateNotFrom
@@ -26,7 +26,6 @@ public class PredicateFrom extends Predicate {
 
 	/**
 	 * Constructor used to select events that were sent by a specific entity.
-	 * 
 	 * @param sourceId the id number of the source entity
 	 */
 	public PredicateFrom(int sourceId) {
@@ -35,7 +34,6 @@ public class PredicateFrom extends Predicate {
 
 	/**
 	 * Constructor used to select events that were sent by any entity from a given set.
-	 * 
 	 * @param sourceIds the set of id numbers of the source entities
 	 */
 	public PredicateFrom(int[] sourceIds) {
@@ -43,10 +41,11 @@ public class PredicateFrom extends Predicate {
 	}
 
 	/**
-	 * The match function called by <code>Simulation</code>, not used directly by the user.
-	 * 
+	 * The match function called by <code>Simulation</code>, not used directly by the
+	 * user.
 	 * @param ev the event to check
-	 * @return <code>true</code> if the event matches the predicate, <code>false</code> otherwise
+	 * @return <code>true</code> if the event matches the predicate, <code>false</code>
+	 * otherwise
 	 */
 	@Override
 	public boolean match(SimEvent ev) {

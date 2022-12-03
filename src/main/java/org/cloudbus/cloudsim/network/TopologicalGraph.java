@@ -13,10 +13,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * This class represents an graph containing nodes and edges, used for input with an network-layer
- * Graphical-Output Restricions! EdgeColors: GraphicalProperties.getColorEdge NodeColors:
- * GraphicalProperties.getColorNode
- * 
+ * This class represents an graph containing nodes and edges, used for input with an
+ * network-layer Graphical-Output Restricions! EdgeColors:
+ * GraphicalProperties.getColorEdge NodeColors: GraphicalProperties.getColorNode
+ *
  * @author Thomas Hohnstein
  * @since CloudSim Toolkit 1.0
  */
@@ -36,7 +36,6 @@ public class TopologicalGraph {
 
 	/**
 	 * adds an link between two topological nodes
-	 * 
 	 * @param edge the topological link
 	 */
 	public void addLink(TopologicalLink edge) {
@@ -45,7 +44,6 @@ public class TopologicalGraph {
 
 	/**
 	 * adds an Topological Node to this graph
-	 * 
 	 * @param node the topological node to add
 	 */
 	public void addNode(TopologicalNode node) {
@@ -54,7 +52,6 @@ public class TopologicalGraph {
 
 	/**
 	 * returns the number of nodes contained inside the topological-graph
-	 * 
 	 * @return number of nodes
 	 */
 	public int getNumberOfNodes() {
@@ -63,7 +60,6 @@ public class TopologicalGraph {
 
 	/**
 	 * returns the number of links contained inside the topological-graph
-	 * 
 	 * @return number of links
 	 */
 	public int getNumberOfLinks() {
@@ -72,7 +68,6 @@ public class TopologicalGraph {
 
 	/**
 	 * return an iterator through all network-graph links
-	 * 
 	 * @return the iterator throug all links
 	 */
 	public Iterator<TopologicalLink> getLinkIterator() {
@@ -81,7 +76,6 @@ public class TopologicalGraph {
 
 	/**
 	 * returns an iterator through all network-graph nodes
-	 * 
 	 * @return the iterator through all nodes
 	 */
 	public Iterator<TopologicalNode> getNodeIterator() {
@@ -97,8 +91,8 @@ public class TopologicalGraph {
 		buffer.append("topological-node-information: \n");
 
 		for (TopologicalNode node : nodeList) {
-			buffer.append(node.getNodeID() + " | x is: " + node.getCoordinateX() + " y is: "
-					+ node.getCoordinateY() + "\n");
+			buffer.append(
+					node.getNodeID() + " | x is: " + node.getCoordinateX() + " y is: " + node.getCoordinateY() + "\n");
 		}
 
 		buffer.append("\n\n node-link-information:\n");

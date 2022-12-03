@@ -12,7 +12,7 @@ import java.util.Random;
 
 /**
  * A random number generator based on the Uniform distribution.
- * 
+ *
  * @author Marcos Dias de Assuncao
  * @since CloudSim Toolkit 1.0
  */
@@ -26,7 +26,6 @@ public class UniformDistr implements ContinuousDistribution {
 
 	/**
 	 * Creates new uniform distribution.
-	 * 
 	 * @param min minimum value
 	 * @param max maximum value
 	 */
@@ -41,7 +40,6 @@ public class UniformDistr implements ContinuousDistribution {
 
 	/**
 	 * Creates new uniform distribution.
-	 * 
 	 * @param min minimum value
 	 * @param max maximum value
 	 * @param seed simulation seed to be used
@@ -58,7 +56,6 @@ public class UniformDistr implements ContinuousDistribution {
 
 	/**
 	 * Generate a new random number.
-	 * 
 	 * @return the next random number in the sequence
 	 */
 	@Override
@@ -69,7 +66,6 @@ public class UniformDistr implements ContinuousDistribution {
 	/**
 	 * Generates a new random number based on the number generator and values provided as
 	 * parameters.
-	 * 
 	 * @param rd the random number generator
 	 * @param min the minimum value
 	 * @param max the maximum value
@@ -85,7 +81,6 @@ public class UniformDistr implements ContinuousDistribution {
 
 	/**
 	 * Set the random number generator's seed.
-	 * 
 	 * @param seed the new seed for the generator
 	 */
 	public void setSeed(long seed) {

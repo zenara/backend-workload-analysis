@@ -19,17 +19,17 @@ import org.cloudbus.cloudsim.util.MathUtil;
 import flanagan.analysis.Stat;
 
 /**
- * The class of a VM that stores its CPU utilization history. The history is used by VM allocation
- * and selection policies.
- * 
- * If you are using any algorithms, policies or workload included in the power package please cite
- * the following paper:
- * 
- * Anton Beloglazov, and Rajkumar Buyya, "Optimal Online Deterministic Algorithms and Adaptive
- * Heuristics for Energy and Performance Efficient Dynamic Consolidation of Virtual Machines in
- * Cloud Data Centers", Concurrency and Computation: Practice and Experience, ISSN: 1532-0626, Wiley
- * Press, New York, USA, 2011, DOI: 10.1002/cpe.1867
- * 
+ * The class of a VM that stores its CPU utilization history. The history is used by VM
+ * allocation and selection policies.
+ *
+ * If you are using any algorithms, policies or workload included in the power package
+ * please cite the following paper:
+ *
+ * Anton Beloglazov, and Rajkumar Buyya, "Optimal Online Deterministic Algorithms and
+ * Adaptive Heuristics for Energy and Performance Efficient Dynamic Consolidation of
+ * Virtual Machines in Cloud Data Centers", Concurrency and Computation: Practice and
+ * Experience, ISSN: 1532-0626, Wiley Press, New York, USA, 2011, DOI: 10.1002/cpe.1867
+ *
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 2.0
  */
@@ -49,7 +49,6 @@ public class PowerVm extends Vm {
 
 	/**
 	 * Instantiates a new power vm.
-	 * 
 	 * @param id the id
 	 * @param userId the user id
 	 * @param mips the mips
@@ -62,31 +61,19 @@ public class PowerVm extends Vm {
 	 * @param cloudletScheduler the cloudlet scheduler
 	 * @param schedulingInterval the scheduling interval
 	 */
-	public PowerVm(
-			int id,
-			int userId,
-			double mips,
-			int pesNumber,
-			int ram,
-			long bw,
-			long size,
-			int priority,
-			String vmm,
-			CloudletScheduler cloudletScheduler,
-			double schedulingInterval) {
+	public PowerVm(int id, int userId, double mips, int pesNumber, int ram, long bw, long size, int priority,
+			String vmm, CloudletScheduler cloudletScheduler, double schedulingInterval) {
 		super(id, userId, mips, pesNumber, ram, bw, size, vmm, cloudletScheduler);
 		setSchedulingInterval(schedulingInterval);
 	}
 
 	/**
 	 * Updates the processing of cloudlets running on this VM.
-	 * 
 	 * @param currentTime current simulation time
 	 * @param mipsShare array with MIPS share of each Pe available to the scheduler
-	 * 
-	 * @return time predicted completion time of the earliest finishing cloudlet, or 0 if there is
-	 *         no next events
-	 * 
+	 * @return time predicted completion time of the earliest finishing cloudlet, or 0 if
+	 * there is no next events
+	 *
 	 * @pre currentTime >= 0
 	 * @post $none
 	 */
@@ -105,7 +92,6 @@ public class PowerVm extends Vm {
 
 	/**
 	 * Gets the utilization MAD in MIPS.
-	 * 
 	 * @return the utilization mean in MIPS
 	 */
 	public double getUtilizationMad() {
@@ -127,7 +113,6 @@ public class PowerVm extends Vm {
 
 	/**
 	 * Gets the utilization mean in percents.
-	 * 
 	 * @return the utilization mean in MIPS
 	 */
 	public double getUtilizationMean() {
@@ -147,7 +132,6 @@ public class PowerVm extends Vm {
 
 	/**
 	 * Gets the utilization variance in MIPS.
-	 * 
 	 * @return the utilization variance in MIPS
 	 */
 	public double getUtilizationVariance() {
@@ -169,7 +153,6 @@ public class PowerVm extends Vm {
 
 	/**
 	 * Adds the utilization history value.
-	 * 
 	 * @param utilization the utilization
 	 */
 	public void addUtilizationHistoryValue(double utilization) {
@@ -181,7 +164,6 @@ public class PowerVm extends Vm {
 
 	/**
 	 * Gets the utilization history.
-	 * 
 	 * @return the utilization history
 	 */
 	protected List<Double> getUtilizationHistory() {
@@ -190,7 +172,6 @@ public class PowerVm extends Vm {
 
 	/**
 	 * Gets the previous time.
-	 * 
 	 * @return the previous time
 	 */
 	public double getPreviousTime() {
@@ -199,7 +180,6 @@ public class PowerVm extends Vm {
 
 	/**
 	 * Sets the previous time.
-	 * 
 	 * @param previousTime the new previous time
 	 */
 	public void setPreviousTime(double previousTime) {
@@ -208,7 +188,6 @@ public class PowerVm extends Vm {
 
 	/**
 	 * Gets the scheduling interval.
-	 * 
 	 * @return the schedulingInterval
 	 */
 	public double getSchedulingInterval() {
@@ -217,7 +196,6 @@ public class PowerVm extends Vm {
 
 	/**
 	 * Sets the scheduling interval.
-	 * 
 	 * @param schedulingInterval the schedulingInterval to set
 	 */
 	protected void setSchedulingInterval(double schedulingInterval) {

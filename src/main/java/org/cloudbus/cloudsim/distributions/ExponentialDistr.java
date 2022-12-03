@@ -12,7 +12,7 @@ import java.util.Random;
 
 /**
  * An exponential number generator.
- * 
+ *
  * @author Marcos Dias de Assuncao
  * @since CloudSim Toolkit 1.0
  */
@@ -26,7 +26,6 @@ public class ExponentialDistr implements ContinuousDistribution {
 
 	/**
 	 * Creates a new exponential number generator.
-	 * 
 	 * @param seed the seed to be used.
 	 * @param mean the mean for the distribution.
 	 */
@@ -40,7 +39,6 @@ public class ExponentialDistr implements ContinuousDistribution {
 
 	/**
 	 * Creates a new exponential number generator.
-	 * 
 	 * @param mean the mean for the distribution.
 	 */
 	public ExponentialDistr(double mean) {
@@ -53,7 +51,6 @@ public class ExponentialDistr implements ContinuousDistribution {
 
 	/**
 	 * Generate a new random number.
-	 * 
 	 * @return the next random number in the sequence
 	 */
 	@Override

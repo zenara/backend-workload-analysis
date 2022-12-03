@@ -38,13 +38,20 @@ import org.cloudbus.cloudsim.provisioners.RamProvisionerSimple;
 public class GAInd {
 
 	List<PowerHost> hosts, originalHosts;
+
 	List<PowerVm> vmList, originalVMs;
+
 	Random rnd;
+
 	PowerVmAllocationPolicyMigrationGA GA;
+
 	// int[] genotype;
 	SortedMap<Integer, PowerHost> gen;
+
 	int geneSize;
+
 	double[] fitness;
+
 	public boolean isPareto;
 
 	public GAInd(PowerVmAllocationPolicyMigrationGA ga) throws Exception {
@@ -56,7 +63,8 @@ public class GAInd {
 
 			do {
 				foundHost = findRandomHost(vm);
-			} while (!assignVMtoHost(vm, foundHost));
+			}
+			while (!assignVMtoHost(vm, foundHost));
 		}
 		getFitness();
 	}
@@ -67,23 +75,21 @@ public class GAInd {
 
 		int crossoverPoint = rnd.nextInt(GA.getVmTable().size());
 		/*
-		 * for (int i = 0; i < geneSize; i++) { if (i < crossoverPoint) {
-		 * genotype[i] = p1.genotype[i]; } else { genotype[i] = p2.genotype[i];
-		 * } }
+		 * for (int i = 0; i < geneSize; i++) { if (i < crossoverPoint) { genotype[i] =
+		 * p1.genotype[i]; } else { genotype[i] = p2.genotype[i]; } }
 		 */
 		// copy everything
 		SortedMap<Integer, PowerHost> tempGen = new TreeMap<>();
 		int count = 0;
-		for (Iterator<Entry<Integer, PowerHost>> iterator = p1.gen.entrySet()
-				.iterator(); iterator.hasNext() && count < crossoverPoint; count++) {
+		for (Iterator<Entry<Integer, PowerHost>> iterator = p1.gen.entrySet().iterator(); iterator.hasNext()
+				&& count < crossoverPoint; count++) {
 			Entry<Integer, PowerHost> entry = iterator.next();
 			PowerHost host = findHostByID(entry.getValue().getId(), hosts);
 			tempGen.put(entry.getKey(), host);
 		}
 
 		count = 0;
-		for (Iterator<Entry<Integer, PowerHost>> iterator = p2.gen.entrySet()
-				.iterator(); iterator.hasNext(); count++) {
+		for (Iterator<Entry<Integer, PowerHost>> iterator = p2.gen.entrySet().iterator(); iterator.hasNext(); count++) {
 			if (count < crossoverPoint)
 				continue;
 			Entry<Integer, PowerHost> entry = iterator.next();
@@ -93,17 +99,16 @@ public class GAInd {
 
 		// handle invalid assignments
 		List<PowerVm> unassignedVMs = new ArrayList<PowerVm>();
-		for (Iterator<Entry<Integer, PowerHost>> iterator = tempGen.entrySet()
-				.iterator(); iterator.hasNext();) {
+		for (Iterator<Entry<Integer, PowerHost>> iterator = tempGen.entrySet().iterator(); iterator.hasNext();) {
 			Entry<Integer, PowerHost> entry = iterator.next();
 			int vmID = entry.getKey();
 			PowerVm theVm = findVmByID(vmID, vmList);
 			PowerHost candidateHost = entry.getValue();
 			if (candidateHost.isSuitableForVm(theVm)) {
 				assignVMtoHost(theVm, candidateHost);
-			} else if (theVm.getHost() == null
-					|| (theVm.getHost() != null && !theVm.getHost().getVmList()
-							.contains(theVm))) {
+			}
+			else if (theVm.getHost() == null
+					|| (theVm.getHost() != null && !theVm.getHost().getVmList().contains(theVm))) {
 				unassignedVMs.add(theVm);
 			}
 		}
@@ -126,7 +131,7 @@ public class GAInd {
 
 	private void initialize(PowerVmAllocationPolicyMigrationGA ga) {
 		this.GA = ga;
-		originalHosts = ga.<PowerHost> getHostList();
+		originalHosts = ga.<PowerHost>getHostList();
 		this.hosts = new ArrayList<PowerHost>();
 
 		originalVMs = new ArrayList<PowerVm>();
@@ -134,7 +139,7 @@ public class GAInd {
 		gen = new TreeMap<>();
 
 		for (PowerHost ph : originalHosts) {
-			for (PowerVm pv : ph.<PowerVm> getVmList()) {
+			for (PowerVm pv : ph.<PowerVm>getVmList()) {
 				vmList.add(copyVM(pv));
 				originalVMs.add(pv);
 
@@ -177,21 +182,20 @@ public class GAInd {
 
 		return fitness;
 	}
-	
+
 	public Domination dominates(GAInd target) {
-		if (fitness[0] > target.fitness[0] && fitness[1] > target.fitness[1] &&
-				fitness[2] > target.fitness[2] && fitness[3] > target.fitness[3]) {
+		if (fitness[0] > target.fitness[0] && fitness[1] > target.fitness[1] && fitness[2] > target.fitness[2]
+				&& fitness[3] > target.fitness[3]) {
 			return Domination.True;
 		}
-		if (fitness[0] <= target.fitness[0] && fitness[1] <= target.fitness[1] &&
-				fitness[2] <= target.fitness[2] && fitness[3] <= target.fitness[3]) {
+		if (fitness[0] <= target.fitness[0] && fitness[1] <= target.fitness[1] && fitness[2] <= target.fitness[2]
+				&& fitness[3] <= target.fitness[3]) {
 			return Domination.False;
 		}
 		return Domination.NoDomination;
 	}
 
 	/**
-	 * 
 	 * @param powerHost
 	 * @return
 	 */
@@ -199,17 +203,16 @@ public class GAInd {
 		VmScheduler sch = powerHost.getVmScheduler(), newSch;
 		if (sch instanceof VmSchedulerTimeShared) {
 			newSch = new VmSchedulerTimeShared(powerHost.getPeList());
-		} else if (sch instanceof VmSchedulerTimeSharedOverSubscription) {
-			newSch = new VmSchedulerTimeSharedOverSubscription(
-					powerHost.getPeList());
-		} else {
+		}
+		else if (sch instanceof VmSchedulerTimeSharedOverSubscription) {
+			newSch = new VmSchedulerTimeSharedOverSubscription(powerHost.getPeList());
+		}
+		else {
 			newSch = new VmSchedulerSpaceShared(powerHost.getPeList());
 		}
 
-		return new PowerHost(powerHost.getId(), new RamProvisionerSimple(
-				powerHost.getRam()),
-				new BwProvisionerSimple(powerHost.getBw()),
-				powerHost.getStorage(), powerHost.getPeList(), newSch,
+		return new PowerHost(powerHost.getId(), new RamProvisionerSimple(powerHost.getRam()),
+				new BwProvisionerSimple(powerHost.getBw()), powerHost.getStorage(), powerHost.getPeList(), newSch,
 				powerHost.getPowerModel());
 	}
 
@@ -220,7 +223,7 @@ public class GAInd {
 	}
 
 	/**
-	 * Creates a new PowerVm based on the argument. This is done because Vm does not 
+	 * Creates a new PowerVm based on the argument. This is done because Vm does not
 	 * implement Cloneable interface.
 	 * @param pv
 	 * @return
@@ -228,23 +231,23 @@ public class GAInd {
 	private PowerVm copyVM(PowerVm pv) {
 		CloudletScheduler sch = pv.getCloudletScheduler(), newSch;
 		if (sch instanceof CloudletSchedulerDynamicWorkload) {
-			newSch = new CloudletSchedulerDynamicWorkload(
-					((CloudletSchedulerDynamicWorkload) sch).getMips(),
+			newSch = new CloudletSchedulerDynamicWorkload(((CloudletSchedulerDynamicWorkload) sch).getMips(),
 					((CloudletSchedulerDynamicWorkload) sch).getNumberOfPes());
-		} else if (sch instanceof CloudletSchedulerSpaceShared) {
+		}
+		else if (sch instanceof CloudletSchedulerSpaceShared) {
 			newSch = new CloudletSchedulerSpaceShared();
-		} else {
+		}
+		else {
 			newSch = new CloudletSchedulerTimeShared();
 		}
-		PowerVm vm = new PowerVm(pv.getId(), pv.getUserId(), pv.getMips(),
-				pv.getNumberOfPes(), pv.getRam(), pv.getBw(), pv.getSize(), 0,
-				pv.getVmm(), newSch, pv.getSchedulingInterval());
+		PowerVm vm = new PowerVm(pv.getId(), pv.getUserId(), pv.getMips(), pv.getNumberOfPes(), pv.getRam(), pv.getBw(),
+				pv.getSize(), 0, pv.getVmm(), newSch, pv.getSchedulingInterval());
 		return vm;
 	}
 
 	private void copyVMs(List<PowerHost> src, List<PowerVm>... target) {
 		for (PowerHost ph : src) {
-			for (PowerVm pv : ph.<PowerVm> getVmList()) {
+			for (PowerVm pv : ph.<PowerVm>getVmList()) {
 				target[0].add(copyVM(pv));
 				if (target.length > 1) {
 					target[1].add(pv);
@@ -266,14 +269,15 @@ public class GAInd {
 			host.updateVmsProcessing(0);
 			// genotype[vmID] = host.getId();
 			result = true;
-		} else {
+		}
+		else {
 			if (prevHost != null) {
 				prevHost.vmCreate(vm);
 				host.updateVmsProcessing(0);
 			}
 			result = false;
 		}
-		//Log.setDisabled(false);
+		// Log.setDisabled(false);
 		return result;
 	}
 
@@ -300,8 +304,7 @@ public class GAInd {
 			Map<String, Object> migrate = new HashMap<String, Object>();
 
 			PowerVm foundVM = findVmByID(pv.getId(), originalVMs);
-			PowerHost foundHost = findHostByID(pv.getHost().getId(),
-					originalHosts);
+			PowerHost foundHost = findHostByID(pv.getHost().getId(), originalHosts);
 
 			if (foundHost == null || foundVM == null) {
 				throw new Exception();

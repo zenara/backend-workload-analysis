@@ -17,14 +17,12 @@ public class UtilizationModelPlanetLabInMemory implements UtilizationModel {
 
 	/**
 	 * Instantiates a new utilization model PlanetLab.
-	 * 
 	 * @param inputPath the input path
 	 * @throws NumberFormatException the number format exception
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	public UtilizationModelPlanetLabInMemory(String inputPath, double schedulingInterval)
-			throws NumberFormatException,
-			IOException {
+			throws NumberFormatException, IOException {
 		setSchedulingInterval(schedulingInterval);
 		BufferedReader input = new BufferedReader(new FileReader(inputPath));
 		int n = data.length;
@@ -37,6 +35,7 @@ public class UtilizationModelPlanetLabInMemory implements UtilizationModel {
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see cloudsim.power.UtilizationModel#getUtilization(double)
 	 */
 	@Override
@@ -56,7 +55,6 @@ public class UtilizationModelPlanetLabInMemory implements UtilizationModel {
 
 	/**
 	 * Sets the scheduling interval.
-	 * 
 	 * @param schedulingInterval the new scheduling interval
 	 */
 	public void setSchedulingInterval(double schedulingInterval) {
@@ -65,10 +63,10 @@ public class UtilizationModelPlanetLabInMemory implements UtilizationModel {
 
 	/**
 	 * Gets the scheduling interval.
-	 * 
 	 * @return the scheduling interval
 	 */
 	public double getSchedulingInterval() {
 		return schedulingInterval;
 	}
+
 }

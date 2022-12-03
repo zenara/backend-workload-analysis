@@ -88,7 +88,7 @@ public class Switch extends SimEntity {
 	public void processEvent(SimEvent ev) {
 		// Log.printLine(CloudSim.clock()+"[Broker]: event received:"+ev.getTag());
 		switch (ev.getTag()) {
-		// Resource characteristics request
+			// Resource characteristics request
 			case CloudSimTags.Network_Event_UP:
 				// process the packet from down switch or host
 				processpacket_up(ev);
@@ -220,7 +220,8 @@ public class Switch extends SimEntity {
 					downlinkswitchpktlist.put(switchid, pktlist);
 				}
 				pktlist.add(hspkt);
-			} else// send to up
+			}
+			else// send to up
 			{
 				Switch sw = uplinkswitches.get(0);
 				List<NetworkPacket> pktlist = uplinkswitchpktlist.get(sw.getId());
@@ -247,7 +248,8 @@ public class Switch extends SimEntity {
 			}
 			if (aggSwtichid < 0) {
 				System.out.println(" No destination for this packet");
-			} else {
+			}
+			else {
 				List<NetworkPacket> pktlist = downlinkswitchpktlist.get(aggSwtichid);
 				if (pktlist == null) {
 					pktlist = new ArrayList<NetworkPacket>();

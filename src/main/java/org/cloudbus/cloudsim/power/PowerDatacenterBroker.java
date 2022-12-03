@@ -15,15 +15,15 @@ import org.cloudbus.cloudsim.core.SimEvent;
 
 /**
  * A broker for the power package.
- * 
- * If you are using any algorithms, policies or workload included in the power package please cite
- * the following paper:
- * 
- * Anton Beloglazov, and Rajkumar Buyya, "Optimal Online Deterministic Algorithms and Adaptive
- * Heuristics for Energy and Performance Efficient Dynamic Consolidation of Virtual Machines in
- * Cloud Data Centers", Concurrency and Computation: Practice and Experience, ISSN: 1532-0626, Wiley
- * Press, New York, USA, 2011, DOI: 10.1002/cpe.1867
- * 
+ *
+ * If you are using any algorithms, policies or workload included in the power package
+ * please cite the following paper:
+ *
+ * Anton Beloglazov, and Rajkumar Buyya, "Optimal Online Deterministic Algorithms and
+ * Adaptive Heuristics for Energy and Performance Efficient Dynamic Consolidation of
+ * Virtual Machines in Cloud Data Centers", Concurrency and Computation: Practice and
+ * Experience, ISSN: 1532-0626, Wiley Press, New York, USA, 2011, DOI: 10.1002/cpe.1867
+ *
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 2.0
  */
@@ -31,7 +31,6 @@ public class PowerDatacenterBroker extends DatacenterBroker {
 
 	/**
 	 * Instantiates a new power datacenter broker.
-	 * 
 	 * @param name the name
 	 * @throws Exception the exception
 	 */
@@ -41,8 +40,10 @@ public class PowerDatacenterBroker extends DatacenterBroker {
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see
-	 * org.cloudbus.cloudsim.DatacenterBroker#processVmCreate(org.cloudbus.cloudsim.core.SimEvent)
+	 * org.cloudbus.cloudsim.DatacenterBroker#processVmCreate(org.cloudbus.cloudsim.core.
+	 * SimEvent)
 	 */
 	@Override
 	protected void processVmCreate(SimEvent ev) {

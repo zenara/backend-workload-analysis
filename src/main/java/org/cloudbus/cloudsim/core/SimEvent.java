@@ -9,8 +9,9 @@
 package org.cloudbus.cloudsim.core;
 
 /**
- * This class represents a simulation event which is passed between the entities in the simulation.
- * 
+ * This class represents a simulation event which is passed between the entities in the
+ * simulation.
+ *
  * @author Costas Simatos
  * @see Simulation
  * @see SimEntity
@@ -88,7 +89,6 @@ public class SimEvent implements Cloneable, Comparable<SimEvent> {
 
 	/**
 	 * Used to set the time at which this event finished waiting in the event
-	 * 
 	 * @param end_waiting_time
 	 */
 	protected void setEndWaitingTime(double end_waiting_time) {
@@ -103,7 +103,6 @@ public class SimEvent implements Cloneable, Comparable<SimEvent> {
 
 	/**
 	 * The internal type
-	 * 
 	 * @return
 	 */
 	public int getType() {
@@ -119,22 +118,26 @@ public class SimEvent implements Cloneable, Comparable<SimEvent> {
 	public int compareTo(SimEvent event) {
 		if (event == null) {
 			return 1;
-		} else if (time < event.time) {
+		}
+		else if (time < event.time) {
 			return -1;
-		} else if (time > event.time) {
+		}
+		else if (time > event.time) {
 			return 1;
-		} else if (serial < event.serial) {
+		}
+		else if (serial < event.serial) {
 			return -1;
-		} else if (this == event) {
+		}
+		else if (this == event) {
 			return 0;
-		} else {
+		}
+		else {
 			return 1;
 		}
 	}
 
 	/**
 	 * Get the unique id number of the entity which received this event.
-	 * 
 	 * @return the id number
 	 */
 	public int getDestination() {
@@ -143,7 +146,6 @@ public class SimEvent implements Cloneable, Comparable<SimEvent> {
 
 	/**
 	 * Get the unique id number of the entity which scheduled this event.
-	 * 
 	 * @return the id number
 	 */
 	public int getSource() {
@@ -152,7 +154,6 @@ public class SimEvent implements Cloneable, Comparable<SimEvent> {
 
 	/**
 	 * Get the simulation time that this event was scheduled.
-	 * 
 	 * @return The simulation time
 	 */
 	public double eventTime() {
@@ -161,7 +162,6 @@ public class SimEvent implements Cloneable, Comparable<SimEvent> {
 
 	/**
 	 * Get the simulation time that this event was removed from the queue for service.
-	 * 
 	 * @return The simulation time
 	 */
 	public double endWaitingTime() {
@@ -170,7 +170,6 @@ public class SimEvent implements Cloneable, Comparable<SimEvent> {
 
 	/**
 	 * Get the user-defined tag of this event
-	 * 
 	 * @return The tag
 	 */
 	public int type() {
@@ -179,7 +178,6 @@ public class SimEvent implements Cloneable, Comparable<SimEvent> {
 
 	/**
 	 * Get the unique id number of the entity which scheduled this event.
-	 * 
 	 * @return the id number
 	 */
 	public int scheduledBy() {
@@ -188,7 +186,6 @@ public class SimEvent implements Cloneable, Comparable<SimEvent> {
 
 	/**
 	 * Get the user-defined tag of this event.
-	 * 
 	 * @return The tag
 	 */
 	public int getTag() {
@@ -197,7 +194,6 @@ public class SimEvent implements Cloneable, Comparable<SimEvent> {
 
 	/**
 	 * Get the data passed in this event.
-	 * 
 	 * @return A reference to the data
 	 */
 	public Object getData() {
@@ -206,7 +202,6 @@ public class SimEvent implements Cloneable, Comparable<SimEvent> {
 
 	/**
 	 * Create an exact copy of this event.
-	 * 
 	 * @return The event's copy
 	 */
 	@Override
@@ -216,7 +211,6 @@ public class SimEvent implements Cloneable, Comparable<SimEvent> {
 
 	/**
 	 * Set the source entity of this event.
-	 * 
 	 * @param s The unique id number of the entity
 	 */
 	public void setSource(int s) {
@@ -225,10 +219,10 @@ public class SimEvent implements Cloneable, Comparable<SimEvent> {
 
 	/**
 	 * Set the destination entity of this event.
-	 * 
 	 * @param d The unique id number of the entity
 	 */
 	public void setDestination(int d) {
 		entDst = d;
 	}
+
 }

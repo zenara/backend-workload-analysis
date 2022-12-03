@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface ExecutableDataRepository extends JpaRepository<ExecutableData, Long> {
 
-    List<ExecutableData> findByActiveTrue();
+	List<ExecutableData> findByActiveTrue();
 
 }

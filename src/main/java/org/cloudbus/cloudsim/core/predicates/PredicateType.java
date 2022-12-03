@@ -12,7 +12,7 @@ import org.cloudbus.cloudsim.core.SimEvent;
 
 /**
  * A predicate to select events with specific tags.
- * 
+ *
  * @author Marcos Dias de Assuncao
  * @since CloudSim Toolkit 1.0
  * @see PredicateNotType
@@ -25,7 +25,6 @@ public class PredicateType extends Predicate {
 
 	/**
 	 * Constructor used to select events with the tag value <code>t1</code>.
-	 * 
 	 * @param t1 an event tag value
 	 */
 	public PredicateType(int t1) {
@@ -33,8 +32,8 @@ public class PredicateType extends Predicate {
 	}
 
 	/**
-	 * Constructor used to select events with a tag value equal to any of the specified tags.
-	 * 
+	 * Constructor used to select events with a tag value equal to any of the specified
+	 * tags.
 	 * @param tags the list of tags
 	 */
 	public PredicateType(int[] tags) {
@@ -42,8 +41,8 @@ public class PredicateType extends Predicate {
 	}
 
 	/**
-	 * The match function called by <code>Sim_system</code>, not used directly by the user.
-	 * 
+	 * The match function called by <code>Sim_system</code>, not used directly by the
+	 * user.
 	 * @param ev the ev
 	 * @return true, if match
 	 */

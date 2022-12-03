@@ -18,7 +18,7 @@ package org.cloudbus.cloudsim;
 
 /**
  * This exception is to report bad or invalid parameters given during constructor.
- * 
+ *
  * @author Gokul Poduval
  * @author Chen-Khong Tham, National University of Singapore
  * @since CloudSim Toolkit 1.0
@@ -33,7 +33,7 @@ public class ParameterException extends Exception {
 
 	/**
 	 * Constructs a new exception with <tt>null</tt> as its detail message.
-	 * 
+	 *
 	 * @pre $none
 	 * @post $none
 	 */
@@ -44,7 +44,6 @@ public class ParameterException extends Exception {
 
 	/**
 	 * Creates a new ParameterException object.
-	 * 
 	 * @param message an error message
 	 * @pre $none
 	 * @post $none
@@ -56,7 +55,6 @@ public class ParameterException extends Exception {
 
 	/**
 	 * Returns an error message of this object.
-	 * 
 	 * @return an error message
 	 * @pre $none
 	 * @post $none

@@ -17,9 +17,9 @@ import java.util.Map;
 import java.util.Random;
 
 /**
- * The UtilizationModelStochastic class implements a model, according to which a Cloudlet generates
- * random CPU utilization every time frame.
- * 
+ * The UtilizationModelStochastic class implements a model, according to which a Cloudlet
+ * generates random CPU utilization every time frame.
+ *
  * @author Anton Beloglazov
  * @since CloudSim Toolkit 2.0
  */
@@ -41,7 +41,6 @@ public class UtilizationModelStochastic implements UtilizationModel {
 
 	/**
 	 * Instantiates a new utilization model stochastic.
-	 * 
 	 * @param seed the seed
 	 */
 	public UtilizationModelStochastic(long seed) {
@@ -51,6 +50,7 @@ public class UtilizationModelStochastic implements UtilizationModel {
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see cloudsim.power.UtilizationModel#getUtilization(double)
 	 */
 	@Override
@@ -66,7 +66,6 @@ public class UtilizationModelStochastic implements UtilizationModel {
 
 	/**
 	 * Gets the history.
-	 * 
 	 * @return the history
 	 */
 	protected Map<Double, Double> getHistory() {
@@ -75,7 +74,6 @@ public class UtilizationModelStochastic implements UtilizationModel {
 
 	/**
 	 * Sets the history.
-	 * 
 	 * @param history the history
 	 */
 	protected void setHistory(Map<Double, Double> history) {
@@ -84,7 +82,6 @@ public class UtilizationModelStochastic implements UtilizationModel {
 
 	/**
 	 * Save history.
-	 * 
 	 * @param filename the filename
 	 * @throws Exception the exception
 	 */
@@ -97,7 +94,6 @@ public class UtilizationModelStochastic implements UtilizationModel {
 
 	/**
 	 * Load history.
-	 * 
 	 * @param filename the filename
 	 * @throws Exception the exception
 	 */
@@ -111,7 +107,6 @@ public class UtilizationModelStochastic implements UtilizationModel {
 
 	/**
 	 * Sets the random generator.
-	 * 
 	 * @param randomGenerator the new random generator
 	 */
 	public void setRandomGenerator(Random randomGenerator) {
@@ -120,7 +115,6 @@ public class UtilizationModelStochastic implements UtilizationModel {
 
 	/**
 	 * Gets the random generator.
-	 * 
 	 * @return the random generator
 	 */
 	public Random getRandomGenerator() {

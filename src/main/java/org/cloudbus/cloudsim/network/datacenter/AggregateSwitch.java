@@ -18,24 +18,24 @@ import org.cloudbus.cloudsim.core.SimEvent;
 import org.cloudbus.cloudsim.core.predicates.PredicateType;
 
 /**
- * This class allows to simulate aggregate switch for Datacenter network. It interacts with other
- * switches in order to exchange packets.
- * 
+ * This class allows to simulate aggregate switch for Datacenter network. It interacts
+ * with other switches in order to exchange packets.
+ *
  * Please refer to following publication for more details:
- * 
- * Saurabh Kumar Garg and Rajkumar Buyya, NetworkCloudSim: Modelling Parallel Applications in Cloud
- * Simulations, Proceedings of the 4th IEEE/ACM International Conference on Utility and Cloud
- * Computing (UCC 2011, IEEE CS Press, USA), Melbourne, Australia, December 5-7, 2011.
- * 
+ *
+ * Saurabh Kumar Garg and Rajkumar Buyya, NetworkCloudSim: Modelling Parallel Applications
+ * in Cloud Simulations, Proceedings of the 4th IEEE/ACM International Conference on
+ * Utility and Cloud Computing (UCC 2011, IEEE CS Press, USA), Melbourne, Australia,
+ * December 5-7, 2011.
+ *
  * @author Saurabh Kumar Garg
  * @since CloudSim Toolkit 1.0
  */
 public class AggregateSwitch extends Switch {
 
 	/**
-	 * Constructor for Aggregate Switch We have to specify switches that are connected to its
-	 * downlink and uplink ports, and corresponding bandwidths
-	 * 
+	 * Constructor for Aggregate Switch We have to specify switches that are connected to
+	 * its downlink and uplink ports, and corresponding bandwidths
 	 * @param name Name of the switch
 	 * @param level At which level switch is with respect to hosts.
 	 * @param dc Pointer to Datacenter
@@ -54,7 +54,6 @@ public class AggregateSwitch extends Switch {
 
 	/**
 	 * Send Packet to switch connected through a downlink port
-	 * 
 	 * @param ev Event/packet to process
 	 */
 
@@ -87,7 +86,6 @@ public class AggregateSwitch extends Switch {
 
 	/**
 	 * Send Packet to switch connected through a uplink port
-	 * 
 	 * @param ev Event/packet to process
 	 */
 	@Override
@@ -121,7 +119,8 @@ public class AggregateSwitch extends Switch {
 					downlinkswitchpktlist.put(switchid, pktlist);
 				}
 				pktlist.add(hspkt);
-			} else// send to up
+			}
+			else// send to up
 			{
 				Switch sw = uplinkswitches.get(0);
 				List<NetworkPacket> pktlist = uplinkswitchpktlist.get(sw.getId());

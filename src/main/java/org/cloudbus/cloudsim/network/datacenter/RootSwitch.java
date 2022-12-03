@@ -18,24 +18,24 @@ import org.cloudbus.cloudsim.core.SimEvent;
 import org.cloudbus.cloudsim.core.predicates.PredicateType;
 
 /**
- * This class allows to simulate Root switch which connects Datacenter to external network. It
- * interacts with other switches in order to exchange packets.
- * 
+ * This class allows to simulate Root switch which connects Datacenter to external
+ * network. It interacts with other switches in order to exchange packets.
+ *
  * Please refer to following publication for more details:
- * 
- * Saurabh Kumar Garg and Rajkumar Buyya, NetworkCloudSim: Modelling Parallel Applications in Cloud
- * Simulations, Proceedings of the 4th IEEE/ACM International Conference on Utility and Cloud
- * Computing (UCC 2011, IEEE CS Press, USA), Melbourne, Australia, December 5-7, 2011.
- * 
+ *
+ * Saurabh Kumar Garg and Rajkumar Buyya, NetworkCloudSim: Modelling Parallel Applications
+ * in Cloud Simulations, Proceedings of the 4th IEEE/ACM International Conference on
+ * Utility and Cloud Computing (UCC 2011, IEEE CS Press, USA), Melbourne, Australia,
+ * December 5-7, 2011.
+ *
  * @author Saurabh Kumar Garg
  * @since CloudSim Toolkit 3.0
  */
 public class RootSwitch extends Switch {
 
 	/**
-	 * Constructor for Root Switch We have to specify switches that are connected to its downlink
-	 * ports, and corresponding bandwidths
-	 * 
+	 * Constructor for Root Switch We have to specify switches that are connected to its
+	 * downlink ports, and corresponding bandwidths
 	 * @param name Name of the switch
 	 * @param level At which level switch is with respect to hosts.
 	 * @param dc Pointer to Datacenter
@@ -52,7 +52,6 @@ public class RootSwitch extends Switch {
 
 	/**
 	 * Send Packet to switch connected through a downlink port
-	 * 
 	 * @param ev Event/packet to process
 	 */
 	@Override
@@ -84,7 +83,8 @@ public class RootSwitch extends Switch {
 			}
 			if (aggSwtichid < 0) {
 				System.out.println(" No destination for this packet");
-			} else {
+			}
+			else {
 				List<NetworkPacket> pktlist = downlinkswitchpktlist.get(aggSwtichid);
 				if (pktlist == null) {
 					pktlist = new ArrayList<NetworkPacket>();
@@ -94,4 +94,5 @@ public class RootSwitch extends Switch {
 			}
 		}
 	}
+
 }

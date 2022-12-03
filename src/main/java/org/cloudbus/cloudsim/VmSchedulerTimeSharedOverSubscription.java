@@ -1,7 +1,7 @@
 /*
  * Title: CloudSim Toolkit Description: CloudSim (Cloud Simulation) Toolkit for Modeling and
  * Simulation of Clouds Licence: GPL - http://www.gnu.org/copyleft/gpl.html
- * 
+ *
  * Copyright (c) 2009-2012, The University of Melbourne, Australia
  */
 
@@ -16,10 +16,10 @@ import java.util.Map.Entry;
 import org.cloudbus.cloudsim.lists.PeList;
 
 /**
- * This is a Time-Shared VM Scheduler, which allows over-subscription. In other words, the scheduler
- * still allows the allocation of VMs that require more CPU capacity that is available.
- * Oversubscription results in performance degradation.
- * 
+ * This is a Time-Shared VM Scheduler, which allows over-subscription. In other words, the
+ * scheduler still allows the allocation of VMs that require more CPU capacity that is
+ * available. Oversubscription results in performance degradation.
+ *
  * @author Anton Beloglazov
  * @author Rodrigo N. Calheiros
  * @since CloudSim Toolkit 3.0
@@ -28,7 +28,6 @@ public class VmSchedulerTimeSharedOverSubscription extends VmSchedulerTimeShared
 
 	/**
 	 * Instantiates a new vm scheduler time shared over subscription.
-	 * 
 	 * @param pelist the pelist
 	 */
 	public VmSchedulerTimeSharedOverSubscription(List<? extends Pe> pelist) {
@@ -36,11 +35,10 @@ public class VmSchedulerTimeSharedOverSubscription extends VmSchedulerTimeShared
 	}
 
 	/**
-	 * Allocate pes for vm. The policy allows over-subscription. In other words, the policy still
-	 * allows the allocation of VMs that require more CPU capacity that is available.
-	 * Oversubscription results in performance degradation. Each virtual PE cannot be allocated more
-	 * CPU capacity than MIPS of a single PE.
-	 * 
+	 * Allocate pes for vm. The policy allows over-subscription. In other words, the
+	 * policy still allows the allocation of VMs that require more CPU capacity that is
+	 * available. Oversubscription results in performance degradation. Each virtual PE
+	 * cannot be allocated more CPU capacity than MIPS of a single PE.
 	 * @param vmUid the vm uid
 	 * @param mipsShareRequested the mips share requested
 	 * @return true, if successful
@@ -57,7 +55,8 @@ public class VmSchedulerTimeSharedOverSubscription extends VmSchedulerTimeShared
 			if (mips > peMips) {
 				mipsShareRequestedCapped.add(peMips);
 				totalRequestedMips += peMips;
-			} else {
+			}
+			else {
 				mipsShareRequestedCapped.add(mips);
 				totalRequestedMips += mips;
 			}
@@ -77,7 +76,8 @@ public class VmSchedulerTimeSharedOverSubscription extends VmSchedulerTimeShared
 				if (getVmsMigratingOut().contains(vmUid)) {
 					// performance degradation due to migration = 10% MIPS
 					mipsRequested *= 0.9;
-				} else if (getVmsMigratingIn().contains(vmUid)) {
+				}
+				else if (getVmsMigratingIn().contains(vmUid)) {
 					// the destination host only experience 10% of the migrating VM's MIPS
 					mipsRequested *= 0.1;
 				}
@@ -86,7 +86,8 @@ public class VmSchedulerTimeSharedOverSubscription extends VmSchedulerTimeShared
 
 			getMipsMap().put(vmUid, mipsShareAllocated);
 			setAvailableMips(getAvailableMips() - totalRequestedMips);
-		} else {
+		}
+		else {
 			redistributeMipsDueToOverSubscription();
 		}
 
@@ -94,11 +95,12 @@ public class VmSchedulerTimeSharedOverSubscription extends VmSchedulerTimeShared
 	}
 
 	/**
-	 * This method recalculates distribution of MIPs among VMs considering eventual shortage of MIPS
-	 * compared to the amount requested by VMs.
+	 * This method recalculates distribution of MIPs among VMs considering eventual
+	 * shortage of MIPS compared to the amount requested by VMs.
 	 */
 	protected void redistributeMipsDueToOverSubscription() {
-		// First, we calculate the scaling factor - the MIPS allocation for all VMs will be scaled
+		// First, we calculate the scaling factor - the MIPS allocation for all VMs will
+		// be scaled
 		// proportionally
 		double totalRequiredMipsByAllVms = 0;
 
@@ -114,7 +116,8 @@ public class VmSchedulerTimeSharedOverSubscription extends VmSchedulerTimeShared
 				if (mips > peMips) {
 					mipsShareRequestedCapped.add(peMips);
 					requiredMipsByThisVm += peMips;
-				} else {
+				}
+				else {
 					mipsShareRequestedCapped.add(mips);
 					requiredMipsByThisVm += mips;
 				}
@@ -147,12 +150,15 @@ public class VmSchedulerTimeSharedOverSubscription extends VmSchedulerTimeShared
 					mips *= scalingFactor;
 					// performance degradation due to migration = 10% MIPS
 					mips *= 0.9;
-				} else if (getVmsMigratingIn().contains(vmUid)) {
-					// the destination host only experiences 10% of the migrating VM's MIPS
+				}
+				else if (getVmsMigratingIn().contains(vmUid)) {
+					// the destination host only experiences 10% of the migrating VM's
+					// MIPS
 					mips *= 0.1;
 					// the final 10% of the requested MIPS are scaled
 					mips *= scalingFactor;
-				} else {
+				}
+				else {
 					mips *= scalingFactor;
 				}
 

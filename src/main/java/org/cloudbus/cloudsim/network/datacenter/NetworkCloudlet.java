@@ -15,15 +15,17 @@ import org.cloudbus.cloudsim.Cloudlet;
 import org.cloudbus.cloudsim.UtilizationModel;
 
 /**
- * NetworkCloudlet class extends Cloudlet to support simulation of complex applications. Each such
- * network Cloudlet represents a task of the application. Each task consists of several stages.
- * 
+ * NetworkCloudlet class extends Cloudlet to support simulation of complex applications.
+ * Each such network Cloudlet represents a task of the application. Each task consists of
+ * several stages.
+ *
  * Please refer to following publication for more details:
- * 
- * Saurabh Kumar Garg and Rajkumar Buyya, NetworkCloudSim: Modelling Parallel Applications in Cloud
- * Simulations, Proceedings of the 4th IEEE/ACM International Conference on Utility and Cloud
- * Computing (UCC 2011, IEEE CS Press, USA), Melbourne, Australia, December 5-7, 2011.
- * 
+ *
+ * Saurabh Kumar Garg and Rajkumar Buyya, NetworkCloudSim: Modelling Parallel Applications
+ * in Cloud Simulations, Proceedings of the 4th IEEE/ACM International Conference on
+ * Utility and Cloud Computing (UCC 2011, IEEE CS Press, USA), Melbourne, Australia,
+ * December 5-7, 2011.
+ *
  * @author Saurabh Kumar Garg
  * @since CloudSim Toolkit 1.0
  */
@@ -31,25 +33,11 @@ public class NetworkCloudlet extends Cloudlet implements Comparable<Object> {
 
 	long memory;
 
-	public NetworkCloudlet(
-			int cloudletId,
-			long cloudletLength,
-			int pesNumber,
-			long cloudletFileSize,
-			long cloudletOutputSize,
-			long memory,
-			UtilizationModel utilizationModelCpu,
-			UtilizationModel utilizationModelRam,
-			UtilizationModel utilizationModelBw) {
-		super(
-				cloudletId,
-				cloudletLength,
-				pesNumber,
-				cloudletFileSize,
-				cloudletOutputSize,
-				utilizationModelCpu,
-				utilizationModelRam,
-				utilizationModelBw);
+	public NetworkCloudlet(int cloudletId, long cloudletLength, int pesNumber, long cloudletFileSize,
+			long cloudletOutputSize, long memory, UtilizationModel utilizationModelCpu,
+			UtilizationModel utilizationModelRam, UtilizationModel utilizationModelBw) {
+		super(cloudletId, cloudletLength, pesNumber, cloudletFileSize, cloudletOutputSize, utilizationModelCpu,
+				utilizationModelRam, utilizationModelBw);
 
 		currStagenum = -1;
 		this.memory = memory;
