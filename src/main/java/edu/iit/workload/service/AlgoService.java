@@ -31,7 +31,7 @@ public class AlgoService {
     }
 
     public boolean checkIsExecuted(ExecutableData executableData) {
-        List<Result> byParams = resultDataRepository.findByParams(executableData.getParameter(),
+        List<Result> byParams = resultDataRepository.findAllByWorkloadAndParameterAndVmAllocationPolicyAndVmSelectionPolicy(executableData.getParameter(),
                 executableData.getWorkload(),
                 executableData.getVmAllocationPolicy(), executableData.getVmSelectionPolicy());
         if(byParams != null && byParams.size()>0){
