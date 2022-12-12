@@ -16,6 +16,7 @@ import java.util.Scanner;
 import edu.iit.workload.domain.ExecutableData;
 import edu.iit.workload.domain.ResultAnalysis;
 import edu.iit.workload.repository.ResultDataRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.cloudbus.cloudsim.Cloudlet;
 import org.cloudbus.cloudsim.CloudletSchedulerDynamicWorkload;
 import org.cloudbus.cloudsim.Datacenter;
@@ -42,6 +43,7 @@ import org.cloudbus.cloudsim.provisioners.PeProvisionerSimple;
 import org.cloudbus.cloudsim.provisioners.RamProvisionerSimple;
 import org.cloudbus.cloudsim.util.MathUtil;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * The Class Helper.
@@ -57,6 +59,7 @@ import org.springframework.stereotype.Service;
  * @author Anton Beloglazov
  */
 @Service
+@Slf4j
 public class Helper {
 
 	private final ResultDataRepository repository;
@@ -214,6 +217,7 @@ public class Helper {
 	 * @param executableData
 	 * @param uuid
 	 */
+	@Transactional
 	public void printResults(PowerDatacenter datacenter, List<Vm> vms, double lastClock, String experimentName,
 			boolean outputInCsv, String outputFolder, ExecutableData executableData, String uuid) {
 		Log.enable();
@@ -276,6 +280,7 @@ public class Helper {
 		r.setWorkload(executableData.getWorkload());
 		r.setGroupId(uuid);
 		r.setExecutedDate(LocalDateTime.now());
+		log.info("Saving -> {}", r);
 		repository.save(r);
 
 		if (outputInCsv) {

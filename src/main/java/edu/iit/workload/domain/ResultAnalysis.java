@@ -1,6 +1,7 @@
 package edu.iit.workload.domain;
 
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
+@ToString
 public class ResultAnalysis {
 
 	@Id
