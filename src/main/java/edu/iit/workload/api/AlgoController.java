@@ -80,7 +80,9 @@ public class AlgoController {
 			if (this.algoService.checkIsExecuted(executableData)) {
 				return;
 			}
+			log.info("START -> vmAllocationPolicy: {} vmSelectionPolicy: {} parameter: {} workload: {}", executableData.getVmAllocationPolicy(), executableData.getVmSelectionPolicy(), executableData.getParameter(), executableData.getWorkload());
 			planetLabRunner.run(enableOutput, outputToFile, inputFolder, outputFolder, executableData, uuid.toString());
+			log.info("END ------------------");
 		});
 	}
 
