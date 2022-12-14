@@ -12,4 +12,5 @@ public interface ResultDataRepository extends JpaRepository<ResultAnalysis, Long
 	List<ResultAnalysis> findAllByWorkloadAndParameterAndVmAllocationPolicyAndVmSelectionPolicy(String parameter,
 			String workload, String vmAllocationPolicy, String vmSelectionPolicy);
 
+	List<ResultAnalysis> findByOrderByExecutedDateDesc();
 }

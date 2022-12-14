@@ -2,6 +2,8 @@ package edu.iit.workload.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import edu.iit.workload.api.dto.ChartResponse;
+import edu.iit.workload.domain.ResultAnalysis;
+import edu.iit.workload.service.AlgoService;
 import edu.iit.workload.service.ChartService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -20,8 +22,11 @@ public class ChartController {
 
 	private final ChartService chartService;
 
-	public ChartController(ChartService chartService) {
+	private final AlgoService algoService;
+
+	public ChartController(ChartService chartService, AlgoService algoService) {
 		this.chartService = chartService;
+		this.algoService = algoService;
 	}
 
 	@GetMapping("/{type}")
@@ -41,6 +46,11 @@ public class ChartController {
 
 		return ResponseEntity.status(HttpStatus.OK).body(ChartResponse.builder().data(data).min((int) min).max(
 				(int) max).build());
+	}
+
+	@GetMapping("/chart/summery")
+	public ResponseEntity<List<ResultAnalysis>> chartSummery(){
+		return ResponseEntity.status(HttpStatus.OK).body(this.algoService.getAnalysedResult());
 	}
 
 }

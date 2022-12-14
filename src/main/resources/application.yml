@@ -5,7 +5,7 @@ spring:
     password: lCRF44L5eYvEvtfDuU82
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
-      validation-timeout: 300000
+      validation-timeout: 1000000
       maximum-pool-size: 10
   jpa:
     hibernate:

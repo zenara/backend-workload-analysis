@@ -40,4 +40,7 @@ public class AlgoService {
 		return false;
 	}
 
+	public List<ResultAnalysis> getAnalysedResult() {
+		return	this.resultDataRepository.findByOrderByExecutedDateDesc();
+	}
 }
