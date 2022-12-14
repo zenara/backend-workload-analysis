@@ -37,6 +37,10 @@ public class ChartService {
 	private double findValue(String type, ResultAnalysis resultAnalysis) {
 		if ("energy".equals(type)) {
 			return resultAnalysis.getEnergy();
+		}else if ("vm-migration".equals(type)){
+			return resultAnalysis.getNumberOfMigrations();
+		}else if("sla".equals(type)){
+			return resultAnalysis.getSla();
 		}
 		return 0;
 	}
