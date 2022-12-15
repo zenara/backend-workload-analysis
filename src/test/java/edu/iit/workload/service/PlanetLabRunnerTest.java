@@ -1,6 +1,6 @@
 package edu.iit.workload.service;
 
-import edu.iit.workload.DemoApplication;
+import edu.iit.workload.WorkloadAnalyzerApplication;
 import edu.iit.workload.domain.ExecutableData;
 import edu.iit.workload.domain.ResultAnalysis;
 import edu.iit.workload.power.Helper;
@@ -25,7 +25,7 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 @Order(1)
-@ContextConfiguration(classes = DemoApplication.class)
+@ContextConfiguration(classes = WorkloadAnalyzerApplication.class)
 @SpringBootTest
 public class PlanetLabRunnerTest {
 
