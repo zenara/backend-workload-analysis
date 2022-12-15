@@ -1,4 +1,4 @@
-package org.cloudbus.cloudsim.power;
+package edu.iit.workload.service;
 
 import edu.iit.workload.DemoApplication;
 import edu.iit.workload.domain.ExecutableData;
@@ -8,6 +8,7 @@ import edu.iit.workload.power.planetlab.PlanetLabRunner;
 import org.cloudbus.cloudsim.VmAllocationPolicy;
 import org.cloudbus.cloudsim.core.CloudSim;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -23,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
+@Order(1)
 @ContextConfiguration(classes = DemoApplication.class)
 @SpringBootTest
 public class PlanetLabRunnerTest {

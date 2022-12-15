@@ -3,11 +3,13 @@ package edu.iit.workload.api;
 import edu.iit.workload.domain.ExecutableData;
 import edu.iit.workload.power.planetlab.PlanetLabRunner;
 import edu.iit.workload.service.AlgoService;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -20,6 +22,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@Order(2)
 @SpringBootTest
 @AutoConfigureMockMvc(addFilters = false)
 public class AlgoControllerTest {
@@ -29,10 +32,10 @@ public class AlgoControllerTest {
     @Autowired
     MockMvc mockMvc;
 
-    @Mock
+    @MockBean
     private PlanetLabRunner planetLabRunner;
 
-    @Mock
+    @MockBean
     private AlgoService algoService;
 
     @Test
