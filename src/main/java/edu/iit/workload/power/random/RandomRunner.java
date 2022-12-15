@@ -29,7 +29,7 @@ public class RandomRunner extends RunnerAbstract {
 	 * @see org.cloudbus.cloudsim.examples.power.RunnerAbstract#init(java.lang.String)
 	 */
 	@Override
-	protected void init(String inputFolder) {
+	public void init(String inputFolder) {
 		try {
 			CloudSim.init(1, Calendar.getInstance(), false);
 

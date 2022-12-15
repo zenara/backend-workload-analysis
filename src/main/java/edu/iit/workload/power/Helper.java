@@ -216,10 +216,11 @@ public class Helper {
 	 * @param outputFolder the output folder
 	 * @param executableData
 	 * @param uuid
+	 * @return
 	 */
 	@Transactional
-	public void printResults(PowerDatacenter datacenter, List<Vm> vms, double lastClock, String experimentName,
-			boolean outputInCsv, String outputFolder, ExecutableData executableData, String uuid) {
+	public ResultAnalysis printResults(PowerDatacenter datacenter, List<Vm> vms, double lastClock, String experimentName,
+									   boolean outputInCsv, String outputFolder, ExecutableData executableData, String uuid) {
 		Log.enable();
 		List<Host> hosts = datacenter.getHostList();
 
@@ -435,6 +436,7 @@ public class Helper {
 		}
 
 		Log.setDisabled(true);
+		return r;
 	}
 
 	/**

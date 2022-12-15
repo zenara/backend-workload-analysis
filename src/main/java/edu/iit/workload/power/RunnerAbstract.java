@@ -1,6 +1,7 @@
 package edu.iit.workload.power;
 
 import edu.iit.workload.domain.ExecutableData;
+import edu.iit.workload.domain.ResultAnalysis;
 import org.cloudbus.cloudsim.*;
 import org.cloudbus.cloudsim.core.CloudSim;
 import org.cloudbus.cloudsim.power.*;
@@ -114,7 +115,7 @@ public abstract class RunnerAbstract {
 	 * Inits the simulation.
 	 * @param inputFolder the input folder
 	 */
-	protected abstract void init(String inputFolder);
+	public abstract void init(String inputFolder);
 
 	/**
 	 * Starts the simulation.
@@ -123,10 +124,11 @@ public abstract class RunnerAbstract {
 	 * @param vmAllocationPolicy the vm allocation policy
 	 * @param executableData
 	 * @param uuid
+	 * @return
 	 */
 	@SuppressWarnings("Duplicates")
-	protected void start(String experimentName, String outputFolder, VmAllocationPolicy vmAllocationPolicy,
-			ExecutableData executableData, String uuid) {
+	public ResultAnalysis start(String experimentName, String outputFolder, VmAllocationPolicy vmAllocationPolicy,
+								ExecutableData executableData, String uuid) {
 		System.out.println("");
 		System.out.println("Starting " + experimentName);
 
@@ -147,17 +149,17 @@ public abstract class RunnerAbstract {
 
 			CloudSim.stopSimulation();
 
-			helper.printResults(datacenter, vmList, lastClock, experimentName, Constants.OUTPUT_CSV, outputFolder,
+			return helper.printResults(datacenter, vmList, lastClock, experimentName, Constants.OUTPUT_CSV, outputFolder,
 					executableData, uuid);
-
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 			Log.printLine("The simulation has been terminated due to an unexpected error");
 			System.exit(0);
+		} finally {
+			Log.printLine("Finished " + experimentName);
 		}
-
-		Log.printLine("Finished " + experimentName);
+		return null;
 	}
 
 	/**
@@ -186,7 +188,7 @@ public abstract class RunnerAbstract {
 	 * @param parameterName the parameter name
 	 * @return the vm allocation policy
 	 */
-	protected VmAllocationPolicy getVmAllocationPolicy(String vmAllocationPolicyName, String vmSelectionPolicyName,
+	public VmAllocationPolicy getVmAllocationPolicy(String vmAllocationPolicyName, String vmSelectionPolicyName,
 			String parameterName) {
 		VmAllocationPolicy vmAllocationPolicy = null;
 		PowerVmSelectionPolicy vmSelectionPolicy = null;

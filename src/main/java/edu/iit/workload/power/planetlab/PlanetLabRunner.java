@@ -26,7 +26,7 @@ import org.springframework.stereotype.Service;
 public class PlanetLabRunner extends RunnerAbstract {
 
 	@Override
-	protected void init(String inputFolder) {
+	public void init(String inputFolder) {
 		try {
 			CloudSim.init(1, Calendar.getInstance(), false);
 

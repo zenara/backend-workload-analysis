@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:mysql://database-1.cemnrurbjhph.us-east-1.rds.amazonaws.com:3306/msc
+    username: admin
+    password: lCRF44L5eYvEvtfDuU82
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      validation-timeout: 1000000
+      maximum-pool-size: 10
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+folder:
+  input: H:\Chathu\backend\backend-workload-analysis\src\main\resources\workload
+  output: H:\Chathu\backend\backend-workload-analysis\src\main\resources\output
